@@ -1,0 +1,26 @@
+プロジェクト 'VacancyImport' に次のパッケージ参照が含まれています
+   [net8.0]: 
+   最上位レベル パッケージ                                                   要求済み      解決済み   
+   > ClosedXML                                                    0.105.0   0.105.0
+   > Microsoft.Extensions.Configuration                           9.0.5     9.0.5  
+   > Microsoft.Extensions.Configuration.EnvironmentVariables      9.0.5     9.0.5  
+   > Microsoft.Extensions.Configuration.Json                      9.0.5     9.0.5  
+   > Microsoft.Extensions.DependencyInjection                     9.0.5     9.0.5  
+   > Microsoft.Extensions.Hosting                                 9.0.5     9.0.5  
+   > Microsoft.Extensions.Hosting.WindowsServices                 9.0.5     9.0.5  
+   > Microsoft.Extensions.Http                                    9.0.5     9.0.5  
+   > Microsoft.Extensions.Logging                                 9.0.5     9.0.5  
+   > Microsoft.Extensions.Options                                 9.0.5     9.0.5  
+   > Npgsql                                                       9.0.3     9.0.3  
+   > Serilog                                                      4.3.0     4.3.0  
+   > Serilog.Extensions.Hosting                                   9.0.0     9.0.0  
+   > Serilog.Extensions.Logging                                   9.0.1     9.0.1  
+   > Serilog.Settings.Configuration                               9.0.0     9.0.0  
+   > Serilog.Sinks.Console                                        6.0.0     6.0.0  
+   > Serilog.Sinks.EventLog                                       4.0.0     4.0.0  
+   > Serilog.Sinks.File                                           7.0.0     7.0.0  
+   > supabase-csharp                                              0.16.2    0.16.2 
+   > System.Configuration.ConfigurationManager                    9.0.5     9.0.5  
+   > System.Runtime.CompilerServices.Unsafe                       6.1.2     6.1.2  
+   > System.ServiceProcess.ServiceController                      9.0.5     9.0.5  
+

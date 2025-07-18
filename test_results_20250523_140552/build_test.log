@@ -1,0 +1,10 @@
+MSBuild のバージョン 17.8.3+195e7f5a3 (.NET)
+  復元対象のプロジェクトを決定しています...
+  復元対象のすべてのプロジェクトは最新です。
+  VacancyImport -> /Users/tasakataishi/dev/01_work/14_vacancy_import/src/VacancyImport/bin/Release/net8.0/VacancyImport.dll
+
+ビルドに成功しました。
+    0 個の警告
+    0 エラー
+
+経過時間 00:00:00.54

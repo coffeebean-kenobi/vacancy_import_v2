@@ -1,0 +1,52 @@
+# .NET Core
+bin/
+obj/
+.vs/
+.vscode/
+*.user
+*.suo
+*.userosscache
+*.dll
+*.pdb
+
+# Build results
+[Dd]ebug/
+[Dd]ebugPublic/
+[Rr]elease/
+[Rr]eleases/
+x64/
+x86/
+[Aa][Rr][Mm]/
+[Aa][Rr][Mm]64/
+bld/
+[Bb]in/
+[Oo]bj/
+[Ll]og/
+[Ll]ogs/
+
+# JetBrains Rider
+.idea/
+
+# Visual Studio Code
+.vscode/
+
+# User Specific Files
+*.userprefs
+*.usertasks
+
+# Application specific files
+logs/
+test_results/
+proofs/
+.DS_Store
+
+# 機密情報
+keys/
+appsettings.*.json
+!appsettings.Development.json
+!appsettings.Staging.json
+!appsettings.Production.json
+config-snapshot-*.json
+
+# Excel一時ファイル
+~$* 

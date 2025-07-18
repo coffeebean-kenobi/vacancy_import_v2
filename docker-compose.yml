@@ -1,0 +1,16 @@
+version: '3.8'
+
+services:
+  vacancy-import:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    volumes:
+      - ./test_data:/app/test_data
+      - ./logs:/app/logs
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - VACANCY_IMPORT_SupabaseSettings__Url=https://example.supabase.co
+      - VACANCY_IMPORT_SupabaseSettings__Key=test-key
+      - VACANCY_IMPORT_SupabaseSettings__TableName=room_availability
+    restart: unless-stopped 

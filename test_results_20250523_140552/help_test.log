@@ -1,0 +1,27 @@
+予約管理システム連携ツール
+Excel予約管理シートからデータを抽出し、Supabaseデータベースに同期、LINE WORKSで通知を行います
+
+使用方法:
+  VacancyImport.exe [オプション]
+
+オプション:
+  --console, -c           コンソールアプリケーションとして実行
+  --help, -h              このヘルプを表示
+  --verbose, -v           詳細ログを有効にする
+  --environment, -e <env> 環境を指定 (Development, Staging, Production)
+
+Windows Serviceとして実行する場合:
+  # サービスのインストール
+  sc create VacancyImportService binPath="C:\path\to\VacancyImport.exe"
+  sc config VacancyImportService start=auto
+  sc description VacancyImportService "予約管理システム連携サービス"
+
+  # サービスの管理
+  sc start VacancyImportService
+  sc stop VacancyImportService
+  sc delete VacancyImportService
+
+例:
+  VacancyImport.exe --console                  # コンソールモードで実行
+  VacancyImport.exe --console --verbose        # 詳細ログ付きで実行
+  VacancyImport.exe --environment Development  # 開発環境で実行

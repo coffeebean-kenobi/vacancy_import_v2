@@ -1,0 +1,21 @@
+FROM mcr.microsoft.com/dotnet/sdk:8.0
+
+WORKDIR /app
+
+# プロジェクトファイルをコピー
+COPY src/VacancyImport/*.csproj ./src/VacancyImport/
+
+# 依存関係の復元
+RUN dotnet restore ./src/VacancyImport/VacancyImport.csproj
+
+# ソースコードをコピー
+COPY . ./
+
+# ディレクトリ作成
+RUN mkdir -p test_data/excel logs
+
+# 環境変数の設定
+ENV ASPNETCORE_ENVIRONMENT=Development
+
+# アプリケーションの実行
+CMD ["dotnet", "run", "--project", "src/VacancyImport/VacancyImport.csproj", "--environment", "Development"] 

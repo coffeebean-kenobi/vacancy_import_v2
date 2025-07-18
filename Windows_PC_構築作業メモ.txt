@@ -1,0 +1,111 @@
+====================================================================
+Windows PC - VacancyImport構築作業メモ
+====================================================================
+
+■ 作業一覧
+□ .NET 8.0 Runtimeをダウンロード・インストール
+□ 作業ディレクトリ作成 (C:\dev)
+□ Gitリポジトリをクローン
+□ プロジェクトの依存関係復元とビルド
+□ 本番環境設定ファイル作成・編集
+□ アプリケーションをPublish
+□ Windows Serviceとして登録
+□ サービス開始・動作確認
+□ ログファイル確認
+
+■ 重要なパス・接続先
+・.NET 8.0 ダウンロード: https://dotnet.microsoft.com/download/dotnet/8.0
+・作業ディレクトリ: C:\dev
+・インストール先: C:\VacancyImport
+・共有フォルダ: \\192.168.200.20\全社共有\SS予約表\
+・ログ保存場所: C:\VacancyImport\logs
+・証跡保存場所: C:\VacancyImport\proof
+
+■ 必須コマンド集
+
+### .NET確認
+dotnet --info
+
+### プロジェクト取得・ビルド
+mkdir C:\dev
+cd C:\dev
+git clone [リポジトリURL] vacancy-import
+cd vacancy-import\src\VacancyImport
+dotnet restore
+dotnet build --configuration Release
+
+### 設定ファイル作成
+copy appsettings.json appsettings.Production.json
+
+### アプリケーション発行
+dotnet publish --configuration Release --self-contained false --output "C:\VacancyImport"
+
+### Windows Service登録（管理者権限必要）
+sc create VacancyImportService binpath= "C:\VacancyImport\VacancyImport.exe" start= auto
+sc config VacancyImportService DisplayName= "予約管理システム連携サービス"
+sc start VacancyImportService
+
+### 動作確認
+cd C:\VacancyImport
+set ASPNETCORE_ENVIRONMENT=Production
+VacancyImport.exe --console
+
+### サービス操作
+sc query VacancyImportService    # 状態確認
+sc stop VacancyImportService     # 停止
+sc start VacancyImportService    # 開始
+
+### ログ確認
+dir C:\VacancyImport\logs
+type C:\VacancyImport\logs\vacancy-import-*.log
+findstr "ERROR" C:\VacancyImport\logs\vacancy-import-*.log
+
+■ 設定項目
+
+### 編集ファイル: C:\VacancyImport\appsettings.Production.json
+
+{
+  "SupabaseSettings": {
+    "Url": "https://your-project-ref.supabase.co",
+    "Key": "your-service-role-key",
+    "TableName": "room_availability"
+  },
+  "LineWorksSettings": {
+    "BotId": "YOUR_BOT_ID",
+    "ClientId": "YOUR_CLIENT_ID",
+    "ClientSecret": "YOUR_CLIENT_SECRET"
+  },
+  "ExcelSettings": {
+    "Environments": {
+      "Production": {
+        "BasePath": "\\\\192.168.200.20\\全社共有\\SS予約表\\2025年"
+      }
+    }
+  }
+}
+
+■ トラブル対応
+
+### エラー別対処法
+・.NET not found → .NET 8.0再インストール
+・Supabase connection failed → URL/Key確認
+・Access denied → 共有フォルダ権限確認
+・ビルドエラー → dotnet clean → dotnet restore → 再ビルド
+・Service failed → イベントビューアー確認
+
+### 確認ポイント
+・管理者権限でコマンド実行しているか
+・ASPNETCORE_ENVIRONMENT=Production設定済みか
+・共有フォルダにアクセスできるか
+・Supabase/LINE WORKS設定値は正しいか
+
+■ 所要時間目安
+・.NET インストール: 5分
+・プロジェクト取得・ビルド: 10分
+・設定作業: 5分
+・サービス登録・テスト: 10分
+・合計: 約30分
+
+====================================================================
+作業完了後は必ずログファイルでエラーがないことを確認する
+==================================================================== 
