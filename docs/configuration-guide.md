@@ -40,7 +40,7 @@ export VACANCY_IMPORT_ExcelSettings__Environments__Production__BasePath=\\\\192.
 ```bash
 export VACANCY_IMPORT_SupabaseSettings__Url=https://your-project.supabase.co
 export VACANCY_IMPORT_SupabaseSettings__Key=your-supabase-key
-export VACANCY_IMPORT_SupabaseSettings__TableName=room_availability
+export VACANCY_IMPORT_SupabaseSettings__TableName=facility_monthly_reservations
 ```
 
 ### LINE WORKS設定

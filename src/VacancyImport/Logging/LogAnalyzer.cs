@@ -186,7 +186,7 @@ public class LogAnalyzer
     /// <summary>
     /// 指定日付以降のログファイルを取得
     /// </summary>
-    private async Task<IEnumerable<string>> GetLogFilesAsync(DateTime startDate)
+    private Task<IEnumerable<string>> GetLogFilesAsync(DateTime startDate)
     {
         var files = Directory.GetFiles(_logDirectory, "*.log*")
             .Union(Directory.GetFiles(_logDirectory, "*.gz"))
@@ -196,7 +196,7 @@ public class LogAnalyzer
             .Select(f => f.FullName)
             .ToList();
 
-        return files;
+        return Task.FromResult<IEnumerable<string>>(files);
     }
 
     /// <summary>

@@ -7,8 +7,8 @@
 2. 実装要件：
    - ISupabaseServiceインターフェースを実装
    - コンストラクタでIOptions<AppSettings>とILogger<SupabaseService>を注入
-   - GetCurrentReservationsAsync: 現在の予約データを取得
-   - UpdateReservationsAsync: 予約データの更新（追加/変更/削除）
+   - GetCurrentMonthlyReservationsAsync: 現在の月別予約データを取得
+   - UpdateMonthlyReservationsAsync: 月別予約データの更新（追加/変更/削除）
    - StartRealtimeSubscriptionAsync: リアルタイム更新の購読開始
 
 3. 処理内容：

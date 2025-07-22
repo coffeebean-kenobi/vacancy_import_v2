@@ -11,13 +11,13 @@
 ### 1. ExcelServiceの修正
 `IExcelService`インターフェースの以下のメソッドを実装：
 - CheckFileUpdatesAsync()
-- ExtractReservationDataAsync()
-- SaveProofListAsync(IEnumerable<ReservationData>)
+- ExtractMonthlyReservationsAsync()
+- SaveProofListAsync(IEnumerable<FacilityMonthlyReservation>)
 
 ### 2. SupabaseServiceの修正
 `ISupabaseService`インターフェースの以下のメソッドを実装：
-- GetCurrentReservationsAsync()
-- UpdateReservationsAsync(IEnumerable<ReservationData>)
+- GetCurrentMonthlyReservationsAsync()
+- UpdateMonthlyReservationsAsync(IEnumerable<FacilityMonthlyReservation>)
 
 ### 3. FileLoggerProvider.CustomFileLoggerの修正
 `ILogger`インターフェースの以下のメソッドを実装：

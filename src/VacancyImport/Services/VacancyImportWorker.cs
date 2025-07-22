@@ -47,7 +47,7 @@ public class VacancyImportWorker : BackgroundService, IHostedLifecycleService
         await ValidateConfigurationAsync();
     }
 
-    public async Task StartedAsync(CancellationToken cancellationToken)
+    public Task StartedAsync(CancellationToken cancellationToken)
     {
         _logger.LogInformation("✅ サービスが正常に開始されました");
         
@@ -55,17 +55,21 @@ public class VacancyImportWorker : BackgroundService, IHostedLifecycleService
         using var scope = _serviceProvider.CreateScope();
         var securityManager = scope.ServiceProvider.GetRequiredService<SecurityManager>();
         securityManager.LogAuditEvent("system", "service_started", "VacancyImportWorker");
+        
+        return Task.CompletedTask;
     }
 
-    public async Task StoppingAsync(CancellationToken cancellationToken)
+    public Task StoppingAsync(CancellationToken cancellationToken)
     {
         _logger.LogInformation("⏹️ サービス停止処理を開始します...");
         
         // 現在実行中のタスクの状態をログ出力
         _logger.LogInformation("実行中のタスクの完了を待機中...");
+        
+        return Task.CompletedTask;
     }
 
-    public async Task StoppedAsync(CancellationToken cancellationToken)
+    public Task StoppedAsync(CancellationToken cancellationToken)
     {
         _logger.LogInformation("🔄 サービスが正常に停止しました");
         
@@ -73,6 +77,8 @@ public class VacancyImportWorker : BackgroundService, IHostedLifecycleService
         using var scope = _serviceProvider.CreateScope();
         var securityManager = scope.ServiceProvider.GetRequiredService<SecurityManager>();
         securityManager.LogAuditEvent("system", "service_stopped", "VacancyImportWorker");
+        
+        return Task.CompletedTask;
     }
 
     #endregion

@@ -111,8 +111,8 @@ public class ReservationProcessingTests
             // モックのSupabaseServiceを使用
             var mockSupabaseService = new Mock<ISupabaseService>();
             mockSupabaseService
-                .Setup(x => x.GetCurrentReservationsAsync())
-                .ReturnsAsync(new List<ReservationData>());
+                .Setup(x => x.GetCurrentMonthlyReservationsAsync())
+                .ReturnsAsync(new List<FacilityMonthlyReservation>());
             
             var mockLineWorksService = new Mock<ILineWorksService>();
             mockLineWorksService
@@ -121,14 +121,14 @@ public class ReservationProcessingTests
             
             // 3. サービスを使用して予約データを処理
             // Excelファイルから予約データを抽出
-            var reservations = await excelService.ExtractReservationDataAsync(string.Empty);
+            var reservations = await excelService.ExtractMonthlyReservationsAsync();
             
             // 現在の予約データを取得し、変更を計算
-            var currentReservations = await mockSupabaseService.Object.GetCurrentReservationsAsync();
+            var currentReservations = await mockSupabaseService.Object.GetCurrentMonthlyReservationsAsync();
             var changes = CalculateChanges(currentReservations.ToList(), reservations.ToList());
             
             // 変更をSupabaseに反映
-            await mockSupabaseService.Object.UpdateReservationsAsync(changes);
+            await mockSupabaseService.Object.UpdateMonthlyReservationsAsync(changes);
             
             // 変更がある場合は通知を送信
             if (changes.Any())
@@ -142,7 +142,7 @@ public class ReservationProcessingTests
             
             // 4. 結果を検証
             // 処理が正常に完了したことを確認
-            mockSupabaseService.Verify(x => x.UpdateReservationsAsync(It.IsAny<IEnumerable<ReservationData>>()), Times.Once);
+            mockSupabaseService.Verify(x => x.UpdateMonthlyReservationsAsync(It.IsAny<IEnumerable<FacilityMonthlyReservation>>()), Times.Once);
             if (changes.Any())
             {
                 mockLineWorksService.Verify(x => x.SendNotificationAsync(It.IsAny<string>()), Times.Once);
@@ -159,46 +159,43 @@ public class ReservationProcessingTests
     }
     
     // ヘルパーメソッド：変更を計算
-    private static List<ReservationData> CalculateChanges(
-        List<ReservationData> currentReservations, 
-        List<ReservationData> newReservations)
+    private static List<FacilityMonthlyReservation> CalculateChanges(
+        List<FacilityMonthlyReservation> currentReservations, 
+        List<FacilityMonthlyReservation> newReservations)
     {
-        var changes = new List<ReservationData>();
+        var changes = new List<FacilityMonthlyReservation>();
         
         // 新規追加または変更された予約
         foreach (var newReservation in newReservations)
         {
             var current = currentReservations.FirstOrDefault(r => 
-                r.StoreId == newReservation.StoreId && 
-                r.Date == newReservation.Date && 
-                r.TimeSlot == newReservation.TimeSlot);
+                r.TenantId == newReservation.TenantId && 
+                r.FacilityId == newReservation.FacilityId &&
+                r.Year == newReservation.Year &&
+                r.Month == newReservation.Month);
                 
             if (current == null)
             {
                 // 新規追加
-                changes.Add(new ReservationData
+                changes.Add(new FacilityMonthlyReservation
                 {
-                    StoreId = newReservation.StoreId,
-                    Date = newReservation.Date,
-                    TimeSlot = newReservation.TimeSlot,
-                    Remain = newReservation.Remain,
-                    UpdatedAt = DateTime.Now,
-                    FilePath = newReservation.FilePath,
-                    ChangeType = ChangeType.New
+                    TenantId = newReservation.TenantId,
+                    FacilityId = newReservation.FacilityId,
+                    Year = newReservation.Year,
+                    Month = newReservation.Month,
+                    ReservationCounts = newReservation.ReservationCounts
                 });
             }
-            else if (current.Remain != newReservation.Remain)
+            else if (!current.ReservationCounts.SequenceEqual(newReservation.ReservationCounts))
             {
                 // 変更
-                changes.Add(new ReservationData
+                changes.Add(new FacilityMonthlyReservation
                 {
-                    StoreId = newReservation.StoreId,
-                    Date = newReservation.Date,
-                    TimeSlot = newReservation.TimeSlot,
-                    Remain = newReservation.Remain,
-                    UpdatedAt = DateTime.Now,
-                    FilePath = newReservation.FilePath,
-                    ChangeType = ChangeType.Changed
+                    TenantId = newReservation.TenantId,
+                    FacilityId = newReservation.FacilityId,
+                    Year = newReservation.Year,
+                    Month = newReservation.Month,
+                    ReservationCounts = newReservation.ReservationCounts
                 });
             }
         }
@@ -207,22 +204,21 @@ public class ReservationProcessingTests
         foreach (var current in currentReservations)
         {
             var stillExists = newReservations.Any(r => 
-                r.StoreId == current.StoreId && 
-                r.Date == current.Date && 
-                r.TimeSlot == current.TimeSlot);
+                r.TenantId == current.TenantId && 
+                r.FacilityId == current.FacilityId &&
+                r.Year == current.Year &&
+                r.Month == current.Month);
                 
             if (!stillExists)
             {
-                // 削除
-                changes.Add(new ReservationData
+                // 削除（空の配列で表現）
+                changes.Add(new FacilityMonthlyReservation
                 {
-                    StoreId = current.StoreId,
-                    Date = current.Date,
-                    TimeSlot = current.TimeSlot,
-                    Remain = 0,
-                    UpdatedAt = DateTime.Now,
-                    FilePath = current.FilePath,
-                    ChangeType = ChangeType.Deleted
+                    TenantId = current.TenantId,
+                    FacilityId = current.FacilityId,
+                    Year = current.Year,
+                    Month = current.Month,
+                    ReservationCounts = Array.Empty<string>()
                 });
             }
         }

@@ -2,7 +2,7 @@
 
 ## 問題
 以下の型が見つからないというエラーが発生しています：
-- ReservationData
+- FacilityMonthlyReservation
 - ILogger
 
 ## 修正内容
@@ -46,5 +46,5 @@ using Microsoft.Extensions.Logging;
 3. プロジェクトを再ビルドして確認
 
 ## 期待される結果
-- ReservationDataとILoggerの型が見つからないエラーが解消される
+- FacilityMonthlyReservationとILoggerの型が見つからないエラーが解消される
 - ビルドが正常に完了する 

@@ -99,17 +99,15 @@ public class ExcelServiceTests
     public async Task SaveProofListAsync_ValidChanges_CreatesFile()
     {
         // Arrange
-        var changes = new List<ReservationData>
+        var changes = new List<FacilityMonthlyReservation>
         {
-            new ReservationData
+            new FacilityMonthlyReservation
             {
-                StoreId = "store1",
-                Date = new DateOnly(2023, 12, 1),
-                TimeSlot = "10:00-11:00",
-                Remain = 5,
-                UpdatedAt = DateTime.Now,
-                FilePath = "path/to/file.xlsx",
-                ChangeType = ChangeType.New
+                TenantId = 1,
+                FacilityId = 1,
+                Year = 2023,
+                Month = 12,
+                ReservationCounts = new string[] { "5", "3", "2" }
             }
         };
 
@@ -127,8 +125,8 @@ public class ExcelServiceTests
         // ファイルの内容を確認
         var content = await File.ReadAllLinesAsync(files.First());
         Assert.Equal(2, content.Length); // ヘッダー + 1行のデータ
-        Assert.Contains("StoreId,Date,TimeSlot,Remain,ChangeType,FilePath", content[0]);
-        Assert.Contains("store1,2023/12/01,10:00-11:00,5,New,path/to/file.xlsx", content[1]);
+        Assert.Contains("FacilityId,Year,Month,ReservationCounts", content[0]);
+        Assert.Contains("1,2023,12,5,3,2", content[1]);
 
         // クリーンアップ
         foreach (var file in files)
@@ -139,7 +137,7 @@ public class ExcelServiceTests
 
     // このテストはモックを使用してファイルシステムとの相互作用をテスト
     [Fact]
-    public async Task ExtractReservationDataAsync_NoFiles_ReturnsEmptyList()
+    public async Task ExtractMonthlyReservationsAsync_NoFiles_ReturnsEmptyList()
     {
         // Arrange
         var tempDir = Path.Combine(Path.GetTempPath(), "TestExcelFiles");
@@ -153,7 +151,7 @@ public class ExcelServiceTests
             }
 
             // Act
-            var result = await _service.ExtractReservationDataAsync(string.Empty);
+            var result = await _service.ExtractMonthlyReservationsAsync();
 
             // Assert
             Assert.Empty(result);

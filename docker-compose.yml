@@ -12,5 +12,5 @@ services:
       - ASPNETCORE_ENVIRONMENT=Development
       - VACANCY_IMPORT_SupabaseSettings__Url=https://example.supabase.co
       - VACANCY_IMPORT_SupabaseSettings__Key=test-key
-      - VACANCY_IMPORT_SupabaseSettings__TableName=room_availability
+      - VACANCY_IMPORT_SupabaseSettings__TableName=facility_monthly_reservations
     restart: unless-stopped 

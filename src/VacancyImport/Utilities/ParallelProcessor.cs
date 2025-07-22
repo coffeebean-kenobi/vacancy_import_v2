@@ -40,56 +40,105 @@ public static class ParallelProcessor
         var processedItems = 0;
         var semaphore = new SemaphoreSlim(maxDegreeOfParallelism, maxDegreeOfParallelism);
         var tasks = new List<Task>();
+        var linkedCts = CancellationTokenSource.CreateLinkedTokenSource(cancellationToken);
 
-        logger?.LogDebug("{OperationName}を開始: {Count}件, 最大並列度={MaxParallelism}",
-            operationName, totalItems, maxDegreeOfParallelism);
-
-        foreach (var item in inputList)
+        try
         {
-            cancellationToken.ThrowIfCancellationRequested();
+            logger?.LogDebug("{OperationName}を開始: {Count}件, 最大並列度={MaxParallelism}",
+                operationName, totalItems, maxDegreeOfParallelism);
 
-            await semaphore.WaitAsync(cancellationToken);
-
-            tasks.Add(Task.Run(async () =>
+            foreach (var item in inputList)
             {
+                linkedCts.Token.ThrowIfCancellationRequested();
+
+                await semaphore.WaitAsync(linkedCts.Token);
+
+                tasks.Add(Task.Run(async () =>
+                {
+                    try
+                    {
+                        var result = await processFunc(item, linkedCts.Token);
+                        results.Add(result);
+
+                        var processed = Interlocked.Increment(ref processedItems);
+                        if (processed % 100 == 0 || processed == totalItems)
+                        {
+                            logger?.LogDebug("{OperationName}の進捗: {Processed}/{Total}件 ({PercentComplete}%)",
+                                operationName, processed, totalItems, (processed * 100) / totalItems);
+                        }
+                    }
+                    catch (OperationCanceledException)
+                    {
+                        logger?.LogDebug("{OperationName}のタスクがキャンセルされました", operationName);
+                        throw;
+                    }
+                    catch (Exception ex)
+                    {
+                        exceptions.Add(ex);
+                        logger?.LogError(ex, "{OperationName}の処理中にエラーが発生しました", operationName);
+                    }
+                    finally
+                    {
+                        semaphore.Release();
+                    }
+                }, linkedCts.Token));
+            }
+
+            // タスクの完了を待機（タイムアウト付き）
+            var timeoutCts = new CancellationTokenSource(TimeSpan.FromMinutes(30)); // 30分タイムアウト
+            var combinedCts = CancellationTokenSource.CreateLinkedTokenSource(linkedCts.Token, timeoutCts.Token);
+
+            try
+            {
+                await Task.WhenAll(tasks).WaitAsync(combinedCts.Token);
+            }
+            catch (OperationCanceledException) when (timeoutCts.Token.IsCancellationRequested)
+            {
+                logger?.LogWarning("⚠️ {OperationName}がタイムアウトしました。実行中のタスクを強制終了します", operationName);
+                
+                // 実行中のタスクを強制終了
+                linkedCts.Cancel();
+                
+                // 残りのタスクの状態をログ出力
+                var runningTasks = tasks.Where(t => !t.IsCompleted).ToList();
+                logger?.LogWarning("⚠️ {Count}個のタスクが強制終了されます", runningTasks.Count);
+                
+                // タスクの完了を待機（最大5秒）
                 try
                 {
-                    var result = await processFunc(item, cancellationToken);
-                    results.Add(result);
+                    await Task.WhenAll(runningTasks).WaitAsync(TimeSpan.FromSeconds(5));
+                }
+                catch (TimeoutException)
+                {
+                    logger?.LogError("❌ タスクの強制終了がタイムアウトしました");
+                }
+            }
 
-                    var processed = Interlocked.Increment(ref processedItems);
-                    if (processed % 100 == 0 || processed == totalItems)
-                    {
-                        logger?.LogDebug("{OperationName}の進捗: {Processed}/{Total}件 ({PercentComplete}%)",
-                            operationName, processed, totalItems, (processed * 100) / totalItems);
-                    }
-                }
-                catch (Exception ex)
-                {
-                    exceptions.Add(ex);
-                    logger?.LogError(ex, "{OperationName}の処理中にエラーが発生しました", operationName);
-                }
-                finally
-                {
-                    semaphore.Release();
-                }
-            }, cancellationToken));
+            if (exceptions.Any())
+            {
+                logger?.LogError("{OperationName}中に{ErrorCount}件のエラーが発生しました",
+                    operationName, exceptions.Count);
+
+                throw new AggregateException($"{operationName}中に{exceptions.Count}件のエラーが発生しました", exceptions);
+            }
+
+            logger?.LogDebug("{OperationName}が完了しました: {Count}件処理", operationName, results.Count);
+
+            return results;
         }
-
-        await Task.WhenAll(tasks);
-        semaphore.Dispose();
-
-        if (exceptions.Any())
+        finally
         {
-            logger?.LogError("{OperationName}中に{ErrorCount}件のエラーが発生しました",
-                operationName, exceptions.Count);
-
-            throw new AggregateException($"{operationName}中に{exceptions.Count}件のエラーが発生しました", exceptions);
+            // リソースの適切なクリーンアップ
+            try
+            {
+                linkedCts?.Dispose();
+                semaphore?.Dispose();
+            }
+            catch (Exception ex)
+            {
+                logger?.LogError(ex, "{OperationName}のリソースクリーンアップ中にエラーが発生しました", operationName);
+            }
         }
-
-        logger?.LogDebug("{OperationName}が完了しました: {Count}件処理", operationName, results.Count);
-
-        return results;
     }
 
     /// <summary>

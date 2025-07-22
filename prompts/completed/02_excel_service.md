@@ -8,7 +8,7 @@
    - IExcelServiceインターフェースを実装
    - コンストラクタでIOptions<AppSettings>とILogger<ExcelService>を注入
    - CheckFileUpdatesAsync: 指定されたパスのExcelファイルの更新を確認
-   - ExtractReservationDataAsync: Excelファイルから予約データを抽出
+   - ExtractMonthlyReservationsAsync: Excelファイルから月別予約データを抽出
    - SaveProofListAsync: 変更内容をCSVファイルとして保存
 
 3. 処理内容：

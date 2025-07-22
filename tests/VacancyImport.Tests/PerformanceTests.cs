@@ -120,14 +120,18 @@ namespace VacancyImport.Tests
 
             for (int i = 0; i < count; i++)
             {
+                var changeType = i % 3 == 0 ? "New" : (i % 3 == 1 ? "Changed" : "Deleted");
+                var oldRemain = changeType == "New" ? (int?)null : random.Next(0, 10);
+                var newRemain = changeType == "Deleted" ? (int?)null : random.Next(0, 10);
+
                 changes.Add(new ReservationChange
                 {
-                    ChangeType = i % 3 == 0 ? "New" : (i % 3 == 1 ? "Changed" : "Deleted"),
+                    ChangeType = changeType,
                     StoreId = $"Store{random.Next(1, 11):D2}",
                     Date = DateTime.Today.AddDays(random.Next(1, 30)),
                     TimeSlot = $"{random.Next(9, 22):D2}:00-{random.Next(9, 22):D2}:30",
-                    OldRemain = random.Next(0, 10),
-                    NewRemain = random.Next(0, 10),
+                    OldRemain = oldRemain,
+                    NewRemain = newRemain,
                     UpdatedAt = DateTime.Now.AddSeconds(-random.Next(0, 3600))
                 });
             }

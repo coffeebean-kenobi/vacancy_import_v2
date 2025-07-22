@@ -20,7 +20,7 @@ docker run --rm -it \
   -e ASPNETCORE_ENVIRONMENT=Development \
   -e VACANCY_IMPORT_SupabaseSettings__Url=https://example.supabase.co \
   -e VACANCY_IMPORT_SupabaseSettings__Key=test-key \
-  -e VACANCY_IMPORT_SupabaseSettings__TableName=room_availability \
+  -e VACANCY_IMPORT_SupabaseSettings__TableName=facility_monthly_reservations \
   vacancy-import:test
 
 echo "テスト完了" 

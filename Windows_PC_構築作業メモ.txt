@@ -68,7 +68,7 @@ findstr "ERROR" C:\VacancyImport\logs\vacancy-import-*.log
   "SupabaseSettings": {
     "Url": "https://your-project-ref.supabase.co",
     "Key": "your-service-role-key",
-    "TableName": "room_availability"
+    "TableName": "facility_monthly_reservations"
   },
   "LineWorksSettings": {
     "BotId": "YOUR_BOT_ID",

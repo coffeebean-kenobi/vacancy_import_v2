@@ -16,13 +16,15 @@ public partial class VacancyImportService : ServiceBase
 {
     private readonly IServiceProvider _serviceProvider;
     private readonly ILogger<VacancyImportService> _logger;
-    private CancellationTokenSource _cancellationTokenSource;
-    private Task _mainTask;
+    private CancellationTokenSource? _cancellationTokenSource;
+    private Task? _mainTask;
 
     public VacancyImportService(IServiceProvider serviceProvider, ILogger<VacancyImportService> logger)
     {
         _serviceProvider = serviceProvider;
         _logger = logger;
+        _cancellationTokenSource = new CancellationTokenSource();
+        _mainTask = Task.CompletedTask;
         InitializeComponent();
     }
 

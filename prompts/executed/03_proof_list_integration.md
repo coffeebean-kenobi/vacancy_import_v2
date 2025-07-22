@@ -4,7 +4,7 @@
 既存のSupabaseServiceを修正してReservationChangeオブジェクトを返すようにし、ProofListServiceと連携して証跡CSV出力機能を統合する。
 
 ## 🎯 実装対象
-- SupabaseService.UpdateReservationsAsyncメソッドの修正
+- SupabaseService.UpdateMonthlyReservationsAsyncメソッドの修正
 - ReservationChangeクラスのModelsフォルダへの移動
 - AppSettingsクラスにProofListSettings追加
 - ProofListServiceの自動クリーンアップ機能実装
@@ -129,15 +129,15 @@ namespace VacancyImport.Models
 
 ### 2. SupabaseService修正
 
-**ファイル**: `src/VacancyImport/Services/SupabaseService.cs` の `UpdateReservationsAsync` メソッド修正
+**ファイル**: `src/VacancyImport/Services/SupabaseService.cs` の `UpdateMonthlyReservationsAsync` メソッド修正
 
 ```csharp
 /// <summary>
-/// 予約データをSupabaseに更新し、変更情報を返す
+/// 月別予約データをSupabaseに更新し、変更情報を返す
 /// </summary>
-/// <param name="reservationData">更新する予約データ</param>
+/// <param name="reservationData">更新する月別予約データ</param>
 /// <returns>変更情報のリスト</returns>
-public async Task<IEnumerable<ReservationChange>> UpdateReservationsAsync(IEnumerable<ReservationData> reservationData)
+public async Task<IEnumerable<ReservationChange>> UpdateMonthlyReservationsAsync(IEnumerable<FacilityMonthlyReservation> reservationData)
 {
     var changes = new List<ReservationChange>();
     
@@ -168,7 +168,7 @@ public async Task<IEnumerable<ReservationChange>> UpdateReservationsAsync(IEnume
     }
 }
 
-private async Task<IEnumerable<ReservationChange>> ProcessBatchAsync(IEnumerable<ReservationData> batch)
+private async Task<IEnumerable<ReservationChange>> ProcessBatchAsync(IEnumerable<FacilityMonthlyReservation> batch)
 {
     var changes = new List<ReservationChange>();
     
@@ -288,12 +288,12 @@ private async Task ExecuteBusinessLogicAsync()
     {
         _logger.LogInformation("ファイル更新を検出しました。データ処理を開始します");
 
-        // 予約データを抽出
-        var reservationData = await excelService.ExtractReservationDataAsync();
+        // 月別予約データを抽出
+        var reservationData = await excelService.ExtractMonthlyReservationsAsync();
 
         // Supabaseにデータを送信し、変更情報を取得
         var supabaseService = _serviceProvider.GetRequiredService<SupabaseService>();
-        var changes = await supabaseService.UpdateReservationsAsync(reservationData);
+        var changes = await supabaseService.UpdateMonthlyReservationsAsync(reservationData);
 
         // プルーフリストを生成（変更がある場合のみ）
         if (changes.Any())
@@ -453,7 +453,7 @@ public async Task SendErrorNotificationAsync(string errorMessage, int errorCount
 ## 🎯 完了条件
 
 - [ ] ReservationChangeクラスがModelsフォルダに移動されている
-- [ ] SupabaseService.UpdateReservationsAsyncが変更情報を返すように修正されている
+- [ ] SupabaseService.UpdateMonthlyReservationsAsyncが変更情報を返すように修正されている
 - [ ] ProofListServiceが統合されている
 - [ ] AppSettingsにProofListSettingsが追加されている
 - [ ] ServiceHostに自動クリーンアップ機能が実装されている

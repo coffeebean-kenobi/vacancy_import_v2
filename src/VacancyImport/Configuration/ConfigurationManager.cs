@@ -32,7 +32,11 @@ public class ConfigurationManager : IDisposable
         _logger = logger;
         
         // 設定変更を監視
-        _changeTokenRegistrations.Add(_appSettings.OnChange(OnSettingsChanged));
+        var changeToken = _appSettings.OnChange(OnSettingsChanged);
+        if (changeToken != null)
+        {
+            _changeTokenRegistrations.Add(changeToken);
+        }
     }
     
     private void OnSettingsChanged(AppSettings settings, string? name)

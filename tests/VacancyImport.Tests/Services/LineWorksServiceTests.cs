@@ -20,6 +20,7 @@ public class LineWorksServiceTests
     private readonly Mock<IOptions<AppSettings>> _mockOptions;
     private readonly Mock<ILogger<LineWorksService>> _mockLogger;
     private readonly Mock<HttpMessageHandler> _mockHttpMessageHandler;
+    private readonly Mock<IHttpClientFactory> _mockHttpClientFactory;
     private readonly HttpClient _httpClient;
     private readonly AppSettings _appSettings;
 
@@ -45,6 +46,9 @@ public class LineWorksServiceTests
         
         _mockHttpMessageHandler = new Mock<HttpMessageHandler>();
         _httpClient = new HttpClient(_mockHttpMessageHandler.Object);
+        
+        _mockHttpClientFactory = new Mock<IHttpClientFactory>();
+        _mockHttpClientFactory.Setup(x => x.CreateClient("LineWorksClient")).Returns(_httpClient);
     }
 
     [Fact]
@@ -69,7 +73,7 @@ public class LineWorksServiceTests
                 Content = new StringContent(JsonSerializer.Serialize(tokenResponse), Encoding.UTF8, "application/json")
             });
 
-        var service = new LineWorksService(_mockOptions.Object, _mockLogger.Object, _httpClient);
+        var service = new LineWorksService(_mockOptions.Object, _mockLogger.Object, _mockHttpClientFactory.Object);
 
         // Act
         var token = await service.GetAccessTokenAsync();
@@ -120,7 +124,7 @@ public class LineWorksServiceTests
                 Content = new StringContent(JsonSerializer.Serialize(messageResponse), Encoding.UTF8, "application/json")
             });
 
-        var service = new LineWorksService(_mockOptions.Object, _mockLogger.Object, _httpClient);
+        var service = new LineWorksService(_mockOptions.Object, _mockLogger.Object, _mockHttpClientFactory.Object);
         var message = "テストメッセージ";
 
         // Act
@@ -168,7 +172,7 @@ public class LineWorksServiceTests
                 Content = new StringContent("Invalid request", Encoding.UTF8)
             });
 
-        var service = new LineWorksService(_mockOptions.Object, _mockLogger.Object, _httpClient);
+        var service = new LineWorksService(_mockOptions.Object, _mockLogger.Object, _mockHttpClientFactory.Object);
 
         // Act & Assert
         await Assert.ThrowsAsync<HttpRequestException>(() => service.GetAccessTokenAsync());

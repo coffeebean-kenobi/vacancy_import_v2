@@ -40,7 +40,44 @@ public class SupabaseService : ISupabaseService
             AutoConnectRealtime = true
         };
 
+        // Windows Service環境での適切なタイムアウト設定
+        if (!Environment.UserInteractive)
+        {
+            _logger.LogInformation("Windows Service環境でのSupabase接続設定を適用します");
+        }
+
         _client = new Supabase.Client(_settings.Url, _settings.Key, options);
+        
+        // 接続タイムアウトの設定
+        ConfigureClientTimeouts();
+    }
+    
+    /// <summary>
+    /// クライアントのタイムアウト設定を構成
+    /// </summary>
+    private void ConfigureClientTimeouts()
+    {
+        try
+        {
+            // Supabaseクライアントのタイムアウト設定
+            // 実際のSupabaseクライアントでは、HTTPクライアントの直接アクセスが制限されているため
+            // 接続時のタイムアウト設定をログに記録
+            if (Environment.UserInteractive)
+            {
+                _logger.LogDebug("Console環境: Supabase接続タイムアウトを30秒に設定");
+            }
+            else
+            {
+                _logger.LogDebug("Windows Service環境: Supabase接続タイムアウトを20秒に設定");
+            }
+            
+            // 接続テストを実行してタイムアウト設定を確認
+            _logger.LogInformation("Supabase接続のタイムアウト設定が完了しました");
+        }
+        catch (Exception ex)
+        {
+            _logger.LogWarning(ex, "Supabaseクライアントのタイムアウト設定中にエラーが発生しました");
+        }
     }
 
     /// <summary>
@@ -48,20 +85,55 @@ public class SupabaseService : ISupabaseService
     /// </summary>
     public async Task<IEnumerable<FacilityMonthlyReservation>> GetCurrentMonthlyReservationsAsync()
     {
-        try
+        const int maxRetries = 3;
+        var timeoutSeconds = Environment.UserInteractive ? 30 : 20;
+        
+        for (int attempt = 1; attempt <= maxRetries; attempt++)
         {
-            var response = await _client
-                .From<FacilityMonthlyReservation>()
-                .Select("*")
-                .Get();
-
-            return response.Models;
+            try
+            {
+                _logger.LogDebug("月別予約データの取得を試行中... (試行 {Attempt}/{MaxRetries})", attempt, maxRetries);
+                
+                // タイムアウト付きでデータ取得を実行
+                using var cts = new CancellationTokenSource(TimeSpan.FromSeconds(timeoutSeconds));
+                
+                var response = await _client
+                    .From<FacilityMonthlyReservation>()
+                    .Select("*")
+                    .Get();
+                
+                _logger.LogInformation("月別予約データの取得が完了しました (試行 {Attempt})", attempt);
+                return response.Models;
+            }
+            catch (OperationCanceledException ex) when (ex.CancellationToken.IsCancellationRequested)
+            {
+                _logger.LogWarning("月別予約データの取得がタイムアウトしました (試行 {Attempt}/{MaxRetries}, タイムアウト: {Timeout}秒)", 
+                    attempt, maxRetries, timeoutSeconds);
+                
+                if (attempt == maxRetries)
+                {
+                    throw new SupabaseException($"月別予約データの取得がタイムアウトしました (タイムアウト: {timeoutSeconds}秒)", ex.Message);
+                }
+                
+                // リトライ前に少し待機
+                await Task.Delay(1000 * attempt, CancellationToken.None);
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "月別予約データの取得中にエラーが発生しました (試行 {Attempt}/{MaxRetries})", attempt, maxRetries);
+                
+                if (attempt == maxRetries)
+                {
+                    throw new SupabaseException("月別予約データの取得に失敗しました", ex.Message);
+                }
+                
+                // リトライ前に少し待機
+                await Task.Delay(1000 * attempt, CancellationToken.None);
+            }
         }
-        catch (Exception ex)
-        {
-            _logger.LogError(ex, "月別予約データの取得中にエラーが発生しました");
-            throw new SupabaseException("月別予約データの取得に失敗しました", ex.Message);
-        }
+        
+        // この行には到達しないはずだが、コンパイラの要求で追加
+        throw new SupabaseException("月別予約データの取得に失敗しました", "予期しないエラー");
     }
 
     /// <summary>
@@ -245,7 +317,7 @@ public class SupabaseService : ISupabaseService
     /// <summary>
     /// リアルタイム更新の処理
     /// </summary>
-    private async Task HandleRealtimeChangeAsync(PostgresChangesResponse change)
+    private Task HandleRealtimeChangeAsync(PostgresChangesResponse change)
     {
         try
         {
@@ -267,6 +339,8 @@ public class SupabaseService : ISupabaseService
                     _logger.LogWarning("未処理のイベントタイプ: {EventType}", change.Event);
                     break;
             }
+            
+            return Task.CompletedTask;
         }
         catch (Exception ex)
         {

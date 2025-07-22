@@ -40,7 +40,7 @@ public class ProofListService
             
             // ディレクトリが存在しない場合は作成
             var directory = Path.GetDirectoryName(outputPath);
-            if (!Directory.Exists(directory))
+            if (!string.IsNullOrEmpty(directory) && !Directory.Exists(directory))
             {
                 Directory.CreateDirectory(directory);
             }
@@ -99,7 +99,7 @@ public class ProofListService
     /// 古いプルーフリストファイルのクリーンアップ
     /// </summary>
     /// <param name="retentionDays">保持日数（デフォルト180日）</param>
-    public async Task CleanupOldProofListsAsync(int retentionDays = 180)
+    public Task CleanupOldProofListsAsync(int retentionDays = 180)
     {
         try
         {
@@ -107,7 +107,7 @@ public class ProofListService
             
             if (!Directory.Exists(proofDirectory))
             {
-                return;
+                return Task.CompletedTask;
             }
 
             var cutoffDate = DateTime.Now.AddDays(-retentionDays);
@@ -122,10 +122,13 @@ public class ProofListService
                     _logger.LogInformation($"古いプルーフリストファイルを削除しました: {file}");
                 }
             }
+            
+            return Task.CompletedTask;
         }
         catch (Exception ex)
         {
             _logger.LogWarning(ex, "プルーフリストのクリーンアップ中にエラーが発生しました");
+            return Task.CompletedTask;
         }
     }
 } 

@@ -492,12 +492,12 @@ namespace VacancyImport.Services
             {
                 _logger.LogInformation("ファイル更新を検出しました。データ処理を開始します");
 
-                // 予約データを抽出
-                var reservationData = await excelService.ExtractReservationDataAsync();
+                // 月別予約データを抽出
+                var reservationData = await excelService.ExtractMonthlyReservationsAsync();
 
                 // Supabaseにデータを送信し、変更情報を取得
                 var supabaseService = _serviceProvider.GetRequiredService<SupabaseService>();
-                var changes = await supabaseService.UpdateReservationsAsync(reservationData);
+                var changes = await supabaseService.UpdateMonthlyReservationsAsync(reservationData);
 
                 // プルーフリストを生成
                 if (changes.Any())

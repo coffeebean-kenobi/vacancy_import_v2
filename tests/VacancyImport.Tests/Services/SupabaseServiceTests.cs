@@ -27,7 +27,7 @@ public class SupabaseServiceTests
             {
                 Url = "https://test-supabase.com",
                 Key = "test-key",
-                TableName = "reservations"
+                TableName = "facility_monthly_reservations"
             }
         };
 
@@ -62,7 +62,7 @@ public class SupabaseServiceTests
             {
                 Url = "",  // 無効なURL
                 Key = "test-key",
-                TableName = "reservations"
+                TableName = "facility_monthly_reservations"
             }
         };
 
@@ -79,14 +79,14 @@ public class SupabaseServiceTests
     // モックを使用した機能テスト
     // 注：このテストは実際のSupabaseClientをモックできない場合は機能しない
     [Fact(Skip = "Requires mocking of Supabase Client which is challenging")]
-    public async Task GetCurrentReservationsAsync_ReturnsReservations()
+    public async Task GetCurrentMonthlyReservationsAsync_ReturnsReservations()
     {
         // このテストは実際のSupabaseClientをモックする方法が必要
         // 実際の統合テストでは、テスト用のSupabaseインスタンスを使用する必要がある
     }
 
     [Fact(Skip = "Requires mocking of Supabase Client which is challenging")]
-    public async Task UpdateReservationsAsync_UpdatesReservations()
+    public async Task UpdateMonthlyReservationsAsync_UpdatesReservations()
     {
         // このテストは実際のSupabaseClientをモックする方法が必要
         // 実際の統合テストでは、テスト用のSupabaseインスタンスを使用する必要がある

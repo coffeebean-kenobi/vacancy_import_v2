@@ -37,7 +37,7 @@ src/VacancyImport/
   "SupabaseSettings": {
     "Url": "",
     "Key": "",
-    "TableName": "room_availability"
+    "TableName": "facility_monthly_reservations"
   }
 }
 ```
@@ -51,7 +51,7 @@ src/VacancyImport/
   "SupabaseSettings": {
     "Url": "http://localhost:54321",
     "Key": "your-local-supabase-anon-key",
-    "TableName": "reservations"
+    "TableName": "facility_monthly_reservations"
   }
 }
 ```
@@ -65,7 +65,7 @@ src/VacancyImport/
   "SupabaseSettings": {
     "Url": "https://your-staging-project.supabase.co",
     "Key": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...", // staging anon key
-    "TableName": "room_availability"
+    "TableName": "facility_monthly_reservations"
   }
 }
 ```
@@ -79,7 +79,7 @@ src/VacancyImport/
   "SupabaseSettings": {
     "Url": "https://your-production-project.supabase.co",
     "Key": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...", // production service_role key
-    "TableName": "room_availability"
+    "TableName": "facility_monthly_reservations"
   }
 }
 ```
@@ -98,21 +98,21 @@ src/VacancyImport/
 
 2. **テーブル構造の作成**
    ```sql
-   -- room_availability テーブル作成
-   CREATE TABLE room_availability (
-     id BIGSERIAL PRIMARY KEY,
-     store_id VARCHAR(20) NOT NULL,
-     room_name VARCHAR(100) NOT NULL,
-     availability_date DATE NOT NULL,
-     availability_status VARCHAR(20) NOT NULL DEFAULT 'available',
+   -- facility_monthly_reservations テーブル作成
+   CREATE TABLE facility_monthly_reservations (
+     tenant_id INTEGER NOT NULL,
+     facility_id INTEGER NOT NULL,
+     year INTEGER NOT NULL,
+     month INTEGER NOT NULL,
+     reservation_counts TEXT[] NOT NULL DEFAULT '{}',
      created_at TIMESTAMPTZ DEFAULT NOW(),
      updated_at TIMESTAMPTZ DEFAULT NOW(),
-     UNIQUE(store_id, room_name, availability_date)
+     PRIMARY KEY (tenant_id, facility_id, year, month)
    );
 
    -- インデックス作成
-   CREATE INDEX idx_room_availability_date ON room_availability(availability_date);
-   CREATE INDEX idx_room_availability_store ON room_availability(store_id);
+   CREATE INDEX idx_facility_monthly_reservations_year_month ON facility_monthly_reservations(year, month);
+   CREATE INDEX idx_facility_monthly_reservations_facility ON facility_monthly_reservations(facility_id);
    
    -- 更新時間の自動更新トリガー
    CREATE OR REPLACE FUNCTION update_updated_at_column()
@@ -123,8 +123,8 @@ src/VacancyImport/
    END;
    $$ LANGUAGE plpgsql;
    
-   CREATE TRIGGER update_room_availability_updated_at
-     BEFORE UPDATE ON room_availability
+   CREATE TRIGGER update_facility_monthly_reservations_updated_at
+     BEFORE UPDATE ON facility_monthly_reservations
      FOR EACH ROW
      EXECUTE FUNCTION update_updated_at_column();
    ```
@@ -145,7 +145,7 @@ src/VacancyImport/
 2. **データの同期設定**
    ```sql
    -- 本番データのサンプルインポート
-   COPY room_availability FROM '/path/to/sample_data.csv' DELIMITER ',' CSV HEADER;
+   COPY facility_monthly_reservations FROM '/path/to/sample_data.csv' DELIMITER ',' CSV HEADER;
    ```
 
 #### 方法2: ローカルSupabaseの利用
@@ -185,7 +185,7 @@ src/VacancyImport/
      "SupabaseSettings": {
        "Url": "https://abcdefghijklmnop.supabase.co",
        "Key": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImFiY2RlZmdoaWprbG1ub3AiLCJyb2xlIjoic2VydmljZV9yb2xlIiwiaWF0IjoxNjg0ODk2NzAwLCJleHAiOjIwMDA0NzI3MDB9.example_service_role_key",
-       "TableName": "room_availability"
+       "TableName": "facility_monthly_reservations"
      }
    }
    ```
@@ -198,7 +198,7 @@ src/VacancyImport/
    # Supabase設定（環境変数での設定）
    set VACANCY_IMPORT_SupabaseSettings__Url=https://abcdefghijklmnop.supabase.co
    set VACANCY_IMPORT_SupabaseSettings__Key=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...
-   set VACANCY_IMPORT_SupabaseSettings__TableName=room_availability
+   set VACANCY_IMPORT_SupabaseSettings__TableName=facility_monthly_reservations
    ```
 
 ### 4.2 テスト環境への接続設定
@@ -247,15 +247,15 @@ src/VacancyImport/
 
 ```sql
 -- RLSの有効化
-ALTER TABLE room_availability ENABLE ROW LEVEL SECURITY;
+ALTER TABLE facility_monthly_reservations ENABLE ROW LEVEL SECURITY;
 
 -- API接続用ポリシー
-CREATE POLICY "VacancyImport API access" ON room_availability
+CREATE POLICY "VacancyImport API access" ON facility_monthly_reservations
   FOR ALL USING (true)
   WITH CHECK (true);
 
 -- 読み取り専用ポリシー（テスト用）
-CREATE POLICY "Read-only access" ON room_availability
+CREATE POLICY "Read-only access" ON facility_monthly_reservations
   FOR SELECT USING (true);
 ```
 
@@ -280,7 +280,7 @@ public async Task TestSupabaseConnection()
     
     // 接続テスト
     var client = new Supabase.Client(supabaseSettings.Url, supabaseSettings.Key);
-    var response = await client.From<ReservationData>().Select("*").Limit(1).Get();
+    var response = await client.From<FacilityMonthlyReservation>().Select("*").Limit(1).Get();
     
     Assert.NotNull(response);
 }
@@ -314,26 +314,24 @@ dotnet run --console -- --test-connection
 
 ## 📊 7. データベーステーブル構造
 
-### 7.1 room_availability テーブル
+### 7.1 facility_monthly_reservations テーブル
 
 | カラム名 | データ型 | 説明 | 制約 |
 |----------|----------|------|------|
-| `id` | BIGSERIAL | 主キー | PRIMARY KEY |
-| `store_id` | VARCHAR(20) | 店舗ID | NOT NULL |
-| `room_name` | VARCHAR(100) | 部屋名 | NOT NULL |
-| `availability_date` | DATE | 利用可能日 | NOT NULL |
-| `availability_status` | VARCHAR(20) | 利用状況 | DEFAULT 'available' |
-| `created_at` | TIMESTAMPTZ | 作成日時 | DEFAULT NOW() |
-| `updated_at` | TIMESTAMPTZ | 更新日時 | DEFAULT NOW() |
+| `tenant_id` | INTEGER | テナントID | PRIMARY KEY |
+| `facility_id` | INTEGER | 施設ID | PRIMARY KEY |
+| `year` | INTEGER | 年 | PRIMARY KEY |
+| `month` | INTEGER | 月 | PRIMARY KEY |
+| `reservation_counts` | TEXT[] | 予約数配列 | NOT NULL |
 
 ### 7.2 サンプルデータ
 
 ```sql
 -- サンプルデータの挿入
-INSERT INTO room_availability (store_id, room_name, availability_date, availability_status) VALUES
-('STORE001', 'Room A', '2024-01-15', 'available'),
-('STORE001', 'Room B', '2024-01-15', 'occupied'),
-('STORE002', 'Room A', '2024-01-15', 'available');
+INSERT INTO facility_monthly_reservations (tenant_id, facility_id, year, month, reservation_counts) VALUES
+(1, 7, 2024, 1, ARRAY['5', '3', '2', '4', '1']),
+(1, 10, 2024, 1, ARRAY['3', '2', '1', '4', '5']),
+(1, 14, 2024, 1, ARRAY['2', '4', '3', '1', '5']);
 ```
 
 ## 🔄 8. 環境間のデータ同期
@@ -342,22 +340,31 @@ INSERT INTO room_availability (store_id, room_name, availability_date, availabil
 
 ```bash
 # Supabase CLIを使用したデータ同期
-supabase db dump --data-only --table room_availability > staging_data.sql
+supabase db dump --data-only --table facility_monthly_reservations > staging_data.sql
 ```
 
 ### 8.2 定期的なテストデータ更新
 
 ```sql
 -- 古いテストデータの削除
-DELETE FROM room_availability WHERE availability_date < CURRENT_DATE - INTERVAL '30 days';
+DELETE FROM facility_monthly_reservations WHERE year < EXTRACT(YEAR FROM CURRENT_DATE) - 1;
 
 -- 新しいテストデータの生成
-INSERT INTO room_availability (store_id, room_name, availability_date, availability_status)
+INSERT INTO facility_monthly_reservations (tenant_id, facility_id, year, month, reservation_counts)
 SELECT 
-  'TEST' || LPAD(generate_series(1,10)::text, 3, '0'),
-  'Room ' || chr(65 + (generate_series(1,5) % 5)),
-  CURRENT_DATE + generate_series(1,30),
-  CASE WHEN random() > 0.7 THEN 'occupied' ELSE 'available' END;
+  1,
+  facility_id,
+  EXTRACT(YEAR FROM CURRENT_DATE),
+  month,
+  ARRAY[
+    (random() * 10 + 1)::int::text,
+    (random() * 10 + 1)::int::text,
+    (random() * 10 + 1)::int::text,
+    (random() * 10 + 1)::int::text,
+    (random() * 10 + 1)::int::text
+  ]
+FROM generate_series(1, 12) AS month
+CROSS JOIN (VALUES (7), (10), (14)) AS facilities(facility_id);
 ```
 
 ## 📞 9. トラブルシューティング
@@ -388,7 +395,7 @@ SELECT
 2. **APIエンドポイントテスト**
    ```cmd
    # REST APIの動作確認
-   curl -H "apikey: YOUR_API_KEY" https://abcdefghijklmnop.supabase.co/rest/v1/room_availability?limit=1
+   curl -H "apikey: YOUR_API_KEY" https://abcdefghijklmnop.supabase.co/rest/v1/facility_monthly_reservations?limit=1
    ```
 
 ---

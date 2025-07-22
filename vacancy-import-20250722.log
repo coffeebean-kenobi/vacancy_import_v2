@@ -1,0 +1,1117 @@
+[2025-07-22 12:50:44.417 +09:00 INF] 🚀 予約管理システム連携ツールを開始します (モード: Console) 
+[2025-07-22 12:50:44.564 +09:00 INF] 📋 コンソールモードで実行を開始します 
+[2025-07-22 12:50:44.595 +09:00 INF] イベントログサービスが初期化されました 
+[2025-07-22 12:50:44.621 +09:00 INF] パフォーマンスモニタリングを開始しました (間隔: 60秒) 
+[2025-07-22 12:50:44.661 +09:00 INF] 🚀 予約管理システム連携サービス の開始準備中... 
+[2025-07-22 12:50:44.665 +09:00 INF] 🔍 設定の検証を開始します 
+[2025-07-22 12:50:44.688 +09:00 INF] ✅ 設定の検証が完了しました 
+[2025-07-22 12:50:44.695 +09:00 INF] 📋 開始準備が完了しました 
+[2025-07-22 12:50:44.700 +09:00 INF] 🔄 メインループを開始します (ポーリング間隔: 5分) 
+[2025-07-22 12:50:44.730 +09:00 INF] 定期ヘルスチェックを開始します 
+[2025-07-22 12:50:44.806 +09:00 INF] 定期ヘルスチェックが完了しました 
+[2025-07-22 12:50:44.812 +09:00 INF] ✅ 予約管理システム連携サービス が正常に開始されました 
+[2025-07-22 12:50:44.850 +09:00 INF] Application started. Press Ctrl+C to shut down. 
+[2025-07-22 12:50:44.853 +09:00 INF] Hosting environment: Production 
+[2025-07-22 12:50:44.860 +09:00 INF] Content root path: C:\VacancyImport 
+[2025-07-22 12:50:52.227 +09:00 INF] ファイルが更新されました: \\192.168.200.20\全社共有\SS予約表\2025年\千葉\まつど\2025年_SS予約表_241122(使用していない).xlsm 
+[2025-07-22 12:50:52.227 +09:00 INF] ファイルが更新されました: \\192.168.200.20\全社共有\SS予約表\2025年\【原本（共有なし）】2025年_SS予約表_250302.xlsm 
+[2025-07-22 12:50:52.497 +09:00 INF] ファイルが更新されました: \\192.168.200.20\全社共有\SS予約表\2025年\千葉\まつど\【まつど】2025年_SS予約表2_241122.xlsm 
+[2025-07-22 12:50:52.881 +09:00 INF] ファイルが更新されました: \\192.168.200.20\全社共有\SS予約表\2025年\千葉\いちかわ\【いちかわ】2025年_SS予約表_241122.xlsm 
+[2025-07-22 12:50:53.206 +09:00 INF] ファイルが更新されました: \\192.168.200.20\全社共有\SS予約表\2025年\千葉\わかば\【わかば】2025年_SS予約表_241122.xlsm 
+[2025-07-22 12:50:53.860 +09:00 INF] ファイルが更新されました: \\192.168.200.20\全社共有\SS予約表\2025年\千葉\やちよ\【やちよ】2025年_SS予約表_241122.xlsm 
+[2025-07-22 12:50:53.906 +09:00 INF] ファイルが更新されました: \\192.168.200.20\全社共有\SS予約表\2025年\埼京A1\あだち\【あだち】2025年_SS予約表_241122.xlsm 
+[2025-07-22 12:50:54.189 +09:00 ERR] ファイル変更チェックの処理中にエラーが発生しました 
+System.IO.FileNotFoundException: Could not find file '\\192.168.200.20\全社共有\SS予約表\2025年\埼京A1\おおみや\~$【おおみや】2025年_SS予約表_241122.xlsm'.
+File name: '\\192.168.200.20\全社共有\SS予約表\2025年\埼京A1\おおみや\~$【おおみや】2025年_SS予約表_241122.xlsm'
+   at Microsoft.Win32.SafeHandles.SafeFileHandle.CreateFile(String fullPath, FileMode mode, FileAccess access, FileShare share, FileOptions options)
+   at Microsoft.Win32.SafeHandles.SafeFileHandle.Open(String fullPath, FileMode mode, FileAccess access, FileShare share, FileOptions options, Int64 preallocationSize, Nullable`1 unixCreateMode)
+   at System.IO.Strategies.OSFileStreamStrategy..ctor(String path, FileMode mode, FileAccess access, FileShare share, FileOptions options, Int64 preallocationSize, Nullable`1 unixCreateMode)
+   at System.IO.Strategies.FileStreamHelpers.ChooseStrategyCore(String path, FileMode mode, FileAccess access, FileShare share, FileOptions options, Int64 preallocationSize, Nullable`1 unixCreateMode)
+   at System.IO.FileStream..ctor(String path, FileMode mode, FileAccess access, FileShare share, Int32 bufferSize)
+   at VacancyImport.Services.ExcelService.CalculateFileHashAsync(String filePath) in C:\VacancyImport\vacancy_import_v2\src\VacancyImport\Services\ExcelService.cs:line 365
+   at VacancyImport.Services.ExcelService.<>c__DisplayClass10_0.<<CheckFileUpdatesAsync>b__1>d.MoveNext() in C:\VacancyImport\vacancy_import_v2\src\VacancyImport\Services\ExcelService.cs:line 133
+--- End of stack trace from previous location ---
+   at VacancyImport.Utilities.ParallelProcessor.<>c__DisplayClass0_1`2.<<ProcessParallelAsync>b__0>d.MoveNext() in C:\VacancyImport\vacancy_import_v2\src\VacancyImport\Utilities\ParallelProcessor.cs:line 57
+[2025-07-22 12:50:54.559 +09:00 INF] ファイルが更新されました: \\192.168.200.20\全社共有\SS予約表\2025年\埼京A1\あだち\コピー【あだち】2025年_SS予約表_241122.xlsm 
+[2025-07-22 12:50:54.881 +09:00 INF] ファイルが更新されました: \\192.168.200.20\全社共有\SS予約表\2025年\埼京A1\おおみや\【おおみや】2025年_SS予約表_241122.xlsm 
+[2025-07-22 12:50:55.234 +09:00 INF] ファイルが更新されました: \\192.168.200.20\全社共有\SS予約表\2025年\千葉\寿クラブ\【寿クラブ】2025年_SS予約表_241122.xlsm 
+[2025-07-22 12:50:55.805 +09:00 INF] ファイルが更新されました: \\192.168.200.20\全社共有\SS予約表\2025年\埼京A1\みどり\【みどり】2025年_SS予約表_241122.xlsm 
+[2025-07-22 12:50:55.921 +09:00 INF] ファイルが更新されました: \\192.168.200.20\全社共有\SS予約表\2025年\埼京A1\わらび\【わらび】2025年_SS予約表_241122.xlsm 
+[2025-07-22 12:50:55.994 +09:00 INF] ファイルが更新されました: \\192.168.200.20\全社共有\SS予約表\2025年\埼京A1\みどり\コピー【みどり】2025年_SS予約表_241122.xlsm 
+[2025-07-22 12:50:56.221 +09:00 INF] ファイルが更新されました: \\192.168.200.20\全社共有\SS予約表\2025年\埼京A2\いたばし\★【いたばし】2025年2025年2月1日から使用_SS予約表.xlsm 
+[2025-07-22 12:50:56.372 +09:00 ERR] ファイル変更チェックの処理中にエラーが発生しました 
+System.IO.IOException: The process cannot access the file '\\192.168.200.20\全社共有\SS予約表\2025年\埼京A2\しき\~$【しき】2025年_SS予約表_250111.xlsm' because it is being used by another process.
+   at Microsoft.Win32.SafeHandles.SafeFileHandle.CreateFile(String fullPath, FileMode mode, FileAccess access, FileShare share, FileOptions options)
+   at Microsoft.Win32.SafeHandles.SafeFileHandle.Open(String fullPath, FileMode mode, FileAccess access, FileShare share, FileOptions options, Int64 preallocationSize, Nullable`1 unixCreateMode)
+   at System.IO.Strategies.OSFileStreamStrategy..ctor(String path, FileMode mode, FileAccess access, FileShare share, FileOptions options, Int64 preallocationSize, Nullable`1 unixCreateMode)
+   at System.IO.Strategies.FileStreamHelpers.ChooseStrategyCore(String path, FileMode mode, FileAccess access, FileShare share, FileOptions options, Int64 preallocationSize, Nullable`1 unixCreateMode)
+   at System.IO.FileStream..ctor(String path, FileMode mode, FileAccess access, FileShare share, Int32 bufferSize)
+   at VacancyImport.Services.ExcelService.CalculateFileHashAsync(String filePath) in C:\VacancyImport\vacancy_import_v2\src\VacancyImport\Services\ExcelService.cs:line 365
+   at VacancyImport.Services.ExcelService.<>c__DisplayClass10_0.<<CheckFileUpdatesAsync>b__1>d.MoveNext() in C:\VacancyImport\vacancy_import_v2\src\VacancyImport\Services\ExcelService.cs:line 133
+--- End of stack trace from previous location ---
+   at VacancyImport.Utilities.ParallelProcessor.<>c__DisplayClass0_1`2.<<ProcessParallelAsync>b__0>d.MoveNext() in C:\VacancyImport\vacancy_import_v2\src\VacancyImport\Utilities\ParallelProcessor.cs:line 57
+[2025-07-22 12:50:56.706 +09:00 INF] ファイルが更新されました: \\192.168.200.20\全社共有\SS予約表\2025年\埼京A2\さやま\2025年　2月～.xlsm 
+[2025-07-22 12:50:56.977 +09:00 INF] ファイルが更新されました: \\192.168.200.20\全社共有\SS予約表\2025年\埼京A2\さやま\【さやま】2025年_SS予約表_241122.xlsm 
+[2025-07-22 12:50:57.038 +09:00 INF] ファイルが更新されました: \\192.168.200.20\全社共有\SS予約表\2025年\埼京A2\さやま\コピー2025年　2月～.xlsm 
+[2025-07-22 12:50:57.211 +09:00 INF] ファイルが更新されました: \\192.168.200.20\全社共有\SS予約表\2025年\埼京A2\しき\【しき】2025年_SS予約表_250111.xlsm 
+[2025-07-22 12:50:57.894 +09:00 INF] ファイルが更新されました: \\192.168.200.20\全社共有\SS予約表\2025年\埼京A2\にいざ\【にいざ】2025年_SS予約表_241122.xlsm 
+[2025-07-22 12:50:58.215 +09:00 INF] ファイルが更新されました: \\192.168.200.20\全社共有\SS予約表\2025年\埼京A2\にいざ\コピー【にいざ】2025年_SS予約表_241122.xlsm 
+[2025-07-22 12:50:58.269 +09:00 INF] ファイルが更新されました: \\192.168.200.20\全社共有\SS予約表\2025年\埼京A2\ねりま\【ねりま】2025年_SS予約表_241122　２.xlsm 
+[2025-07-22 12:50:58.385 +09:00 INF] ファイルが更新されました: \\192.168.200.20\全社共有\SS予約表\2025年\埼京A2\ねりま\コピー【ねりま】2025年_SS予約表_241122　２.xlsm 
+[2025-07-22 12:50:58.861 +09:00 INF] ファイルが更新されました: \\192.168.200.20\全社共有\SS予約表\2025年\埼京A2\ふじみの\【ふじみの】2025年_SS予約表_250111.xlsm 
+[2025-07-22 12:50:59.544 +09:00 INF] ファイルが更新されました: \\192.168.200.20\全社共有\SS予約表\2025年\埼京A2\わこう\【わこう】2025年_SS予約表_241122.xlsm 
+[2025-07-22 12:50:59.716 +09:00 INF] ファイルが更新されました: \\192.168.200.20\全社共有\SS予約表\2025年\埼京A2\ふじみの\コピー【ふじみの】2025年_SS予約表_250111.xlsm 
+[2025-07-22 12:50:59.728 +09:00 INF] ファイルが更新されました: \\192.168.200.20\全社共有\SS予約表\2025年\埼京B\かわぐち\【かわぐち】2025年_SS予約表_241122.xlsm 
+[2025-07-22 12:51:00.357 +09:00 INF] ファイルが更新されました: \\192.168.200.20\全社共有\SS予約表\2025年\埼京B\こしがや\【こしがや】2025年_SS予約表_241122 のコピー.xlsm 
+[2025-07-22 12:51:00.632 +09:00 INF] ファイルが更新されました: \\192.168.200.20\全社共有\SS予約表\2025年\埼京B\こしがや\【こしがや】2025年_SS予約表_241122.xlsm 
+[2025-07-22 12:51:00.681 +09:00 INF] ファイルが更新されました: \\192.168.200.20\全社共有\SS予約表\2025年\埼京B\そうか\【そうか】2025年_SS予約表_241122.xlsm 
+[2025-07-22 12:51:00.722 +09:00 INF] ファイルが更新されました: \\192.168.200.20\全社共有\SS予約表\2025年\埼京B\そうか\ss202504４.xlsm 
+[2025-07-22 12:51:01.537 +09:00 INF] ファイルが更新されました: \\192.168.200.20\全社共有\SS予約表\2025年\埼京B\そうか\コピー【そうか】2025年_SS予約表_241122.xlsm 
+[2025-07-22 12:51:02.483 +09:00 INF] ファイルが更新されました: \\192.168.200.20\全社共有\SS予約表\2025年\埼京B\みさと\【みさと】2025年_SS予約表_241122.xlsm 
+[2025-07-22 12:51:02.737 +09:00 INF] ファイルが更新されました: \\192.168.200.20\全社共有\SS予約表\2025年\神奈川\かなざわ\【かなざわ】2025年_SS予約表_241122.xlsm 
+[2025-07-22 12:51:02.759 +09:00 INF] ファイルが更新されました: \\192.168.200.20\全社共有\SS予約表\2025年\神奈川\たかつ\【たかつ】2025年_SS予約表_241122_bk.xlsm 
+[2025-07-22 12:51:04.120 +09:00 INF] ファイルが更新されました: \\192.168.200.20\全社共有\SS予約表\2025年\神奈川\やまと\【やまと】2025年_SS予約表_241122.xlsm 
+[2025-07-22 12:51:04.270 +09:00 INF] ファイルが更新されました: \\192.168.200.20\全社共有\SS予約表\2025年\神奈川\つるみ\【つるみ】2025年_SS予約表_241122_bk.xlsm 
+[2025-07-22 12:51:04.327 +09:00 INF] ファイルが更新されました: \\192.168.200.20\全社共有\SS予約表\2025年\神奈川\ふじさわ\【ふじさわ】2025年_SS予約表_241122.xlsm 
+[2025-07-22 12:51:05.353 +09:00 INF] ファイルが更新されました: \\192.168.200.20\全社共有\SS予約表\2025年\神奈川\やまと\コピー【やまと】2025年_SS予約表_241122.xlsm 
+[2025-07-22 12:51:05.710 +09:00 INF] ファイルが更新されました: \\192.168.200.20\全社共有\SS予約表\2025年\神奈川\よこすか\【よこすか】2025年_SS予約表のバックアップ_241122.xlsm 
+[2025-07-22 12:51:05.987 +09:00 INF] ⏹️ 停止要求を受信しました... 
+[2025-07-22 12:51:05.998 +09:00 INF] Application is shutting down... 
+[2025-07-22 12:51:06.008 +09:00 INF] ⏹️ 予約管理システム連携サービス の停止処理を開始します... 
+[2025-07-22 12:51:06.479 +09:00 INF] ファイルが更新されました: \\192.168.200.20\全社共有\SS予約表\2025年\千葉\いちかわ\過去\✕【いちかわ】2025年_SS予約表_241122.xlsm 
+[2025-07-22 12:51:06.566 +09:00 INF] ファイルが更新されました: \\192.168.200.20\全社共有\SS予約表\2025年\神奈川\よこすか\【よこすか】2025年_SS予約表_241122 最新.xlsm 
+[2025-07-22 12:51:07.300 +09:00 INF] ファイルが更新されました: \\192.168.200.20\全社共有\SS予約表\2025年\千葉\いちかわ\過去\【いちかわ】SS予約表_240507.xlsm 
+[2025-07-22 12:51:07.683 +09:00 INF] ファイルが更新されました: \\192.168.200.20\全社共有\SS予約表\2025年\埼京A1\おおみや\過去\【おおみや】2024年_SS予約表_231215.xlsm 
+[2025-07-22 12:51:07.687 +09:00 INF] ファイルが更新されました: \\192.168.200.20\全社共有\SS予約表\2025年\埼京A1\おおみや\過去\【おおみや】2024年_SS予約表_240519.xlsm 
+[2025-07-22 12:51:08.988 +09:00 INF] ファイルが更新されました: \\192.168.200.20\全社共有\SS予約表\2025年\埼京A2\にいざ\使用不可\✕【にいざ】2025年_SS予約表_241122.xlsm 
+[2025-07-22 12:51:09.106 +09:00 INF] ファイルが更新されました: \\192.168.200.20\全社共有\SS予約表\2025年\埼京A1\おおみや\ボード係\3.旧予約表\【おおみや】2024年_SS予約表_231215.xlsm 
+[2025-07-22 12:51:10.022 +09:00 INF] ファイルが更新されました: \\192.168.200.20\全社共有\SS予約表\2025年\埼京A2\ねりま\過去\✕【ねりま】2025年_SS予約表_241122.xlsm 
+[2025-07-22 12:51:10.035 +09:00 INF] ファイルが更新されました: \\192.168.200.20\全社共有\SS予約表\2025年\埼京A1\おおみや\ボード係\3.旧予約表\【原本】SS予約表（3ユニット）.xlsm 
+[2025-07-22 12:51:10.162 +09:00 INF] ファイルが更新されました: \\192.168.200.20\全社共有\SS予約表\2025年\埼京A1\おおみや\ボード係\3.旧予約表\【おおみや】2024年_SS予約表_240519.xlsm 
+[2025-07-22 12:51:10.990 +09:00 INF] ファイルが更新されました: \\192.168.200.20\全社共有\SS予約表\2025年\埼京A1\おおみや\ボード係\3.旧予約表\【原本】SS予約表（3ユニット）_230303.xlsm 
+[2025-07-22 12:51:36.015 +09:00 INF] 停止処理が完了しました 
+[2025-07-22 12:51:36.033 +09:00 INF] 🔄 予約管理システム連携サービス が正常に停止しました 
+[2025-07-22 12:51:36.054 +09:00 INF] 📝 ログをフラッシュしています... 
+[2025-07-22 12:57:25.633 +09:00 INF] 🚀 予約管理システム連携ツールを開始します (モード: Console) 
+[2025-07-22 12:57:25.782 +09:00 INF] 📋 コンソールモードで実行を開始します 
+[2025-07-22 12:57:25.805 +09:00 INF] イベントログサービスが初期化されました 
+[2025-07-22 12:57:25.833 +09:00 INF] パフォーマンスモニタリングを開始しました (間隔: 60秒) 
+[2025-07-22 12:57:25.860 +09:00 INF] 🚀 予約管理システム連携サービス の開始準備中... 
+[2025-07-22 12:57:25.863 +09:00 INF] 🔍 設定の検証を開始します 
+[2025-07-22 12:57:25.873 +09:00 INF] ✅ 設定の検証が完了しました 
+[2025-07-22 12:57:25.877 +09:00 INF] 📋 開始準備が完了しました 
+[2025-07-22 12:57:25.881 +09:00 INF] 🔄 メインループを開始します (ポーリング間隔: 5分) 
+[2025-07-22 12:57:25.887 +09:00 INF] 定期ヘルスチェックを開始します 
+[2025-07-22 12:57:25.907 +09:00 INF] 定期ヘルスチェックが完了しました 
+[2025-07-22 12:57:25.910 +09:00 INF] ✅ 予約管理システム連携サービス が正常に開始されました 
+[2025-07-22 12:57:25.925 +09:00 INF] Application started. Press Ctrl+C to shut down. 
+[2025-07-22 12:57:25.928 +09:00 INF] Hosting environment: Production 
+[2025-07-22 12:57:25.933 +09:00 INF] Content root path: C:\VacancyImport 
+[2025-07-22 12:57:32.255 +09:00 INF] ファイルが更新されました: \\192.168.200.20\全社共有\SS予約表\2025年\千葉\まつど\2025年_SS予約表_241122(使用していない).xlsm 
+[2025-07-22 12:57:32.255 +09:00 INF] ファイルが更新されました: \\192.168.200.20\全社共有\SS予約表\2025年\【原本（共有なし）】2025年_SS予約表_250302.xlsm 
+[2025-07-22 12:57:33.117 +09:00 INF] ファイルが更新されました: \\192.168.200.20\全社共有\SS予約表\2025年\千葉\まつど\【まつど】2025年_SS予約表2_241122.xlsm 
+[2025-07-22 12:57:34.157 +09:00 INF] ファイルが更新されました: \\192.168.200.20\全社共有\SS予約表\2025年\千葉\わかば\【わかば】2025年_SS予約表_241122.xlsm 
+[2025-07-22 12:57:34.164 +09:00 INF] ファイルが更新されました: \\192.168.200.20\全社共有\SS予約表\2025年\千葉\いちかわ\【いちかわ】2025年_SS予約表_241122.xlsm 
+[2025-07-22 12:57:35.495 +09:00 INF] ファイルが更新されました: \\192.168.200.20\全社共有\SS予約表\2025年\千葉\やちよ\【やちよ】2025年_SS予約表_241122.xlsm 
+[2025-07-22 12:57:36.287 +09:00 INF] ファイルが更新されました: \\192.168.200.20\全社共有\SS予約表\2025年\埼京A1\あだち\コピー【あだち】2025年_SS予約表_241122.xlsm 
+[2025-07-22 12:57:36.555 +09:00 INF] ファイルが更新されました: \\192.168.200.20\全社共有\SS予約表\2025年\埼京A1\あだち\【あだち】2025年_SS予約表_241122.xlsm 
+[2025-07-22 12:57:36.764 +09:00 INF] ファイルが更新されました: \\192.168.200.20\全社共有\SS予約表\2025年\埼京A1\おおみや\【おおみや】2025年_SS予約表_241122.xlsm 
+[2025-07-22 12:57:37.277 +09:00 INF] ファイルが更新されました: \\192.168.200.20\全社共有\SS予約表\2025年\千葉\寿クラブ\【寿クラブ】2025年_SS予約表_241122.xlsm 
+[2025-07-22 12:57:37.731 +09:00 INF] ファイルが更新されました: \\192.168.200.20\全社共有\SS予約表\2025年\埼京A1\みどり\【みどり】2025年_SS予約表_241122.xlsm 
+[2025-07-22 12:57:37.776 +09:00 INF] ファイルが更新されました: \\192.168.200.20\全社共有\SS予約表\2025年\埼京A1\わらび\【わらび】2025年_SS予約表_241122.xlsm 
+[2025-07-22 12:57:37.908 +09:00 INF] ファイルが更新されました: \\192.168.200.20\全社共有\SS予約表\2025年\埼京A1\みどり\コピー【みどり】2025年_SS予約表_241122.xlsm 
+[2025-07-22 12:57:38.781 +09:00 INF] ファイルが更新されました: \\192.168.200.20\全社共有\SS予約表\2025年\埼京A2\いたばし\★【いたばし】2025年2025年2月1日から使用_SS予約表.xlsm 
+[2025-07-22 12:57:38.948 +09:00 ERR] ファイル変更チェックの処理中にエラーが発生しました 
+System.IO.IOException: The process cannot access the file '\\192.168.200.20\全社共有\SS予約表\2025年\埼京A2\しき\~$【しき】2025年_SS予約表_250111.xlsm' because it is being used by another process.
+   at Microsoft.Win32.SafeHandles.SafeFileHandle.CreateFile(String fullPath, FileMode mode, FileAccess access, FileShare share, FileOptions options)
+   at Microsoft.Win32.SafeHandles.SafeFileHandle.Open(String fullPath, FileMode mode, FileAccess access, FileShare share, FileOptions options, Int64 preallocationSize, Nullable`1 unixCreateMode)
+   at System.IO.Strategies.OSFileStreamStrategy..ctor(String path, FileMode mode, FileAccess access, FileShare share, FileOptions options, Int64 preallocationSize, Nullable`1 unixCreateMode)
+   at System.IO.Strategies.FileStreamHelpers.ChooseStrategyCore(String path, FileMode mode, FileAccess access, FileShare share, FileOptions options, Int64 preallocationSize, Nullable`1 unixCreateMode)
+   at System.IO.FileStream..ctor(String path, FileMode mode, FileAccess access, FileShare share, Int32 bufferSize)
+   at VacancyImport.Services.ExcelService.CalculateFileHashAsync(String filePath) in C:\VacancyImport\vacancy_import_v2\src\VacancyImport\Services\ExcelService.cs:line 365
+   at VacancyImport.Services.ExcelService.<>c__DisplayClass10_0.<<CheckFileUpdatesAsync>b__1>d.MoveNext() in C:\VacancyImport\vacancy_import_v2\src\VacancyImport\Services\ExcelService.cs:line 133
+--- End of stack trace from previous location ---
+   at VacancyImport.Utilities.ParallelProcessor.<>c__DisplayClass0_1`2.<<ProcessParallelAsync>b__0>d.MoveNext() in C:\VacancyImport\vacancy_import_v2\src\VacancyImport\Utilities\ParallelProcessor.cs:line 57
+[2025-07-22 12:57:39.085 +09:00 INF] ファイルが更新されました: \\192.168.200.20\全社共有\SS予約表\2025年\埼京A2\さやま\【さやま】2025年_SS予約表_241122.xlsm 
+[2025-07-22 12:57:39.119 +09:00 INF] ファイルが更新されました: \\192.168.200.20\全社共有\SS予約表\2025年\埼京A2\さやま\2025年　2月～.xlsm 
+[2025-07-22 12:57:39.181 +09:00 INF] ファイルが更新されました: \\192.168.200.20\全社共有\SS予約表\2025年\埼京A2\さやま\コピー2025年　2月～.xlsm 
+[2025-07-22 12:57:40.650 +09:00 INF] ファイルが更新されました: \\192.168.200.20\全社共有\SS予約表\2025年\埼京A2\しき\【しき】2025年_SS予約表_250111.xlsm 
+[2025-07-22 12:57:40.816 +09:00 INF] ファイルが更新されました: \\192.168.200.20\全社共有\SS予約表\2025年\埼京A2\にいざ\【にいざ】2025年_SS予約表_241122.xlsm 
+[2025-07-22 12:57:40.885 +09:00 INF] ファイルが更新されました: \\192.168.200.20\全社共有\SS予約表\2025年\埼京A2\にいざ\コピー【にいざ】2025年_SS予約表_241122.xlsm 
+[2025-07-22 12:57:41.448 +09:00 INF] ファイルが更新されました: \\192.168.200.20\全社共有\SS予約表\2025年\埼京A2\ねりま\【ねりま】2025年_SS予約表_241122　２.xlsm 
+[2025-07-22 12:57:42.072 +09:00 INF] ファイルが更新されました: \\192.168.200.20\全社共有\SS予約表\2025年\埼京A2\ねりま\コピー【ねりま】2025年_SS予約表_241122　２.xlsm 
+[2025-07-22 12:57:42.287 +09:00 INF] ファイルが更新されました: \\192.168.200.20\全社共有\SS予約表\2025年\埼京A2\ふじみの\【ふじみの】2025年_SS予約表_250111.xlsm 
+[2025-07-22 12:57:42.410 +09:00 INF] ファイルが更新されました: \\192.168.200.20\全社共有\SS予約表\2025年\埼京A2\ふじみの\コピー【ふじみの】2025年_SS予約表_250111.xlsm 
+[2025-07-22 12:57:43.011 +09:00 INF] ファイルが更新されました: \\192.168.200.20\全社共有\SS予約表\2025年\埼京A2\わこう\【わこう】2025年_SS予約表_241122.xlsm 
+[2025-07-22 12:57:43.610 +09:00 INF] ファイルが更新されました: \\192.168.200.20\全社共有\SS予約表\2025年\埼京B\かわぐち\【かわぐち】2025年_SS予約表_241122.xlsm 
+[2025-07-22 12:57:43.628 +09:00 INF] ファイルが更新されました: \\192.168.200.20\全社共有\SS予約表\2025年\埼京B\こしがや\【こしがや】2025年_SS予約表_241122.xlsm 
+[2025-07-22 12:57:43.628 +09:00 INF] ファイルが更新されました: \\192.168.200.20\全社共有\SS予約表\2025年\埼京B\こしがや\【こしがや】2025年_SS予約表_241122 のコピー.xlsm 
+[2025-07-22 12:57:43.968 +09:00 INF] ファイルが更新されました: \\192.168.200.20\全社共有\SS予約表\2025年\埼京B\そうか\ss202504４.xlsm 
+[2025-07-22 12:57:45.232 +09:00 INF] ファイルが更新されました: \\192.168.200.20\全社共有\SS予約表\2025年\神奈川\かなざわ\【かなざわ】2025年_SS予約表_241122.xlsm 
+[2025-07-22 12:57:45.401 +09:00 INF] ファイルが更新されました: \\192.168.200.20\全社共有\SS予約表\2025年\埼京B\そうか\コピー【そうか】2025年_SS予約表_241122.xlsm 
+[2025-07-22 12:57:45.451 +09:00 INF] ファイルが更新されました: \\192.168.200.20\全社共有\SS予約表\2025年\埼京B\そうか\【そうか】2025年_SS予約表_241122.xlsm 
+[2025-07-22 12:57:45.630 +09:00 INF] ファイルが更新されました: \\192.168.200.20\全社共有\SS予約表\2025年\埼京B\みさと\【みさと】2025年_SS予約表_241122.xlsm 
+[2025-07-22 12:57:46.264 +09:00 ERR] ファイル変更チェックの処理中にエラーが発生しました 
+System.IO.IOException: The process cannot access the file '\\192.168.200.20\全社共有\SS予約表\2025年\神奈川\つるみ\~$【つるみ】2025年_SS予約表_241122_bk.xlsm' because it is being used by another process.
+   at Microsoft.Win32.SafeHandles.SafeFileHandle.CreateFile(String fullPath, FileMode mode, FileAccess access, FileShare share, FileOptions options)
+   at Microsoft.Win32.SafeHandles.SafeFileHandle.Open(String fullPath, FileMode mode, FileAccess access, FileShare share, FileOptions options, Int64 preallocationSize, Nullable`1 unixCreateMode)
+   at System.IO.Strategies.OSFileStreamStrategy..ctor(String path, FileMode mode, FileAccess access, FileShare share, FileOptions options, Int64 preallocationSize, Nullable`1 unixCreateMode)
+   at VacancyImport.Services.ExcelService.CalculateFileHashAsync(String filePath) in C:\VacancyImport\vacancy_import_v2\src\VacancyImport\Services\ExcelService.cs:line 365
+   at VacancyImport.Services.ExcelService.<>c__DisplayClass10_0.<<CheckFileUpdatesAsync>b__1>d.MoveNext() in C:\VacancyImport\vacancy_import_v2\src\VacancyImport\Services\ExcelService.cs:line 133
+--- End of stack trace from previous location ---
+   at VacancyImport.Utilities.ParallelProcessor.<>c__DisplayClass0_1`2.<<ProcessParallelAsync>b__0>d.MoveNext() in C:\VacancyImport\vacancy_import_v2\src\VacancyImport\Utilities\ParallelProcessor.cs:line 57
+[2025-07-22 12:57:47.999 +09:00 INF] ファイルが更新されました: \\192.168.200.20\全社共有\SS予約表\2025年\神奈川\たかつ\【たかつ】2025年_SS予約表_241122_bk.xlsm 
+[2025-07-22 12:57:48.088 +09:00 INF] ファイルが更新されました: \\192.168.200.20\全社共有\SS予約表\2025年\神奈川\つるみ\【つるみ】2025年_SS予約表_241122_bk.xlsm 
+[2025-07-22 12:57:48.971 +09:00 INF] ファイルが更新されました: \\192.168.200.20\全社共有\SS予約表\2025年\神奈川\やまと\【やまと】2025年_SS予約表_241122.xlsm 
+[2025-07-22 12:57:49.120 +09:00 INF] ファイルが更新されました: \\192.168.200.20\全社共有\SS予約表\2025年\神奈川\ふじさわ\【ふじさわ】2025年_SS予約表_241122.xlsm 
+[2025-07-22 12:57:50.151 +09:00 INF] ファイルが更新されました: \\192.168.200.20\全社共有\SS予約表\2025年\神奈川\やまと\コピー【やまと】2025年_SS予約表_241122.xlsm 
+[2025-07-22 12:57:50.714 +09:00 INF] ファイルが更新されました: \\192.168.200.20\全社共有\SS予約表\2025年\千葉\いちかわ\過去\✕【いちかわ】2025年_SS予約表_241122.xlsm 
+[2025-07-22 12:57:50.758 +09:00 INF] ファイルが更新されました: \\192.168.200.20\全社共有\SS予約表\2025年\神奈川\よこすか\【よこすか】2025年_SS予約表のバックアップ_241122.xlsm 
+[2025-07-22 12:57:50.832 +09:00 INF] ファイルが更新されました: \\192.168.200.20\全社共有\SS予約表\2025年\神奈川\よこすか\【よこすか】2025年_SS予約表_241122 最新.xlsm 
+[2025-07-22 12:57:51.992 +09:00 INF] ファイルが更新されました: \\192.168.200.20\全社共有\SS予約表\2025年\千葉\いちかわ\過去\【いちかわ】SS予約表_240507.xlsm 
+[2025-07-22 12:57:52.233 +09:00 INF] ファイルが更新されました: \\192.168.200.20\全社共有\SS予約表\2025年\埼京A1\おおみや\過去\【おおみや】2024年_SS予約表_231215.xlsm 
+[2025-07-22 12:57:52.865 +09:00 INF] ファイルが更新されました: \\192.168.200.20\全社共有\SS予約表\2025年\埼京A2\にいざ\使用不可\✕【にいざ】2025年_SS予約表_241122.xlsm 
+[2025-07-22 12:57:52.973 +09:00 INF] ファイルが更新されました: \\192.168.200.20\全社共有\SS予約表\2025年\埼京A1\おおみや\過去\【おおみや】2024年_SS予約表_240519.xlsm 
+[2025-07-22 12:57:54.409 +09:00 INF] ファイルが更新されました: \\192.168.200.20\全社共有\SS予約表\2025年\埼京A1\おおみや\ボード係\3.旧予約表\【おおみや】2024年_SS予約表_231215.xlsm 
+[2025-07-22 12:57:54.529 +09:00 INF] ファイルが更新されました: \\192.168.200.20\全社共有\SS予約表\2025年\埼京A1\おおみや\ボード係\3.旧予約表\【原本】SS予約表（3ユニット）.xlsm 
+[2025-07-22 12:57:54.675 +09:00 INF] ファイルが更新されました: \\192.168.200.20\全社共有\SS予約表\2025年\埼京A1\おおみや\ボード係\3.旧予約表\【おおみや】2024年_SS予約表_240519.xlsm 
+[2025-07-22 12:57:55.077 +09:00 INF] ファイルが更新されました: \\192.168.200.20\全社共有\SS予約表\2025年\埼京A2\ねりま\過去\✕【ねりま】2025年_SS予約表_241122.xlsm 
+[2025-07-22 12:57:55.292 +09:00 INF] ファイルが更新されました: \\192.168.200.20\全社共有\SS予約表\2025年\埼京A1\おおみや\ボード係\3.旧予約表\【原本】SS予約表（3ユニット）_230303.xlsm 
+[2025-07-22 12:57:55.296 +09:00 ERR] ファイル変更チェック中に2件のエラーが発生しました 
+[2025-07-22 12:57:55.303 +09:00 WRN] エラーが発生しました。200ms後にリトライします (試行回数: 1/3) 
+VacancyImport.Exceptions.ExcelFileException: ファイル更新チェック中にエラーが発生しました: 
+ ---> System.AggregateException: One or more errors occurred. (ファイル変更チェック中に2件のエラーが発生しました (The process cannot access the file '\\192.168.200.20\全社共有\SS予約表\2025年\神奈川\つるみ\~$【つるみ】2025年_SS予約表_241122_bk.xlsm' because it is being used by another process.) (The process cannot access the file '\\192.168.200.20\全社共有\SS予約表\2025年\埼京A2\しき\~$【しき】2025年_SS予約表_250111.xlsm' because it is being used by another process.))
+ ---> System.AggregateException: ファイル変更チェック中に2件のエラーが発生しました (The process cannot access the file '\\192.168.200.20\全社共有\SS予約表\2025年\神奈川\つるみ\~$【つるみ】2025年_SS予約表_241122_bk.xlsm' because it is being used by another process.) (The process cannot access the file '\\192.168.200.20\全社共有\SS予約表\2025年\埼京A2\しき\~$【しき】2025年_SS予約表_250111.xlsm' because it is being used by another process.)
+ ---> System.IO.IOException: The process cannot access the file '\\192.168.200.20\全社共有\SS予約表\2025年\神奈川\つるみ\~$【つるみ】2025年_SS予約表_241122_bk.xlsm' because it is being used by another process.
+   at Microsoft.Win32.SafeHandles.SafeFileHandle.CreateFile(String fullPath, FileMode mode, FileAccess access, FileShare share, FileOptions options)
+   at Microsoft.Win32.SafeHandles.SafeFileHandle.Open(String fullPath, FileMode mode, FileAccess access, FileShare share, FileOptions options, Int64 preallocationSize, Nullable`1 unixCreateMode)
+   at System.IO.Strategies.OSFileStreamStrategy..ctor(String path, FileMode mode, FileAccess access, FileShare share, FileOptions options, Int64 preallocationSize, Nullable`1 unixCreateMode)
+   at VacancyImport.Services.ExcelService.CalculateFileHashAsync(String filePath) in C:\VacancyImport\vacancy_import_v2\src\VacancyImport\Services\ExcelService.cs:line 365
+   at VacancyImport.Services.ExcelService.<>c__DisplayClass10_0.<<CheckFileUpdatesAsync>b__1>d.MoveNext() in C:\VacancyImport\vacancy_import_v2\src\VacancyImport\Services\ExcelService.cs:line 133
+--- End of stack trace from previous location ---
+   at VacancyImport.Utilities.ParallelProcessor.<>c__DisplayClass0_1`2.<<ProcessParallelAsync>b__0>d.MoveNext() in C:\VacancyImport\vacancy_import_v2\src\VacancyImport\Utilities\ParallelProcessor.cs:line 57
+   --- End of inner exception stack trace ---
+   at VacancyImport.Utilities.ParallelProcessor.ProcessParallelAsync[TInput,TOutput](IEnumerable`1 items, Func`3 processFunc, Int32 maxDegreeOfParallelism, ILogger logger, String operationName, CancellationToken cancellationToken) in C:\VacancyImport\vacancy_import_v2\src\VacancyImport\Utilities\ParallelProcessor.cs:line 87
+ ---> (Inner Exception #1) System.IO.IOException: The process cannot access the file '\\192.168.200.20\全社共有\SS予約表\2025年\埼京A2\しき\~$【しき】2025年_SS予約表_250111.xlsm' because it is being used by another process.
+   at Microsoft.Win32.SafeHandles.SafeFileHandle.CreateFile(String fullPath, FileMode mode, FileAccess access, FileShare share, FileOptions options)
+   at Microsoft.Win32.SafeHandles.SafeFileHandle.Open(String fullPath, FileMode mode, FileAccess access, FileShare share, FileOptions options, Int64 preallocationSize, Nullable`1 unixCreateMode)
+   at System.IO.Strategies.OSFileStreamStrategy..ctor(String path, FileMode mode, FileAccess access, FileShare share, FileOptions options, Int64 preallocationSize, Nullable`1 unixCreateMode)
+   at System.IO.Strategies.FileStreamHelpers.ChooseStrategyCore(String path, FileMode mode, FileAccess access, FileShare share, FileOptions options, Int64 preallocationSize, Nullable`1 unixCreateMode)
+   at System.IO.FileStream..ctor(String path, FileMode mode, FileAccess access, FileShare share, Int32 bufferSize)
+   at VacancyImport.Services.ExcelService.CalculateFileHashAsync(String filePath) in C:\VacancyImport\vacancy_import_v2\src\VacancyImport\Services\ExcelService.cs:line 365
+   at VacancyImport.Services.ExcelService.<>c__DisplayClass10_0.<<CheckFileUpdatesAsync>b__1>d.MoveNext() in C:\VacancyImport\vacancy_import_v2\src\VacancyImport\Services\ExcelService.cs:line 133
+--- End of stack trace from previous location ---
+   at VacancyImport.Utilities.ParallelProcessor.<>c__DisplayClass0_1`2.<<ProcessParallelAsync>b__0>d.MoveNext() in C:\VacancyImport\vacancy_import_v2\src\VacancyImport\Utilities\ParallelProcessor.cs:line 57<---
+
+   --- End of inner exception stack trace ---
+   at System.Threading.Tasks.Task.ThrowIfExceptional(Boolean includeTaskCanceledExceptions)
+   at System.Threading.Tasks.Task`1.GetResultCore(Boolean waitCompletionNotification)
+   at VacancyImport.Services.ExcelService.<>c.<CheckFileUpdatesAsync>b__10_2(Task`1 t) in C:\VacancyImport\vacancy_import_v2\src\VacancyImport\Services\ExcelService.cs:line 149
+   at System.Threading.Tasks.ContinuationResultTaskFromResultTask`2.InnerInvoke()
+   at System.Threading.ExecutionContext.RunFromThreadPoolDispatchLoop(Thread threadPoolThread, ExecutionContext executionContext, ContextCallback callback, Object state)
+--- End of stack trace from previous location ---
+   at System.Threading.ExecutionContext.RunFromThreadPoolDispatchLoop(Thread threadPoolThread, ExecutionContext executionContext, ContextCallback callback, Object state)
+   at System.Threading.Tasks.Task.ExecuteWithThreadLocal(Task& currentTaskSlot, Thread threadPoolThread)
+--- End of stack trace from previous location ---
+   at VacancyImport.Services.ExcelService.<>c__DisplayClass10_0.<<CheckFileUpdatesAsync>b__0>d.MoveNext() in C:\VacancyImport\vacancy_import_v2\src\VacancyImport\Services\ExcelService.cs:line 110
+   --- End of inner exception stack trace ---
+   at VacancyImport.Services.ExcelService.<>c__DisplayClass10_0.<<CheckFileUpdatesAsync>b__0>d.MoveNext() in C:\VacancyImport\vacancy_import_v2\src\VacancyImport\Services\ExcelService.cs:line 163
+--- End of stack trace from previous location ---
+   at VacancyImport.Utilities.RetryPolicy.ExecuteWithRetryAsync[T](Func`1 func, Int32 retryCount, Int32 initialDelay, Int32 maxDelay, ILogger logger, CancellationToken cancellationToken) in C:\VacancyImport\vacancy_import_v2\src\VacancyImport\Utilities\RetryPolicy.cs:line 47
+[2025-07-22 12:57:55.570 +09:00 WRN] リトライ実行中 (試行回数: 1/3, 遅延: 400ms) 
+[2025-07-22 12:58:01.815 +09:00 ERR] ファイル変更チェックの処理中にエラーが発生しました 
+System.IO.IOException: The process cannot access the file '\\192.168.200.20\全社共有\SS予約表\2025年\埼京A2\しき\~$【しき】2025年_SS予約表_250111.xlsm' because it is being used by another process.
+   at Microsoft.Win32.SafeHandles.SafeFileHandle.CreateFile(String fullPath, FileMode mode, FileAccess access, FileShare share, FileOptions options)
+   at Microsoft.Win32.SafeHandles.SafeFileHandle.Open(String fullPath, FileMode mode, FileAccess access, FileShare share, FileOptions options, Int64 preallocationSize, Nullable`1 unixCreateMode)
+   at System.IO.Strategies.OSFileStreamStrategy..ctor(String path, FileMode mode, FileAccess access, FileShare share, FileOptions options, Int64 preallocationSize, Nullable`1 unixCreateMode)
+   at VacancyImport.Services.ExcelService.CalculateFileHashAsync(String filePath) in C:\VacancyImport\vacancy_import_v2\src\VacancyImport\Services\ExcelService.cs:line 365
+   at VacancyImport.Services.ExcelService.<>c__DisplayClass10_0.<<CheckFileUpdatesAsync>b__1>d.MoveNext() in C:\VacancyImport\vacancy_import_v2\src\VacancyImport\Services\ExcelService.cs:line 133
+--- End of stack trace from previous location ---
+   at VacancyImport.Utilities.ParallelProcessor.<>c__DisplayClass0_1`2.<<ProcessParallelAsync>b__0>d.MoveNext() in C:\VacancyImport\vacancy_import_v2\src\VacancyImport\Utilities\ParallelProcessor.cs:line 57
+[2025-07-22 12:58:01.833 +09:00 ERR] ファイル変更チェックの処理中にエラーが発生しました 
+System.IO.IOException: The process cannot access the file '\\192.168.200.20\全社共有\SS予約表\2025年\神奈川\つるみ\~$【つるみ】2025年_SS予約表_241122_bk.xlsm' because it is being used by another process.
+   at Microsoft.Win32.SafeHandles.SafeFileHandle.CreateFile(String fullPath, FileMode mode, FileAccess access, FileShare share, FileOptions options)
+   at Microsoft.Win32.SafeHandles.SafeFileHandle.Open(String fullPath, FileMode mode, FileAccess access, FileShare share, FileOptions options, Int64 preallocationSize, Nullable`1 unixCreateMode)
+   at System.IO.Strategies.OSFileStreamStrategy..ctor(String path, FileMode mode, FileAccess access, FileShare share, FileOptions options, Int64 preallocationSize, Nullable`1 unixCreateMode)
+   at VacancyImport.Services.ExcelService.CalculateFileHashAsync(String filePath) in C:\VacancyImport\vacancy_import_v2\src\VacancyImport\Services\ExcelService.cs:line 365
+   at VacancyImport.Services.ExcelService.<>c__DisplayClass10_0.<<CheckFileUpdatesAsync>b__1>d.MoveNext() in C:\VacancyImport\vacancy_import_v2\src\VacancyImport\Services\ExcelService.cs:line 133
+--- End of stack trace from previous location ---
+   at VacancyImport.Utilities.ParallelProcessor.<>c__DisplayClass0_1`2.<<ProcessParallelAsync>b__0>d.MoveNext() in C:\VacancyImport\vacancy_import_v2\src\VacancyImport\Utilities\ParallelProcessor.cs:line 57
+[2025-07-22 12:58:01.863 +09:00 ERR] ファイル変更チェック中に2件のエラーが発生しました 
+[2025-07-22 12:58:01.875 +09:00 WRN] エラーが発生しました。400ms後にリトライします (試行回数: 2/3) 
+VacancyImport.Exceptions.ExcelFileException: ファイル更新チェック中にエラーが発生しました: 
+ ---> System.AggregateException: One or more errors occurred. (ファイル変更チェック中に2件のエラーが発生しました (The process cannot access the file '\\192.168.200.20\全社共有\SS予約表\2025年\神奈川\つるみ\~$【つるみ】2025年_SS予約表_241122_bk.xlsm' because it is being used by another process.) (The process cannot access the file '\\192.168.200.20\全社共有\SS予約表\2025年\埼京A2\しき\~$【しき】2025年_SS予約表_250111.xlsm' because it is being used by another process.))
+ ---> System.AggregateException: ファイル変更チェック中に2件のエラーが発生しました (The process cannot access the file '\\192.168.200.20\全社共有\SS予約表\2025年\神奈川\つるみ\~$【つるみ】2025年_SS予約表_241122_bk.xlsm' because it is being used by another process.) (The process cannot access the file '\\192.168.200.20\全社共有\SS予約表\2025年\埼京A2\しき\~$【しき】2025年_SS予約表_250111.xlsm' because it is being used by another process.)
+ ---> System.IO.IOException: The process cannot access the file '\\192.168.200.20\全社共有\SS予約表\2025年\神奈川\つるみ\~$【つるみ】2025年_SS予約表_241122_bk.xlsm' because it is being used by another process.
+   at Microsoft.Win32.SafeHandles.SafeFileHandle.CreateFile(String fullPath, FileMode mode, FileAccess access, FileShare share, FileOptions options)
+   at Microsoft.Win32.SafeHandles.SafeFileHandle.Open(String fullPath, FileMode mode, FileAccess access, FileShare share, FileOptions options, Int64 preallocationSize, Nullable`1 unixCreateMode)
+   at System.IO.Strategies.OSFileStreamStrategy..ctor(String path, FileMode mode, FileAccess access, FileShare share, FileOptions options, Int64 preallocationSize, Nullable`1 unixCreateMode)
+   at VacancyImport.Services.ExcelService.CalculateFileHashAsync(String filePath) in C:\VacancyImport\vacancy_import_v2\src\VacancyImport\Services\ExcelService.cs:line 365
+   at VacancyImport.Services.ExcelService.<>c__DisplayClass10_0.<<CheckFileUpdatesAsync>b__1>d.MoveNext() in C:\VacancyImport\vacancy_import_v2\src\VacancyImport\Services\ExcelService.cs:line 133
+--- End of stack trace from previous location ---
+   at VacancyImport.Utilities.ParallelProcessor.<>c__DisplayClass0_1`2.<<ProcessParallelAsync>b__0>d.MoveNext() in C:\VacancyImport\vacancy_import_v2\src\VacancyImport\Utilities\ParallelProcessor.cs:line 57
+   --- End of inner exception stack trace ---
+   at VacancyImport.Utilities.ParallelProcessor.ProcessParallelAsync[TInput,TOutput](IEnumerable`1 items, Func`3 processFunc, Int32 maxDegreeOfParallelism, ILogger logger, String operationName, CancellationToken cancellationToken) in C:\VacancyImport\vacancy_import_v2\src\VacancyImport\Utilities\ParallelProcessor.cs:line 87
+ ---> (Inner Exception #1) System.IO.IOException: The process cannot access the file '\\192.168.200.20\全社共有\SS予約表\2025年\埼京A2\しき\~$【しき】2025年_SS予約表_250111.xlsm' because it is being used by another process.
+   at Microsoft.Win32.SafeHandles.SafeFileHandle.CreateFile(String fullPath, FileMode mode, FileAccess access, FileShare share, FileOptions options)
+   at Microsoft.Win32.SafeHandles.SafeFileHandle.Open(String fullPath, FileMode mode, FileAccess access, FileShare share, FileOptions options, Int64 preallocationSize, Nullable`1 unixCreateMode)
+   at System.IO.Strategies.OSFileStreamStrategy..ctor(String path, FileMode mode, FileAccess access, FileShare share, FileOptions options, Int64 preallocationSize, Nullable`1 unixCreateMode)
+   at VacancyImport.Services.ExcelService.CalculateFileHashAsync(String filePath) in C:\VacancyImport\vacancy_import_v2\src\VacancyImport\Services\ExcelService.cs:line 365
+   at VacancyImport.Services.ExcelService.<>c__DisplayClass10_0.<<CheckFileUpdatesAsync>b__1>d.MoveNext() in C:\VacancyImport\vacancy_import_v2\src\VacancyImport\Services\ExcelService.cs:line 133
+--- End of stack trace from previous location ---
+   at VacancyImport.Utilities.ParallelProcessor.<>c__DisplayClass0_1`2.<<ProcessParallelAsync>b__0>d.MoveNext() in C:\VacancyImport\vacancy_import_v2\src\VacancyImport\Utilities\ParallelProcessor.cs:line 57<---
+
+   --- End of inner exception stack trace ---
+   at System.Threading.Tasks.Task.ThrowIfExceptional(Boolean includeTaskCanceledExceptions)
+   at System.Threading.Tasks.Task`1.GetResultCore(Boolean waitCompletionNotification)
+   at VacancyImport.Services.ExcelService.<>c.<CheckFileUpdatesAsync>b__10_2(Task`1 t) in C:\VacancyImport\vacancy_import_v2\src\VacancyImport\Services\ExcelService.cs:line 149
+   at System.Threading.Tasks.ContinuationResultTaskFromResultTask`2.InnerInvoke()
+   at System.Threading.ExecutionContext.RunFromThreadPoolDispatchLoop(Thread threadPoolThread, ExecutionContext executionContext, ContextCallback callback, Object state)
+--- End of stack trace from previous location ---
+   at System.Threading.ExecutionContext.RunFromThreadPoolDispatchLoop(Thread threadPoolThread, ExecutionContext executionContext, ContextCallback callback, Object state)
+   at System.Threading.Tasks.Task.ExecuteWithThreadLocal(Task& currentTaskSlot, Thread threadPoolThread)
+--- End of stack trace from previous location ---
+   at VacancyImport.Services.ExcelService.<>c__DisplayClass10_0.<<CheckFileUpdatesAsync>b__0>d.MoveNext() in C:\VacancyImport\vacancy_import_v2\src\VacancyImport\Services\ExcelService.cs:line 110
+   --- End of inner exception stack trace ---
+   at VacancyImport.Services.ExcelService.<>c__DisplayClass10_0.<<CheckFileUpdatesAsync>b__0>d.MoveNext() in C:\VacancyImport\vacancy_import_v2\src\VacancyImport\Services\ExcelService.cs:line 163
+--- End of stack trace from previous location ---
+   at VacancyImport.Utilities.RetryPolicy.ExecuteWithRetryAsync[T](Func`1 func, Int32 retryCount, Int32 initialDelay, Int32 maxDelay, ILogger logger, CancellationToken cancellationToken) in C:\VacancyImport\vacancy_import_v2\src\VacancyImport\Utilities\RetryPolicy.cs:line 47
+[2025-07-22 12:58:02.312 +09:00 WRN] リトライ実行中 (試行回数: 2/3, 遅延: 800ms) 
+[2025-07-22 12:58:02.537 +09:00 ERR] ファイル変更チェックの処理中にエラーが発生しました 
+System.IO.IOException: The process cannot access the file '\\192.168.200.20\全社共有\SS予約表\2025年\神奈川\つるみ\~$【つるみ】2025年_SS予約表_241122_bk.xlsm' because it is being used by another process.
+   at Microsoft.Win32.SafeHandles.SafeFileHandle.CreateFile(String fullPath, FileMode mode, FileAccess access, FileShare share, FileOptions options)
+   at Microsoft.Win32.SafeHandles.SafeFileHandle.Open(String fullPath, FileMode mode, FileAccess access, FileShare share, FileOptions options, Int64 preallocationSize, Nullable`1 unixCreateMode)
+   at System.IO.Strategies.OSFileStreamStrategy..ctor(String path, FileMode mode, FileAccess access, FileShare share, FileOptions options, Int64 preallocationSize, Nullable`1 unixCreateMode)
+   at VacancyImport.Services.ExcelService.CalculateFileHashAsync(String filePath) in C:\VacancyImport\vacancy_import_v2\src\VacancyImport\Services\ExcelService.cs:line 365
+   at VacancyImport.Services.ExcelService.<>c__DisplayClass10_0.<<CheckFileUpdatesAsync>b__1>d.MoveNext() in C:\VacancyImport\vacancy_import_v2\src\VacancyImport\Services\ExcelService.cs:line 133
+--- End of stack trace from previous location ---
+   at VacancyImport.Utilities.ParallelProcessor.<>c__DisplayClass0_1`2.<<ProcessParallelAsync>b__0>d.MoveNext() in C:\VacancyImport\vacancy_import_v2\src\VacancyImport\Utilities\ParallelProcessor.cs:line 57
+[2025-07-22 12:58:02.545 +09:00 ERR] ファイル変更チェックの処理中にエラーが発生しました 
+System.IO.IOException: The process cannot access the file '\\192.168.200.20\全社共有\SS予約表\2025年\埼京A2\しき\~$【しき】2025年_SS予約表_250111.xlsm' because it is being used by another process.
+   at Microsoft.Win32.SafeHandles.SafeFileHandle.CreateFile(String fullPath, FileMode mode, FileAccess access, FileShare share, FileOptions options)
+   at Microsoft.Win32.SafeHandles.SafeFileHandle.Open(String fullPath, FileMode mode, FileAccess access, FileShare share, FileOptions options, Int64 preallocationSize, Nullable`1 unixCreateMode)
+   at System.IO.Strategies.OSFileStreamStrategy..ctor(String path, FileMode mode, FileAccess access, FileShare share, FileOptions options, Int64 preallocationSize, Nullable`1 unixCreateMode)
+   at VacancyImport.Services.ExcelService.CalculateFileHashAsync(String filePath) in C:\VacancyImport\vacancy_import_v2\src\VacancyImport\Services\ExcelService.cs:line 365
+   at VacancyImport.Services.ExcelService.<>c__DisplayClass10_0.<<CheckFileUpdatesAsync>b__1>d.MoveNext() in C:\VacancyImport\vacancy_import_v2\src\VacancyImport\Services\ExcelService.cs:line 133
+--- End of stack trace from previous location ---
+   at VacancyImport.Utilities.ParallelProcessor.<>c__DisplayClass0_1`2.<<ProcessParallelAsync>b__0>d.MoveNext() in C:\VacancyImport\vacancy_import_v2\src\VacancyImport\Utilities\ParallelProcessor.cs:line 57
+[2025-07-22 12:58:02.574 +09:00 ERR] ファイル変更チェック中に2件のエラーが発生しました 
+[2025-07-22 12:58:02.579 +09:00 WRN] エラーが発生しました。800ms後にリトライします (試行回数: 3/3) 
+VacancyImport.Exceptions.ExcelFileException: ファイル更新チェック中にエラーが発生しました: 
+ ---> System.AggregateException: One or more errors occurred. (ファイル変更チェック中に2件のエラーが発生しました (The process cannot access the file '\\192.168.200.20\全社共有\SS予約表\2025年\埼京A2\しき\~$【しき】2025年_SS予約表_250111.xlsm' because it is being used by another process.) (The process cannot access the file '\\192.168.200.20\全社共有\SS予約表\2025年\神奈川\つるみ\~$【つるみ】2025年_SS予約表_241122_bk.xlsm' because it is being used by another process.))
+ ---> System.AggregateException: ファイル変更チェック中に2件のエラーが発生しました (The process cannot access the file '\\192.168.200.20\全社共有\SS予約表\2025年\埼京A2\しき\~$【しき】2025年_SS予約表_250111.xlsm' because it is being used by another process.) (The process cannot access the file '\\192.168.200.20\全社共有\SS予約表\2025年\神奈川\つるみ\~$【つるみ】2025年_SS予約表_241122_bk.xlsm' because it is being used by another process.)
+ ---> System.IO.IOException: The process cannot access the file '\\192.168.200.20\全社共有\SS予約表\2025年\埼京A2\しき\~$【しき】2025年_SS予約表_250111.xlsm' because it is being used by another process.
+   at Microsoft.Win32.SafeHandles.SafeFileHandle.CreateFile(String fullPath, FileMode mode, FileAccess access, FileShare share, FileOptions options)
+   at Microsoft.Win32.SafeHandles.SafeFileHandle.Open(String fullPath, FileMode mode, FileAccess access, FileShare share, FileOptions options, Int64 preallocationSize, Nullable`1 unixCreateMode)
+   at System.IO.Strategies.OSFileStreamStrategy..ctor(String path, FileMode mode, FileAccess access, FileShare share, FileOptions options, Int64 preallocationSize, Nullable`1 unixCreateMode)
+   at VacancyImport.Services.ExcelService.CalculateFileHashAsync(String filePath) in C:\VacancyImport\vacancy_import_v2\src\VacancyImport\Services\ExcelService.cs:line 365
+   at VacancyImport.Services.ExcelService.<>c__DisplayClass10_0.<<CheckFileUpdatesAsync>b__1>d.MoveNext() in C:\VacancyImport\vacancy_import_v2\src\VacancyImport\Services\ExcelService.cs:line 133
+--- End of stack trace from previous location ---
+   at VacancyImport.Utilities.ParallelProcessor.<>c__DisplayClass0_1`2.<<ProcessParallelAsync>b__0>d.MoveNext() in C:\VacancyImport\vacancy_import_v2\src\VacancyImport\Utilities\ParallelProcessor.cs:line 57
+   --- End of inner exception stack trace ---
+   at VacancyImport.Utilities.ParallelProcessor.ProcessParallelAsync[TInput,TOutput](IEnumerable`1 items, Func`3 processFunc, Int32 maxDegreeOfParallelism, ILogger logger, String operationName, CancellationToken cancellationToken) in C:\VacancyImport\vacancy_import_v2\src\VacancyImport\Utilities\ParallelProcessor.cs:line 87
+ ---> (Inner Exception #1) System.IO.IOException: The process cannot access the file '\\192.168.200.20\全社共有\SS予約表\2025年\神奈川\つるみ\~$【つるみ】2025年_SS予約表_241122_bk.xlsm' because it is being used by another process.
+   at Microsoft.Win32.SafeHandles.SafeFileHandle.CreateFile(String fullPath, FileMode mode, FileAccess access, FileShare share, FileOptions options)
+   at Microsoft.Win32.SafeHandles.SafeFileHandle.Open(String fullPath, FileMode mode, FileAccess access, FileShare share, FileOptions options, Int64 preallocationSize, Nullable`1 unixCreateMode)
+   at System.IO.Strategies.OSFileStreamStrategy..ctor(String path, FileMode mode, FileAccess access, FileShare share, FileOptions options, Int64 preallocationSize, Nullable`1 unixCreateMode)
+   at VacancyImport.Services.ExcelService.CalculateFileHashAsync(String filePath) in C:\VacancyImport\vacancy_import_v2\src\VacancyImport\Services\ExcelService.cs:line 365
+   at VacancyImport.Services.ExcelService.<>c__DisplayClass10_0.<<CheckFileUpdatesAsync>b__1>d.MoveNext() in C:\VacancyImport\vacancy_import_v2\src\VacancyImport\Services\ExcelService.cs:line 133
+--- End of stack trace from previous location ---
+   at VacancyImport.Utilities.ParallelProcessor.<>c__DisplayClass0_1`2.<<ProcessParallelAsync>b__0>d.MoveNext() in C:\VacancyImport\vacancy_import_v2\src\VacancyImport\Utilities\ParallelProcessor.cs:line 57<---
+
+   --- End of inner exception stack trace ---
+   at System.Threading.Tasks.Task.ThrowIfExceptional(Boolean includeTaskCanceledExceptions)
+   at System.Threading.Tasks.Task`1.GetResultCore(Boolean waitCompletionNotification)
+   at VacancyImport.Services.ExcelService.<>c.<CheckFileUpdatesAsync>b__10_2(Task`1 t) in C:\VacancyImport\vacancy_import_v2\src\VacancyImport\Services\ExcelService.cs:line 149
+   at System.Threading.Tasks.ContinuationResultTaskFromResultTask`2.InnerInvoke()
+   at System.Threading.ExecutionContext.RunFromThreadPoolDispatchLoop(Thread threadPoolThread, ExecutionContext executionContext, ContextCallback callback, Object state)
+--- End of stack trace from previous location ---
+   at System.Threading.ExecutionContext.RunFromThreadPoolDispatchLoop(Thread threadPoolThread, ExecutionContext executionContext, ContextCallback callback, Object state)
+   at System.Threading.Tasks.Task.ExecuteWithThreadLocal(Task& currentTaskSlot, Thread threadPoolThread)
+--- End of stack trace from previous location ---
+   at VacancyImport.Services.ExcelService.<>c__DisplayClass10_0.<<CheckFileUpdatesAsync>b__0>d.MoveNext() in C:\VacancyImport\vacancy_import_v2\src\VacancyImport\Services\ExcelService.cs:line 110
+   --- End of inner exception stack trace ---
+   at VacancyImport.Services.ExcelService.<>c__DisplayClass10_0.<<CheckFileUpdatesAsync>b__0>d.MoveNext() in C:\VacancyImport\vacancy_import_v2\src\VacancyImport\Services\ExcelService.cs:line 163
+--- End of stack trace from previous location ---
+   at VacancyImport.Utilities.RetryPolicy.ExecuteWithRetryAsync[T](Func`1 func, Int32 retryCount, Int32 initialDelay, Int32 maxDelay, ILogger logger, CancellationToken cancellationToken) in C:\VacancyImport\vacancy_import_v2\src\VacancyImport\Utilities\RetryPolicy.cs:line 47
+[2025-07-22 12:58:03.420 +09:00 WRN] リトライ実行中 (試行回数: 3/3, 遅延: 1600ms) 
+[2025-07-22 12:58:03.613 +09:00 ERR] ファイル変更チェックの処理中にエラーが発生しました 
+System.IO.IOException: The process cannot access the file '\\192.168.200.20\全社共有\SS予約表\2025年\神奈川\つるみ\~$【つるみ】2025年_SS予約表_241122_bk.xlsm' because it is being used by another process.
+   at Microsoft.Win32.SafeHandles.SafeFileHandle.CreateFile(String fullPath, FileMode mode, FileAccess access, FileShare share, FileOptions options)
+   at Microsoft.Win32.SafeHandles.SafeFileHandle.Open(String fullPath, FileMode mode, FileAccess access, FileShare share, FileOptions options, Int64 preallocationSize, Nullable`1 unixCreateMode)
+   at System.IO.Strategies.OSFileStreamStrategy..ctor(String path, FileMode mode, FileAccess access, FileShare share, FileOptions options, Int64 preallocationSize, Nullable`1 unixCreateMode)
+   at VacancyImport.Services.ExcelService.CalculateFileHashAsync(String filePath) in C:\VacancyImport\vacancy_import_v2\src\VacancyImport\Services\ExcelService.cs:line 365
+   at VacancyImport.Services.ExcelService.<>c__DisplayClass10_0.<<CheckFileUpdatesAsync>b__1>d.MoveNext() in C:\VacancyImport\vacancy_import_v2\src\VacancyImport\Services\ExcelService.cs:line 133
+--- End of stack trace from previous location ---
+   at VacancyImport.Utilities.ParallelProcessor.<>c__DisplayClass0_1`2.<<ProcessParallelAsync>b__0>d.MoveNext() in C:\VacancyImport\vacancy_import_v2\src\VacancyImport\Utilities\ParallelProcessor.cs:line 57
+[2025-07-22 12:58:03.632 +09:00 ERR] ファイル変更チェックの処理中にエラーが発生しました 
+System.IO.IOException: The process cannot access the file '\\192.168.200.20\全社共有\SS予約表\2025年\埼京A2\しき\~$【しき】2025年_SS予約表_250111.xlsm' because it is being used by another process.
+   at Microsoft.Win32.SafeHandles.SafeFileHandle.CreateFile(String fullPath, FileMode mode, FileAccess access, FileShare share, FileOptions options)
+   at Microsoft.Win32.SafeHandles.SafeFileHandle.Open(String fullPath, FileMode mode, FileAccess access, FileShare share, FileOptions options, Int64 preallocationSize, Nullable`1 unixCreateMode)
+   at System.IO.Strategies.OSFileStreamStrategy..ctor(String path, FileMode mode, FileAccess access, FileShare share, FileOptions options, Int64 preallocationSize, Nullable`1 unixCreateMode)
+   at VacancyImport.Services.ExcelService.CalculateFileHashAsync(String filePath) in C:\VacancyImport\vacancy_import_v2\src\VacancyImport\Services\ExcelService.cs:line 365
+   at VacancyImport.Services.ExcelService.<>c__DisplayClass10_0.<<CheckFileUpdatesAsync>b__1>d.MoveNext() in C:\VacancyImport\vacancy_import_v2\src\VacancyImport\Services\ExcelService.cs:line 133
+--- End of stack trace from previous location ---
+   at VacancyImport.Utilities.ParallelProcessor.<>c__DisplayClass0_1`2.<<ProcessParallelAsync>b__0>d.MoveNext() in C:\VacancyImport\vacancy_import_v2\src\VacancyImport\Utilities\ParallelProcessor.cs:line 57
+[2025-07-22 12:58:03.651 +09:00 ERR] ファイル変更チェック中に2件のエラーが発生しました 
+[2025-07-22 12:58:03.666 +09:00 ERR] 最大リトライ回数に達しました (3回) 
+VacancyImport.Exceptions.ExcelFileException: ファイル更新チェック中にエラーが発生しました: 
+ ---> System.AggregateException: One or more errors occurred. (ファイル変更チェック中に2件のエラーが発生しました (The process cannot access the file '\\192.168.200.20\全社共有\SS予約表\2025年\埼京A2\しき\~$【しき】2025年_SS予約表_250111.xlsm' because it is being used by another process.) (The process cannot access the file '\\192.168.200.20\全社共有\SS予約表\2025年\神奈川\つるみ\~$【つるみ】2025年_SS予約表_241122_bk.xlsm' because it is being used by another process.))
+ ---> System.AggregateException: ファイル変更チェック中に2件のエラーが発生しました (The process cannot access the file '\\192.168.200.20\全社共有\SS予約表\2025年\埼京A2\しき\~$【しき】2025年_SS予約表_250111.xlsm' because it is being used by another process.) (The process cannot access the file '\\192.168.200.20\全社共有\SS予約表\2025年\神奈川\つるみ\~$【つるみ】2025年_SS予約表_241122_bk.xlsm' because it is being used by another process.)
+ ---> System.IO.IOException: The process cannot access the file '\\192.168.200.20\全社共有\SS予約表\2025年\埼京A2\しき\~$【しき】2025年_SS予約表_250111.xlsm' because it is being used by another process.
+   at Microsoft.Win32.SafeHandles.SafeFileHandle.CreateFile(String fullPath, FileMode mode, FileAccess access, FileShare share, FileOptions options)
+   at Microsoft.Win32.SafeHandles.SafeFileHandle.Open(String fullPath, FileMode mode, FileAccess access, FileShare share, FileOptions options, Int64 preallocationSize, Nullable`1 unixCreateMode)
+   at System.IO.Strategies.OSFileStreamStrategy..ctor(String path, FileMode mode, FileAccess access, FileShare share, FileOptions options, Int64 preallocationSize, Nullable`1 unixCreateMode)
+   at VacancyImport.Services.ExcelService.CalculateFileHashAsync(String filePath) in C:\VacancyImport\vacancy_import_v2\src\VacancyImport\Services\ExcelService.cs:line 365
+   at VacancyImport.Services.ExcelService.<>c__DisplayClass10_0.<<CheckFileUpdatesAsync>b__1>d.MoveNext() in C:\VacancyImport\vacancy_import_v2\src\VacancyImport\Services\ExcelService.cs:line 133
+--- End of stack trace from previous location ---
+   at VacancyImport.Utilities.ParallelProcessor.<>c__DisplayClass0_1`2.<<ProcessParallelAsync>b__0>d.MoveNext() in C:\VacancyImport\vacancy_import_v2\src\VacancyImport\Utilities\ParallelProcessor.cs:line 57
+   --- End of inner exception stack trace ---
+   at VacancyImport.Utilities.ParallelProcessor.ProcessParallelAsync[TInput,TOutput](IEnumerable`1 items, Func`3 processFunc, Int32 maxDegreeOfParallelism, ILogger logger, String operationName, CancellationToken cancellationToken) in C:\VacancyImport\vacancy_import_v2\src\VacancyImport\Utilities\ParallelProcessor.cs:line 87
+ ---> (Inner Exception #1) System.IO.IOException: The process cannot access the file '\\192.168.200.20\全社共有\SS予約表\2025年\神奈川\つるみ\~$【つるみ】2025年_SS予約表_241122_bk.xlsm' because it is being used by another process.
+   at Microsoft.Win32.SafeHandles.SafeFileHandle.CreateFile(String fullPath, FileMode mode, FileAccess access, FileShare share, FileOptions options)
+   at Microsoft.Win32.SafeHandles.SafeFileHandle.Open(String fullPath, FileMode mode, FileAccess access, FileShare share, FileOptions options, Int64 preallocationSize, Nullable`1 unixCreateMode)
+   at System.IO.Strategies.OSFileStreamStrategy..ctor(String path, FileMode mode, FileAccess access, FileShare share, FileOptions options, Int64 preallocationSize, Nullable`1 unixCreateMode)
+   at VacancyImport.Services.ExcelService.CalculateFileHashAsync(String filePath) in C:\VacancyImport\vacancy_import_v2\src\VacancyImport\Services\ExcelService.cs:line 365
+   at VacancyImport.Services.ExcelService.<>c__DisplayClass10_0.<<CheckFileUpdatesAsync>b__1>d.MoveNext() in C:\VacancyImport\vacancy_import_v2\src\VacancyImport\Services\ExcelService.cs:line 133
+--- End of stack trace from previous location ---
+   at VacancyImport.Utilities.ParallelProcessor.<>c__DisplayClass0_1`2.<<ProcessParallelAsync>b__0>d.MoveNext() in C:\VacancyImport\vacancy_import_v2\src\VacancyImport\Utilities\ParallelProcessor.cs:line 57<---
+
+   --- End of inner exception stack trace ---
+   at System.Threading.Tasks.Task.ThrowIfExceptional(Boolean includeTaskCanceledExceptions)
+   at System.Threading.Tasks.Task`1.GetResultCore(Boolean waitCompletionNotification)
+   at VacancyImport.Services.ExcelService.<>c.<CheckFileUpdatesAsync>b__10_2(Task`1 t) in C:\VacancyImport\vacancy_import_v2\src\VacancyImport\Services\ExcelService.cs:line 149
+   at System.Threading.Tasks.ContinuationResultTaskFromResultTask`2.InnerInvoke()
+   at System.Threading.ExecutionContext.RunFromThreadPoolDispatchLoop(Thread threadPoolThread, ExecutionContext executionContext, ContextCallback callback, Object state)
+--- End of stack trace from previous location ---
+   at System.Threading.ExecutionContext.RunFromThreadPoolDispatchLoop(Thread threadPoolThread, ExecutionContext executionContext, ContextCallback callback, Object state)
+   at System.Threading.Tasks.Task.ExecuteWithThreadLocal(Task& currentTaskSlot, Thread threadPoolThread)
+--- End of stack trace from previous location ---
+   at VacancyImport.Services.ExcelService.<>c__DisplayClass10_0.<<CheckFileUpdatesAsync>b__0>d.MoveNext() in C:\VacancyImport\vacancy_import_v2\src\VacancyImport\Services\ExcelService.cs:line 110
+   --- End of inner exception stack trace ---
+   at VacancyImport.Services.ExcelService.<>c__DisplayClass10_0.<<CheckFileUpdatesAsync>b__0>d.MoveNext() in C:\VacancyImport\vacancy_import_v2\src\VacancyImport\Services\ExcelService.cs:line 163
+--- End of stack trace from previous location ---
+   at VacancyImport.Utilities.RetryPolicy.ExecuteWithRetryAsync[T](Func`1 func, Int32 retryCount, Int32 initialDelay, Int32 maxDelay, ILogger logger, CancellationToken cancellationToken) in C:\VacancyImport\vacancy_import_v2\src\VacancyImport\Utilities\RetryPolicy.cs:line 47
+[2025-07-22 12:58:03.716 +09:00 WRN] 処理時間が閾値を超えました: CheckFileUpdates - 37783.0151ms (閾値: 5000ms) 
+[2025-07-22 12:58:03.730 +09:00 WRN] 処理時間が閾値を超えました: main_loop - 37817.3682ms (閾値: 5000ms) 
+[2025-07-22 12:58:03.738 +09:00 ERR] パフォーマンス監視: エラーが記録されました - ExcelFileException: ファイル更新チェック中にエラーが発生しました:  
+VacancyImport.Exceptions.ExcelFileException: ファイル更新チェック中にエラーが発生しました: 
+ ---> System.AggregateException: One or more errors occurred. (ファイル変更チェック中に2件のエラーが発生しました (The process cannot access the file '\\192.168.200.20\全社共有\SS予約表\2025年\埼京A2\しき\~$【しき】2025年_SS予約表_250111.xlsm' because it is being used by another process.) (The process cannot access the file '\\192.168.200.20\全社共有\SS予約表\2025年\神奈川\つるみ\~$【つるみ】2025年_SS予約表_241122_bk.xlsm' because it is being used by another process.))
+ ---> System.AggregateException: ファイル変更チェック中に2件のエラーが発生しました (The process cannot access the file '\\192.168.200.20\全社共有\SS予約表\2025年\埼京A2\しき\~$【しき】2025年_SS予約表_250111.xlsm' because it is being used by another process.) (The process cannot access the file '\\192.168.200.20\全社共有\SS予約表\2025年\神奈川\つるみ\~$【つるみ】2025年_SS予約表_241122_bk.xlsm' because it is being used by another process.)
+ ---> System.IO.IOException: The process cannot access the file '\\192.168.200.20\全社共有\SS予約表\2025年\埼京A2\しき\~$【しき】2025年_SS予約表_250111.xlsm' because it is being used by another process.
+   at Microsoft.Win32.SafeHandles.SafeFileHandle.CreateFile(String fullPath, FileMode mode, FileAccess access, FileShare share, FileOptions options)
+   at Microsoft.Win32.SafeHandles.SafeFileHandle.Open(String fullPath, FileMode mode, FileAccess access, FileShare share, FileOptions options, Int64 preallocationSize, Nullable`1 unixCreateMode)
+   at System.IO.Strategies.OSFileStreamStrategy..ctor(String path, FileMode mode, FileAccess access, FileShare share, FileOptions options, Int64 preallocationSize, Nullable`1 unixCreateMode)
+   at VacancyImport.Services.ExcelService.CalculateFileHashAsync(String filePath) in C:\VacancyImport\vacancy_import_v2\src\VacancyImport\Services\ExcelService.cs:line 365
+   at VacancyImport.Services.ExcelService.<>c__DisplayClass10_0.<<CheckFileUpdatesAsync>b__1>d.MoveNext() in C:\VacancyImport\vacancy_import_v2\src\VacancyImport\Services\ExcelService.cs:line 133
+--- End of stack trace from previous location ---
+   at VacancyImport.Utilities.ParallelProcessor.<>c__DisplayClass0_1`2.<<ProcessParallelAsync>b__0>d.MoveNext() in C:\VacancyImport\vacancy_import_v2\src\VacancyImport\Utilities\ParallelProcessor.cs:line 57
+   --- End of inner exception stack trace ---
+   at VacancyImport.Utilities.ParallelProcessor.ProcessParallelAsync[TInput,TOutput](IEnumerable`1 items, Func`3 processFunc, Int32 maxDegreeOfParallelism, ILogger logger, String operationName, CancellationToken cancellationToken) in C:\VacancyImport\vacancy_import_v2\src\VacancyImport\Utilities\ParallelProcessor.cs:line 87
+ ---> (Inner Exception #1) System.IO.IOException: The process cannot access the file '\\192.168.200.20\全社共有\SS予約表\2025年\神奈川\つるみ\~$【つるみ】2025年_SS予約表_241122_bk.xlsm' because it is being used by another process.
+   at Microsoft.Win32.SafeHandles.SafeFileHandle.CreateFile(String fullPath, FileMode mode, FileAccess access, FileShare share, FileOptions options)
+   at Microsoft.Win32.SafeHandles.SafeFileHandle.Open(String fullPath, FileMode mode, FileAccess access, FileShare share, FileOptions options, Int64 preallocationSize, Nullable`1 unixCreateMode)
+   at System.IO.Strategies.OSFileStreamStrategy..ctor(String path, FileMode mode, FileAccess access, FileShare share, FileOptions options, Int64 preallocationSize, Nullable`1 unixCreateMode)
+   at VacancyImport.Services.ExcelService.CalculateFileHashAsync(String filePath) in C:\VacancyImport\vacancy_import_v2\src\VacancyImport\Services\ExcelService.cs:line 365
+   at VacancyImport.Services.ExcelService.<>c__DisplayClass10_0.<<CheckFileUpdatesAsync>b__1>d.MoveNext() in C:\VacancyImport\vacancy_import_v2\src\VacancyImport\Services\ExcelService.cs:line 133
+--- End of stack trace from previous location ---
+   at VacancyImport.Utilities.ParallelProcessor.<>c__DisplayClass0_1`2.<<ProcessParallelAsync>b__0>d.MoveNext() in C:\VacancyImport\vacancy_import_v2\src\VacancyImport\Utilities\ParallelProcessor.cs:line 57<---
+
+   --- End of inner exception stack trace ---
+   at System.Threading.Tasks.Task.ThrowIfExceptional(Boolean includeTaskCanceledExceptions)
+   at System.Threading.Tasks.Task`1.GetResultCore(Boolean waitCompletionNotification)
+   at VacancyImport.Services.ExcelService.<>c.<CheckFileUpdatesAsync>b__10_2(Task`1 t) in C:\VacancyImport\vacancy_import_v2\src\VacancyImport\Services\ExcelService.cs:line 149
+   at System.Threading.Tasks.ContinuationResultTaskFromResultTask`2.InnerInvoke()
+   at System.Threading.ExecutionContext.RunFromThreadPoolDispatchLoop(Thread threadPoolThread, ExecutionContext executionContext, ContextCallback callback, Object state)
+--- End of stack trace from previous location ---
+   at System.Threading.ExecutionContext.RunFromThreadPoolDispatchLoop(Thread threadPoolThread, ExecutionContext executionContext, ContextCallback callback, Object state)
+   at System.Threading.Tasks.Task.ExecuteWithThreadLocal(Task& currentTaskSlot, Thread threadPoolThread)
+--- End of stack trace from previous location ---
+   at VacancyImport.Services.ExcelService.<>c__DisplayClass10_0.<<CheckFileUpdatesAsync>b__0>d.MoveNext() in C:\VacancyImport\vacancy_import_v2\src\VacancyImport\Services\ExcelService.cs:line 110
+   --- End of inner exception stack trace ---
+   at VacancyImport.Services.ExcelService.<>c__DisplayClass10_0.<<CheckFileUpdatesAsync>b__0>d.MoveNext() in C:\VacancyImport\vacancy_import_v2\src\VacancyImport\Services\ExcelService.cs:line 163
+--- End of stack trace from previous location ---
+   at VacancyImport.Utilities.RetryPolicy.ExecuteWithRetryAsync[T](Func`1 func, Int32 retryCount, Int32 initialDelay, Int32 maxDelay, ILogger logger, CancellationToken cancellationToken) in C:\VacancyImport\vacancy_import_v2\src\VacancyImport\Utilities\RetryPolicy.cs:line 47
+   at VacancyImport.Utilities.RetryPolicy.ExecuteWithRetryAsync[T](Func`1 func, Int32 retryCount, Int32 initialDelay, Int32 maxDelay, ILogger logger, CancellationToken cancellationToken) in C:\VacancyImport\vacancy_import_v2\src\VacancyImport\Utilities\RetryPolicy.cs:line 65
+   at VacancyImport.Services.ExcelService.CheckFileUpdatesAsync(String filePath) in C:\VacancyImport\vacancy_import_v2\src\VacancyImport\Services\ExcelService.cs:line 92
+   at VacancyImport.Services.ExcelService.CheckFileUpdatesAsync() in C:\VacancyImport\vacancy_import_v2\src\VacancyImport\Services\ExcelService.cs:line 74
+   at VacancyImport.Services.ServiceHost.ExecuteBusinessLogicAsync(CancellationToken cancellationToken) in C:\VacancyImport\vacancy_import_v2\src\VacancyImport\Services\ServiceHost.cs:line 323
+   at VacancyImport.Services.ServiceHost.ExecuteAsync(CancellationToken stoppingToken) in C:\VacancyImport\vacancy_import_v2\src\VacancyImport\Services\ServiceHost.cs:line 132
+[2025-07-22 12:58:03.800 +09:00 ERR] メインループでエラーが発生しました (連続エラー数: 1) 
+VacancyImport.Exceptions.ExcelFileException: ファイル更新チェック中にエラーが発生しました: 
+ ---> System.AggregateException: One or more errors occurred. (ファイル変更チェック中に2件のエラーが発生しました (The process cannot access the file '\\192.168.200.20\全社共有\SS予約表\2025年\埼京A2\しき\~$【しき】2025年_SS予約表_250111.xlsm' because it is being used by another process.) (The process cannot access the file '\\192.168.200.20\全社共有\SS予約表\2025年\神奈川\つるみ\~$【つるみ】2025年_SS予約表_241122_bk.xlsm' because it is being used by another process.))
+ ---> System.AggregateException: ファイル変更チェック中に2件のエラーが発生しました (The process cannot access the file '\\192.168.200.20\全社共有\SS予約表\2025年\埼京A2\しき\~$【しき】2025年_SS予約表_250111.xlsm' because it is being used by another process.) (The process cannot access the file '\\192.168.200.20\全社共有\SS予約表\2025年\神奈川\つるみ\~$【つるみ】2025年_SS予約表_241122_bk.xlsm' because it is being used by another process.)
+ ---> System.IO.IOException: The process cannot access the file '\\192.168.200.20\全社共有\SS予約表\2025年\埼京A2\しき\~$【しき】2025年_SS予約表_250111.xlsm' because it is being used by another process.
+   at Microsoft.Win32.SafeHandles.SafeFileHandle.CreateFile(String fullPath, FileMode mode, FileAccess access, FileShare share, FileOptions options)
+   at Microsoft.Win32.SafeHandles.SafeFileHandle.Open(String fullPath, FileMode mode, FileAccess access, FileShare share, FileOptions options, Int64 preallocationSize, Nullable`1 unixCreateMode)
+   at System.IO.Strategies.OSFileStreamStrategy..ctor(String path, FileMode mode, FileAccess access, FileShare share, FileOptions options, Int64 preallocationSize, Nullable`1 unixCreateMode)
+   at VacancyImport.Services.ExcelService.CalculateFileHashAsync(String filePath) in C:\VacancyImport\vacancy_import_v2\src\VacancyImport\Services\ExcelService.cs:line 365
+   at VacancyImport.Services.ExcelService.<>c__DisplayClass10_0.<<CheckFileUpdatesAsync>b__1>d.MoveNext() in C:\VacancyImport\vacancy_import_v2\src\VacancyImport\Services\ExcelService.cs:line 133
+--- End of stack trace from previous location ---
+   at VacancyImport.Utilities.ParallelProcessor.<>c__DisplayClass0_1`2.<<ProcessParallelAsync>b__0>d.MoveNext() in C:\VacancyImport\vacancy_import_v2\src\VacancyImport\Utilities\ParallelProcessor.cs:line 57
+   --- End of inner exception stack trace ---
+   at VacancyImport.Utilities.ParallelProcessor.ProcessParallelAsync[TInput,TOutput](IEnumerable`1 items, Func`3 processFunc, Int32 maxDegreeOfParallelism, ILogger logger, String operationName, CancellationToken cancellationToken) in C:\VacancyImport\vacancy_import_v2\src\VacancyImport\Utilities\ParallelProcessor.cs:line 87
+ ---> (Inner Exception #1) System.IO.IOException: The process cannot access the file '\\192.168.200.20\全社共有\SS予約表\2025年\神奈川\つるみ\~$【つるみ】2025年_SS予約表_241122_bk.xlsm' because it is being used by another process.
+   at Microsoft.Win32.SafeHandles.SafeFileHandle.CreateFile(String fullPath, FileMode mode, FileAccess access, FileShare share, FileOptions options)
+   at Microsoft.Win32.SafeHandles.SafeFileHandle.Open(String fullPath, FileMode mode, FileAccess access, FileShare share, FileOptions options, Int64 preallocationSize, Nullable`1 unixCreateMode)
+   at System.IO.Strategies.OSFileStreamStrategy..ctor(String path, FileMode mode, FileAccess access, FileShare share, FileOptions options, Int64 preallocationSize, Nullable`1 unixCreateMode)
+   at VacancyImport.Services.ExcelService.CalculateFileHashAsync(String filePath) in C:\VacancyImport\vacancy_import_v2\src\VacancyImport\Services\ExcelService.cs:line 365
+   at VacancyImport.Services.ExcelService.<>c__DisplayClass10_0.<<CheckFileUpdatesAsync>b__1>d.MoveNext() in C:\VacancyImport\vacancy_import_v2\src\VacancyImport\Services\ExcelService.cs:line 133
+--- End of stack trace from previous location ---
+   at VacancyImport.Utilities.ParallelProcessor.<>c__DisplayClass0_1`2.<<ProcessParallelAsync>b__0>d.MoveNext() in C:\VacancyImport\vacancy_import_v2\src\VacancyImport\Utilities\ParallelProcessor.cs:line 57<---
+
+   --- End of inner exception stack trace ---
+   at System.Threading.Tasks.Task.ThrowIfExceptional(Boolean includeTaskCanceledExceptions)
+   at System.Threading.Tasks.Task`1.GetResultCore(Boolean waitCompletionNotification)
+   at VacancyImport.Services.ExcelService.<>c.<CheckFileUpdatesAsync>b__10_2(Task`1 t) in C:\VacancyImport\vacancy_import_v2\src\VacancyImport\Services\ExcelService.cs:line 149
+   at System.Threading.Tasks.ContinuationResultTaskFromResultTask`2.InnerInvoke()
+   at System.Threading.ExecutionContext.RunFromThreadPoolDispatchLoop(Thread threadPoolThread, ExecutionContext executionContext, ContextCallback callback, Object state)
+--- End of stack trace from previous location ---
+   at System.Threading.ExecutionContext.RunFromThreadPoolDispatchLoop(Thread threadPoolThread, ExecutionContext executionContext, ContextCallback callback, Object state)
+   at System.Threading.Tasks.Task.ExecuteWithThreadLocal(Task& currentTaskSlot, Thread threadPoolThread)
+--- End of stack trace from previous location ---
+   at VacancyImport.Services.ExcelService.<>c__DisplayClass10_0.<<CheckFileUpdatesAsync>b__0>d.MoveNext() in C:\VacancyImport\vacancy_import_v2\src\VacancyImport\Services\ExcelService.cs:line 110
+   --- End of inner exception stack trace ---
+   at VacancyImport.Services.ExcelService.<>c__DisplayClass10_0.<<CheckFileUpdatesAsync>b__0>d.MoveNext() in C:\VacancyImport\vacancy_import_v2\src\VacancyImport\Services\ExcelService.cs:line 163
+--- End of stack trace from previous location ---
+   at VacancyImport.Utilities.RetryPolicy.ExecuteWithRetryAsync[T](Func`1 func, Int32 retryCount, Int32 initialDelay, Int32 maxDelay, ILogger logger, CancellationToken cancellationToken) in C:\VacancyImport\vacancy_import_v2\src\VacancyImport\Utilities\RetryPolicy.cs:line 47
+   at VacancyImport.Utilities.RetryPolicy.ExecuteWithRetryAsync[T](Func`1 func, Int32 retryCount, Int32 initialDelay, Int32 maxDelay, ILogger logger, CancellationToken cancellationToken) in C:\VacancyImport\vacancy_import_v2\src\VacancyImport\Utilities\RetryPolicy.cs:line 65
+   at VacancyImport.Services.ExcelService.CheckFileUpdatesAsync(String filePath) in C:\VacancyImport\vacancy_import_v2\src\VacancyImport\Services\ExcelService.cs:line 92
+   at VacancyImport.Services.ExcelService.CheckFileUpdatesAsync() in C:\VacancyImport\vacancy_import_v2\src\VacancyImport\Services\ExcelService.cs:line 74
+   at VacancyImport.Services.ServiceHost.ExecuteBusinessLogicAsync(CancellationToken cancellationToken) in C:\VacancyImport\vacancy_import_v2\src\VacancyImport\Services\ServiceHost.cs:line 323
+   at VacancyImport.Services.ServiceHost.ExecuteAsync(CancellationToken stoppingToken) in C:\VacancyImport\vacancy_import_v2\src\VacancyImport\Services\ServiceHost.cs:line 132
+[2025-07-22 12:58:03.933 +09:00 INF] Start processing HTTP request POST https://auth.worksmobile.com/oauth2/v2.0/token 
+[2025-07-22 12:58:03.939 +09:00 INF] Sending HTTP request POST https://auth.worksmobile.com/oauth2/v2.0/token 
+[2025-07-22 12:58:04.149 +09:00 INF] Received HTTP response headers after 206.3134ms - 400 
+[2025-07-22 12:58:04.152 +09:00 INF] End processing HTTP request after 227.1865ms - 400 
+[2025-07-22 12:58:04.157 +09:00 ERR] アクセストークンの取得中にエラーが発生しました 
+System.Net.Http.HttpRequestException: Response status code does not indicate success: 400.
+   at System.Net.Http.HttpResponseMessage.EnsureSuccessStatusCode()
+   at VacancyImport.Services.LineWorksService.GetAccessTokenAsync() in C:\VacancyImport\vacancy_import_v2\src\VacancyImport\Services\LineWorksService.cs:line 55
+[2025-07-22 12:58:04.161 +09:00 ERR] エラー通知の送信に失敗しました 
+System.Net.Http.HttpRequestException: Response status code does not indicate success: 400.
+   at System.Net.Http.HttpResponseMessage.EnsureSuccessStatusCode()
+   at VacancyImport.Services.LineWorksService.GetAccessTokenAsync() in C:\VacancyImport\vacancy_import_v2\src\VacancyImport\Services\LineWorksService.cs:line 55
+   at VacancyImport.Services.LineWorksService.SendMessageAsync(Object messageObj) in C:\VacancyImport\vacancy_import_v2\src\VacancyImport\Services\LineWorksService.cs:line 169
+   at VacancyImport.Services.LineWorksService.SendErrorNotificationAsync(String errorMessage, Int32 errorCount) in C:\VacancyImport\vacancy_import_v2\src\VacancyImport\Services\LineWorksService.cs:line 154
+[2025-07-22 12:58:25.846 +09:00 INF] システムリソース使用状況: メモリ=64MB, CPUタイム="00:00:03.3437500", スレッド数=21 
+[2025-07-22 12:58:25.856 +09:00 INF] 操作パフォーマンス: CheckFileUpdates, 平均=37783.0151ms, 最大=37783.0151ms, 最小=37783.0151ms, 件数=1 
+[2025-07-22 12:58:25.860 +09:00 INF] 操作パフォーマンス: main_loop, 平均=37817.3682ms, 最大=37817.3682ms, 最小=37817.3682ms, 件数=1 
+[2025-07-22 12:58:25.868 +09:00 INF] 操作パフォーマンス: CalculateFileHash, 平均=1701.0940912280703ms, 最大=4297.9537ms, 最小=26.6954ms, 件数=57 
+[2025-07-22 12:59:09.007 +09:00 ERR] ファイル変更チェックの処理中にエラーが発生しました 
+System.IO.IOException: The process cannot access the file '\\192.168.200.20\全社共有\SS予約表\2025年\神奈川\つるみ\~$【つるみ】2025年_SS予約表_241122_bk.xlsm' because it is being used by another process.
+   at Microsoft.Win32.SafeHandles.SafeFileHandle.CreateFile(String fullPath, FileMode mode, FileAccess access, FileShare share, FileOptions options)
+   at Microsoft.Win32.SafeHandles.SafeFileHandle.Open(String fullPath, FileMode mode, FileAccess access, FileShare share, FileOptions options, Int64 preallocationSize, Nullable`1 unixCreateMode)
+   at System.IO.Strategies.OSFileStreamStrategy..ctor(String path, FileMode mode, FileAccess access, FileShare share, FileOptions options, Int64 preallocationSize, Nullable`1 unixCreateMode)
+   at VacancyImport.Services.ExcelService.CalculateFileHashAsync(String filePath) in C:\VacancyImport\vacancy_import_v2\src\VacancyImport\Services\ExcelService.cs:line 365
+   at VacancyImport.Services.ExcelService.<>c__DisplayClass10_0.<<CheckFileUpdatesAsync>b__1>d.MoveNext() in C:\VacancyImport\vacancy_import_v2\src\VacancyImport\Services\ExcelService.cs:line 133
+--- End of stack trace from previous location ---
+   at VacancyImport.Utilities.ParallelProcessor.<>c__DisplayClass0_1`2.<<ProcessParallelAsync>b__0>d.MoveNext() in C:\VacancyImport\vacancy_import_v2\src\VacancyImport\Utilities\ParallelProcessor.cs:line 57
+[2025-07-22 12:59:13.861 +09:00 ERR] ファイル変更チェックの処理中にエラーが発生しました 
+System.IO.FileNotFoundException: Could not find file '\\192.168.200.20\全社共有\SS予約表\2025年\埼京A1\おおみや\~$【おおみや】2025年_SS予約表_241122.xlsm'.
+File name: '\\192.168.200.20\全社共有\SS予約表\2025年\埼京A1\おおみや\~$【おおみや】2025年_SS予約表_241122.xlsm'
+   at Microsoft.Win32.SafeHandles.SafeFileHandle.CreateFile(String fullPath, FileMode mode, FileAccess access, FileShare share, FileOptions options)
+   at Microsoft.Win32.SafeHandles.SafeFileHandle.Open(String fullPath, FileMode mode, FileAccess access, FileShare share, FileOptions options, Int64 preallocationSize, Nullable`1 unixCreateMode)
+   at System.IO.Strategies.OSFileStreamStrategy..ctor(String path, FileMode mode, FileAccess access, FileShare share, FileOptions options, Int64 preallocationSize, Nullable`1 unixCreateMode)
+   at VacancyImport.Services.ExcelService.CalculateFileHashAsync(String filePath) in C:\VacancyImport\vacancy_import_v2\src\VacancyImport\Services\ExcelService.cs:line 365
+   at VacancyImport.Services.ExcelService.<>c__DisplayClass10_0.<<CheckFileUpdatesAsync>b__1>d.MoveNext() in C:\VacancyImport\vacancy_import_v2\src\VacancyImport\Services\ExcelService.cs:line 133
+--- End of stack trace from previous location ---
+   at VacancyImport.Utilities.ParallelProcessor.<>c__DisplayClass0_1`2.<<ProcessParallelAsync>b__0>d.MoveNext() in C:\VacancyImport\vacancy_import_v2\src\VacancyImport\Utilities\ParallelProcessor.cs:line 57
+[2025-07-22 12:59:13.884 +09:00 ERR] ファイル変更チェック中に2件のエラーが発生しました 
+[2025-07-22 12:59:13.898 +09:00 WRN] エラーが発生しました。200ms後にリトライします (試行回数: 1/3) 
+VacancyImport.Exceptions.ExcelFileException: ファイル更新チェック中にエラーが発生しました: 
+ ---> System.AggregateException: One or more errors occurred. (ファイル変更チェック中に2件のエラーが発生しました (Could not find file '\\192.168.200.20\全社共有\SS予約表\2025年\埼京A1\おおみや\~$【おおみや】2025年_SS予約表_241122.xlsm'.) (The process cannot access the file '\\192.168.200.20\全社共有\SS予約表\2025年\神奈川\つるみ\~$【つるみ】2025年_SS予約表_241122_bk.xlsm' because it is being used by another process.))
+ ---> System.AggregateException: ファイル変更チェック中に2件のエラーが発生しました (Could not find file '\\192.168.200.20\全社共有\SS予約表\2025年\埼京A1\おおみや\~$【おおみや】2025年_SS予約表_241122.xlsm'.) (The process cannot access the file '\\192.168.200.20\全社共有\SS予約表\2025年\神奈川\つるみ\~$【つるみ】2025年_SS予約表_241122_bk.xlsm' because it is being used by another process.)
+ ---> System.IO.FileNotFoundException: Could not find file '\\192.168.200.20\全社共有\SS予約表\2025年\埼京A1\おおみや\~$【おおみや】2025年_SS予約表_241122.xlsm'.
+File name: '\\192.168.200.20\全社共有\SS予約表\2025年\埼京A1\おおみや\~$【おおみや】2025年_SS予約表_241122.xlsm'
+   at Microsoft.Win32.SafeHandles.SafeFileHandle.CreateFile(String fullPath, FileMode mode, FileAccess access, FileShare share, FileOptions options)
+   at Microsoft.Win32.SafeHandles.SafeFileHandle.Open(String fullPath, FileMode mode, FileAccess access, FileShare share, FileOptions options, Int64 preallocationSize, Nullable`1 unixCreateMode)
+   at System.IO.Strategies.OSFileStreamStrategy..ctor(String path, FileMode mode, FileAccess access, FileShare share, FileOptions options, Int64 preallocationSize, Nullable`1 unixCreateMode)
+   at VacancyImport.Services.ExcelService.CalculateFileHashAsync(String filePath) in C:\VacancyImport\vacancy_import_v2\src\VacancyImport\Services\ExcelService.cs:line 365
+   at VacancyImport.Services.ExcelService.<>c__DisplayClass10_0.<<CheckFileUpdatesAsync>b__1>d.MoveNext() in C:\VacancyImport\vacancy_import_v2\src\VacancyImport\Services\ExcelService.cs:line 133
+--- End of stack trace from previous location ---
+   at VacancyImport.Utilities.ParallelProcessor.<>c__DisplayClass0_1`2.<<ProcessParallelAsync>b__0>d.MoveNext() in C:\VacancyImport\vacancy_import_v2\src\VacancyImport\Utilities\ParallelProcessor.cs:line 57
+   --- End of inner exception stack trace ---
+   at VacancyImport.Utilities.ParallelProcessor.ProcessParallelAsync[TInput,TOutput](IEnumerable`1 items, Func`3 processFunc, Int32 maxDegreeOfParallelism, ILogger logger, String operationName, CancellationToken cancellationToken) in C:\VacancyImport\vacancy_import_v2\src\VacancyImport\Utilities\ParallelProcessor.cs:line 87
+ ---> (Inner Exception #1) System.IO.IOException: The process cannot access the file '\\192.168.200.20\全社共有\SS予約表\2025年\神奈川\つるみ\~$【つるみ】2025年_SS予約表_241122_bk.xlsm' because it is being used by another process.
+   at Microsoft.Win32.SafeHandles.SafeFileHandle.CreateFile(String fullPath, FileMode mode, FileAccess access, FileShare share, FileOptions options)
+   at Microsoft.Win32.SafeHandles.SafeFileHandle.Open(String fullPath, FileMode mode, FileAccess access, FileShare share, FileOptions options, Int64 preallocationSize, Nullable`1 unixCreateMode)
+   at System.IO.Strategies.OSFileStreamStrategy..ctor(String path, FileMode mode, FileAccess access, FileShare share, FileOptions options, Int64 preallocationSize, Nullable`1 unixCreateMode)
+   at VacancyImport.Services.ExcelService.CalculateFileHashAsync(String filePath) in C:\VacancyImport\vacancy_import_v2\src\VacancyImport\Services\ExcelService.cs:line 365
+   at VacancyImport.Services.ExcelService.<>c__DisplayClass10_0.<<CheckFileUpdatesAsync>b__1>d.MoveNext() in C:\VacancyImport\vacancy_import_v2\src\VacancyImport\Services\ExcelService.cs:line 133
+--- End of stack trace from previous location ---
+   at VacancyImport.Utilities.ParallelProcessor.<>c__DisplayClass0_1`2.<<ProcessParallelAsync>b__0>d.MoveNext() in C:\VacancyImport\vacancy_import_v2\src\VacancyImport\Utilities\ParallelProcessor.cs:line 57<---
+
+   --- End of inner exception stack trace ---
+   at System.Threading.Tasks.Task.ThrowIfExceptional(Boolean includeTaskCanceledExceptions)
+   at System.Threading.Tasks.Task`1.GetResultCore(Boolean waitCompletionNotification)
+   at VacancyImport.Services.ExcelService.<>c.<CheckFileUpdatesAsync>b__10_2(Task`1 t) in C:\VacancyImport\vacancy_import_v2\src\VacancyImport\Services\ExcelService.cs:line 149
+   at System.Threading.Tasks.ContinuationResultTaskFromResultTask`2.InnerInvoke()
+   at System.Threading.ExecutionContext.RunFromThreadPoolDispatchLoop(Thread threadPoolThread, ExecutionContext executionContext, ContextCallback callback, Object state)
+--- End of stack trace from previous location ---
+   at System.Threading.ExecutionContext.RunFromThreadPoolDispatchLoop(Thread threadPoolThread, ExecutionContext executionContext, ContextCallback callback, Object state)
+   at System.Threading.Tasks.Task.ExecuteWithThreadLocal(Task& currentTaskSlot, Thread threadPoolThread)
+--- End of stack trace from previous location ---
+   at VacancyImport.Services.ExcelService.<>c__DisplayClass10_0.<<CheckFileUpdatesAsync>b__0>d.MoveNext() in C:\VacancyImport\vacancy_import_v2\src\VacancyImport\Services\ExcelService.cs:line 110
+   --- End of inner exception stack trace ---
+   at VacancyImport.Services.ExcelService.<>c__DisplayClass10_0.<<CheckFileUpdatesAsync>b__0>d.MoveNext() in C:\VacancyImport\vacancy_import_v2\src\VacancyImport\Services\ExcelService.cs:line 163
+--- End of stack trace from previous location ---
+   at VacancyImport.Utilities.RetryPolicy.ExecuteWithRetryAsync[T](Func`1 func, Int32 retryCount, Int32 initialDelay, Int32 maxDelay, ILogger logger, CancellationToken cancellationToken) in C:\VacancyImport\vacancy_import_v2\src\VacancyImport\Utilities\RetryPolicy.cs:line 47
+[2025-07-22 12:59:14.143 +09:00 WRN] リトライ実行中 (試行回数: 1/3, 遅延: 400ms) 
+[2025-07-22 12:59:14.376 +09:00 ERR] ファイル変更チェックの処理中にエラーが発生しました 
+System.IO.IOException: The process cannot access the file '\\192.168.200.20\全社共有\SS予約表\2025年\神奈川\つるみ\~$【つるみ】2025年_SS予約表_241122_bk.xlsm' because it is being used by another process.
+   at Microsoft.Win32.SafeHandles.SafeFileHandle.CreateFile(String fullPath, FileMode mode, FileAccess access, FileShare share, FileOptions options)
+   at Microsoft.Win32.SafeHandles.SafeFileHandle.Open(String fullPath, FileMode mode, FileAccess access, FileShare share, FileOptions options, Int64 preallocationSize, Nullable`1 unixCreateMode)
+   at System.IO.Strategies.OSFileStreamStrategy..ctor(String path, FileMode mode, FileAccess access, FileShare share, FileOptions options, Int64 preallocationSize, Nullable`1 unixCreateMode)
+   at VacancyImport.Services.ExcelService.CalculateFileHashAsync(String filePath) in C:\VacancyImport\vacancy_import_v2\src\VacancyImport\Services\ExcelService.cs:line 365
+   at VacancyImport.Services.ExcelService.<>c__DisplayClass10_0.<<CheckFileUpdatesAsync>b__1>d.MoveNext() in C:\VacancyImport\vacancy_import_v2\src\VacancyImport\Services\ExcelService.cs:line 133
+--- End of stack trace from previous location ---
+   at VacancyImport.Utilities.ParallelProcessor.<>c__DisplayClass0_1`2.<<ProcessParallelAsync>b__0>d.MoveNext() in C:\VacancyImport\vacancy_import_v2\src\VacancyImport\Utilities\ParallelProcessor.cs:line 57
+[2025-07-22 12:59:14.405 +09:00 ERR] ファイル変更チェック中に1件のエラーが発生しました 
+[2025-07-22 12:59:14.414 +09:00 WRN] エラーが発生しました。400ms後にリトライします (試行回数: 2/3) 
+VacancyImport.Exceptions.ExcelFileException: ファイル更新チェック中にエラーが発生しました: 
+ ---> System.AggregateException: One or more errors occurred. (ファイル変更チェック中に1件のエラーが発生しました (The process cannot access the file '\\192.168.200.20\全社共有\SS予約表\2025年\神奈川\つるみ\~$【つるみ】2025年_SS予約表_241122_bk.xlsm' because it is being used by another process.))
+ ---> System.AggregateException: ファイル変更チェック中に1件のエラーが発生しました (The process cannot access the file '\\192.168.200.20\全社共有\SS予約表\2025年\神奈川\つるみ\~$【つるみ】2025年_SS予約表_241122_bk.xlsm' because it is being used by another process.)
+ ---> System.IO.IOException: The process cannot access the file '\\192.168.200.20\全社共有\SS予約表\2025年\神奈川\つるみ\~$【つるみ】2025年_SS予約表_241122_bk.xlsm' because it is being used by another process.
+   at Microsoft.Win32.SafeHandles.SafeFileHandle.CreateFile(String fullPath, FileMode mode, FileAccess access, FileShare share, FileOptions options)
+   at Microsoft.Win32.SafeHandles.SafeFileHandle.Open(String fullPath, FileMode mode, FileAccess access, FileShare share, FileOptions options, Int64 preallocationSize, Nullable`1 unixCreateMode)
+   at System.IO.Strategies.OSFileStreamStrategy..ctor(String path, FileMode mode, FileAccess access, FileShare share, FileOptions options, Int64 preallocationSize, Nullable`1 unixCreateMode)
+   at VacancyImport.Services.ExcelService.CalculateFileHashAsync(String filePath) in C:\VacancyImport\vacancy_import_v2\src\VacancyImport\Services\ExcelService.cs:line 365
+   at VacancyImport.Services.ExcelService.<>c__DisplayClass10_0.<<CheckFileUpdatesAsync>b__1>d.MoveNext() in C:\VacancyImport\vacancy_import_v2\src\VacancyImport\Services\ExcelService.cs:line 133
+--- End of stack trace from previous location ---
+   at VacancyImport.Utilities.ParallelProcessor.<>c__DisplayClass0_1`2.<<ProcessParallelAsync>b__0>d.MoveNext() in C:\VacancyImport\vacancy_import_v2\src\VacancyImport\Utilities\ParallelProcessor.cs:line 57
+   --- End of inner exception stack trace ---
+   at VacancyImport.Utilities.ParallelProcessor.ProcessParallelAsync[TInput,TOutput](IEnumerable`1 items, Func`3 processFunc, Int32 maxDegreeOfParallelism, ILogger logger, String operationName, CancellationToken cancellationToken) in C:\VacancyImport\vacancy_import_v2\src\VacancyImport\Utilities\ParallelProcessor.cs:line 87
+   --- End of inner exception stack trace ---
+   at System.Threading.Tasks.Task.ThrowIfExceptional(Boolean includeTaskCanceledExceptions)
+   at System.Threading.Tasks.Task`1.GetResultCore(Boolean waitCompletionNotification)
+   at VacancyImport.Services.ExcelService.<>c.<CheckFileUpdatesAsync>b__10_2(Task`1 t) in C:\VacancyImport\vacancy_import_v2\src\VacancyImport\Services\ExcelService.cs:line 149
+   at System.Threading.Tasks.ContinuationResultTaskFromResultTask`2.InnerInvoke()
+   at System.Threading.ExecutionContext.RunFromThreadPoolDispatchLoop(Thread threadPoolThread, ExecutionContext executionContext, ContextCallback callback, Object state)
+--- End of stack trace from previous location ---
+   at System.Threading.ExecutionContext.RunFromThreadPoolDispatchLoop(Thread threadPoolThread, ExecutionContext executionContext, ContextCallback callback, Object state)
+   at System.Threading.Tasks.Task.ExecuteWithThreadLocal(Task& currentTaskSlot, Thread threadPoolThread)
+--- End of stack trace from previous location ---
+   at VacancyImport.Services.ExcelService.<>c__DisplayClass10_0.<<CheckFileUpdatesAsync>b__0>d.MoveNext() in C:\VacancyImport\vacancy_import_v2\src\VacancyImport\Services\ExcelService.cs:line 110
+   --- End of inner exception stack trace ---
+   at VacancyImport.Services.ExcelService.<>c__DisplayClass10_0.<<CheckFileUpdatesAsync>b__0>d.MoveNext() in C:\VacancyImport\vacancy_import_v2\src\VacancyImport\Services\ExcelService.cs:line 163
+--- End of stack trace from previous location ---
+   at VacancyImport.Utilities.RetryPolicy.ExecuteWithRetryAsync[T](Func`1 func, Int32 retryCount, Int32 initialDelay, Int32 maxDelay, ILogger logger, CancellationToken cancellationToken) in C:\VacancyImport\vacancy_import_v2\src\VacancyImport\Utilities\RetryPolicy.cs:line 47
+[2025-07-22 12:59:14.892 +09:00 WRN] リトライ実行中 (試行回数: 2/3, 遅延: 800ms) 
+[2025-07-22 12:59:19.384 +09:00 ERR] ファイル変更チェックの処理中にエラーが発生しました 
+System.IO.IOException: The process cannot access the file '\\192.168.200.20\全社共有\SS予約表\2025年\神奈川\つるみ\~$【つるみ】2025年_SS予約表_241122_bk.xlsm' because it is being used by another process.
+   at Microsoft.Win32.SafeHandles.SafeFileHandle.CreateFile(String fullPath, FileMode mode, FileAccess access, FileShare share, FileOptions options)
+   at Microsoft.Win32.SafeHandles.SafeFileHandle.Open(String fullPath, FileMode mode, FileAccess access, FileShare share, FileOptions options, Int64 preallocationSize, Nullable`1 unixCreateMode)
+   at System.IO.Strategies.OSFileStreamStrategy..ctor(String path, FileMode mode, FileAccess access, FileShare share, FileOptions options, Int64 preallocationSize, Nullable`1 unixCreateMode)
+   at VacancyImport.Services.ExcelService.CalculateFileHashAsync(String filePath) in C:\VacancyImport\vacancy_import_v2\src\VacancyImport\Services\ExcelService.cs:line 365
+   at VacancyImport.Services.ExcelService.<>c__DisplayClass10_0.<<CheckFileUpdatesAsync>b__1>d.MoveNext() in C:\VacancyImport\vacancy_import_v2\src\VacancyImport\Services\ExcelService.cs:line 133
+--- End of stack trace from previous location ---
+   at VacancyImport.Utilities.ParallelProcessor.<>c__DisplayClass0_1`2.<<ProcessParallelAsync>b__0>d.MoveNext() in C:\VacancyImport\vacancy_import_v2\src\VacancyImport\Utilities\ParallelProcessor.cs:line 57
+[2025-07-22 12:59:19.995 +09:00 INF] ファイルが更新されました: \\192.168.200.20\全社共有\SS予約表\2025年\埼京A1\おおみや\【おおみや】2025年_SS予約表_241122.xlsm 
+[2025-07-22 12:59:20.005 +09:00 ERR] ファイル変更チェック中に1件のエラーが発生しました 
+[2025-07-22 12:59:20.024 +09:00 WRN] エラーが発生しました。800ms後にリトライします (試行回数: 3/3) 
+VacancyImport.Exceptions.ExcelFileException: ファイル更新チェック中にエラーが発生しました: 
+ ---> System.AggregateException: One or more errors occurred. (ファイル変更チェック中に1件のエラーが発生しました (The process cannot access the file '\\192.168.200.20\全社共有\SS予約表\2025年\神奈川\つるみ\~$【つるみ】2025年_SS予約表_241122_bk.xlsm' because it is being used by another process.))
+ ---> System.AggregateException: ファイル変更チェック中に1件のエラーが発生しました (The process cannot access the file '\\192.168.200.20\全社共有\SS予約表\2025年\神奈川\つるみ\~$【つるみ】2025年_SS予約表_241122_bk.xlsm' because it is being used by another process.)
+ ---> System.IO.IOException: The process cannot access the file '\\192.168.200.20\全社共有\SS予約表\2025年\神奈川\つるみ\~$【つるみ】2025年_SS予約表_241122_bk.xlsm' because it is being used by another process.
+   at Microsoft.Win32.SafeHandles.SafeFileHandle.CreateFile(String fullPath, FileMode mode, FileAccess access, FileShare share, FileOptions options)
+   at Microsoft.Win32.SafeHandles.SafeFileHandle.Open(String fullPath, FileMode mode, FileAccess access, FileShare share, FileOptions options, Int64 preallocationSize, Nullable`1 unixCreateMode)
+   at System.IO.Strategies.OSFileStreamStrategy..ctor(String path, FileMode mode, FileAccess access, FileShare share, FileOptions options, Int64 preallocationSize, Nullable`1 unixCreateMode)
+   at VacancyImport.Services.ExcelService.CalculateFileHashAsync(String filePath) in C:\VacancyImport\vacancy_import_v2\src\VacancyImport\Services\ExcelService.cs:line 365
+   at VacancyImport.Services.ExcelService.<>c__DisplayClass10_0.<<CheckFileUpdatesAsync>b__1>d.MoveNext() in C:\VacancyImport\vacancy_import_v2\src\VacancyImport\Services\ExcelService.cs:line 133
+--- End of stack trace from previous location ---
+   at VacancyImport.Utilities.ParallelProcessor.<>c__DisplayClass0_1`2.<<ProcessParallelAsync>b__0>d.MoveNext() in C:\VacancyImport\vacancy_import_v2\src\VacancyImport\Utilities\ParallelProcessor.cs:line 57
+   --- End of inner exception stack trace ---
+   at VacancyImport.Utilities.ParallelProcessor.ProcessParallelAsync[TInput,TOutput](IEnumerable`1 items, Func`3 processFunc, Int32 maxDegreeOfParallelism, ILogger logger, String operationName, CancellationToken cancellationToken) in C:\VacancyImport\vacancy_import_v2\src\VacancyImport\Utilities\ParallelProcessor.cs:line 87
+   --- End of inner exception stack trace ---
+   at System.Threading.Tasks.Task.ThrowIfExceptional(Boolean includeTaskCanceledExceptions)
+   at System.Threading.Tasks.Task`1.GetResultCore(Boolean waitCompletionNotification)
+   at VacancyImport.Services.ExcelService.<>c.<CheckFileUpdatesAsync>b__10_2(Task`1 t) in C:\VacancyImport\vacancy_import_v2\src\VacancyImport\Services\ExcelService.cs:line 149
+   at System.Threading.Tasks.ContinuationResultTaskFromResultTask`2.InnerInvoke()
+   at System.Threading.ExecutionContext.RunFromThreadPoolDispatchLoop(Thread threadPoolThread, ExecutionContext executionContext, ContextCallback callback, Object state)
+--- End of stack trace from previous location ---
+   at System.Threading.ExecutionContext.RunFromThreadPoolDispatchLoop(Thread threadPoolThread, ExecutionContext executionContext, ContextCallback callback, Object state)
+   at System.Threading.Tasks.Task.ExecuteWithThreadLocal(Task& currentTaskSlot, Thread threadPoolThread)
+--- End of stack trace from previous location ---
+   at VacancyImport.Services.ExcelService.<>c__DisplayClass10_0.<<CheckFileUpdatesAsync>b__0>d.MoveNext() in C:\VacancyImport\vacancy_import_v2\src\VacancyImport\Services\ExcelService.cs:line 110
+   --- End of inner exception stack trace ---
+   at VacancyImport.Services.ExcelService.<>c__DisplayClass10_0.<<CheckFileUpdatesAsync>b__0>d.MoveNext() in C:\VacancyImport\vacancy_import_v2\src\VacancyImport\Services\ExcelService.cs:line 163
+--- End of stack trace from previous location ---
+   at VacancyImport.Utilities.RetryPolicy.ExecuteWithRetryAsync[T](Func`1 func, Int32 retryCount, Int32 initialDelay, Int32 maxDelay, ILogger logger, CancellationToken cancellationToken) in C:\VacancyImport\vacancy_import_v2\src\VacancyImport\Utilities\RetryPolicy.cs:line 47
+[2025-07-22 12:59:20.859 +09:00 WRN] リトライ実行中 (試行回数: 3/3, 遅延: 1600ms) 
+[2025-07-22 12:59:21.033 +09:00 ERR] ファイル変更チェックの処理中にエラーが発生しました 
+System.IO.IOException: The process cannot access the file '\\192.168.200.20\全社共有\SS予約表\2025年\神奈川\つるみ\~$【つるみ】2025年_SS予約表_241122_bk.xlsm' because it is being used by another process.
+   at Microsoft.Win32.SafeHandles.SafeFileHandle.CreateFile(String fullPath, FileMode mode, FileAccess access, FileShare share, FileOptions options)
+   at Microsoft.Win32.SafeHandles.SafeFileHandle.Open(String fullPath, FileMode mode, FileAccess access, FileShare share, FileOptions options, Int64 preallocationSize, Nullable`1 unixCreateMode)
+   at System.IO.Strategies.OSFileStreamStrategy..ctor(String path, FileMode mode, FileAccess access, FileShare share, FileOptions options, Int64 preallocationSize, Nullable`1 unixCreateMode)
+   at VacancyImport.Services.ExcelService.CalculateFileHashAsync(String filePath) in C:\VacancyImport\vacancy_import_v2\src\VacancyImport\Services\ExcelService.cs:line 365
+   at VacancyImport.Services.ExcelService.<>c__DisplayClass10_0.<<CheckFileUpdatesAsync>b__1>d.MoveNext() in C:\VacancyImport\vacancy_import_v2\src\VacancyImport\Services\ExcelService.cs:line 133
+--- End of stack trace from previous location ---
+   at VacancyImport.Utilities.ParallelProcessor.<>c__DisplayClass0_1`2.<<ProcessParallelAsync>b__0>d.MoveNext() in C:\VacancyImport\vacancy_import_v2\src\VacancyImport\Utilities\ParallelProcessor.cs:line 57
+[2025-07-22 12:59:21.063 +09:00 ERR] ファイル変更チェック中に1件のエラーが発生しました 
+[2025-07-22 12:59:21.074 +09:00 ERR] 最大リトライ回数に達しました (3回) 
+VacancyImport.Exceptions.ExcelFileException: ファイル更新チェック中にエラーが発生しました: 
+ ---> System.AggregateException: One or more errors occurred. (ファイル変更チェック中に1件のエラーが発生しました (The process cannot access the file '\\192.168.200.20\全社共有\SS予約表\2025年\神奈川\つるみ\~$【つるみ】2025年_SS予約表_241122_bk.xlsm' because it is being used by another process.))
+ ---> System.AggregateException: ファイル変更チェック中に1件のエラーが発生しました (The process cannot access the file '\\192.168.200.20\全社共有\SS予約表\2025年\神奈川\つるみ\~$【つるみ】2025年_SS予約表_241122_bk.xlsm' because it is being used by another process.)
+ ---> System.IO.IOException: The process cannot access the file '\\192.168.200.20\全社共有\SS予約表\2025年\神奈川\つるみ\~$【つるみ】2025年_SS予約表_241122_bk.xlsm' because it is being used by another process.
+   at Microsoft.Win32.SafeHandles.SafeFileHandle.CreateFile(String fullPath, FileMode mode, FileAccess access, FileShare share, FileOptions options)
+   at Microsoft.Win32.SafeHandles.SafeFileHandle.Open(String fullPath, FileMode mode, FileAccess access, FileShare share, FileOptions options, Int64 preallocationSize, Nullable`1 unixCreateMode)
+   at System.IO.Strategies.OSFileStreamStrategy..ctor(String path, FileMode mode, FileAccess access, FileShare share, FileOptions options, Int64 preallocationSize, Nullable`1 unixCreateMode)
+   at VacancyImport.Services.ExcelService.CalculateFileHashAsync(String filePath) in C:\VacancyImport\vacancy_import_v2\src\VacancyImport\Services\ExcelService.cs:line 365
+   at VacancyImport.Services.ExcelService.<>c__DisplayClass10_0.<<CheckFileUpdatesAsync>b__1>d.MoveNext() in C:\VacancyImport\vacancy_import_v2\src\VacancyImport\Services\ExcelService.cs:line 133
+--- End of stack trace from previous location ---
+   at VacancyImport.Utilities.ParallelProcessor.<>c__DisplayClass0_1`2.<<ProcessParallelAsync>b__0>d.MoveNext() in C:\VacancyImport\vacancy_import_v2\src\VacancyImport\Utilities\ParallelProcessor.cs:line 57
+   --- End of inner exception stack trace ---
+   at VacancyImport.Utilities.ParallelProcessor.ProcessParallelAsync[TInput,TOutput](IEnumerable`1 items, Func`3 processFunc, Int32 maxDegreeOfParallelism, ILogger logger, String operationName, CancellationToken cancellationToken) in C:\VacancyImport\vacancy_import_v2\src\VacancyImport\Utilities\ParallelProcessor.cs:line 87
+   --- End of inner exception stack trace ---
+   at System.Threading.Tasks.Task.ThrowIfExceptional(Boolean includeTaskCanceledExceptions)
+   at System.Threading.Tasks.Task`1.GetResultCore(Boolean waitCompletionNotification)
+   at VacancyImport.Services.ExcelService.<>c.<CheckFileUpdatesAsync>b__10_2(Task`1 t) in C:\VacancyImport\vacancy_import_v2\src\VacancyImport\Services\ExcelService.cs:line 149
+   at System.Threading.Tasks.ContinuationResultTaskFromResultTask`2.InnerInvoke()
+   at System.Threading.ExecutionContext.RunFromThreadPoolDispatchLoop(Thread threadPoolThread, ExecutionContext executionContext, ContextCallback callback, Object state)
+--- End of stack trace from previous location ---
+   at System.Threading.ExecutionContext.RunFromThreadPoolDispatchLoop(Thread threadPoolThread, ExecutionContext executionContext, ContextCallback callback, Object state)
+   at System.Threading.Tasks.Task.ExecuteWithThreadLocal(Task& currentTaskSlot, Thread threadPoolThread)
+--- End of stack trace from previous location ---
+   at VacancyImport.Services.ExcelService.<>c__DisplayClass10_0.<<CheckFileUpdatesAsync>b__0>d.MoveNext() in C:\VacancyImport\vacancy_import_v2\src\VacancyImport\Services\ExcelService.cs:line 110
+   --- End of inner exception stack trace ---
+   at VacancyImport.Services.ExcelService.<>c__DisplayClass10_0.<<CheckFileUpdatesAsync>b__0>d.MoveNext() in C:\VacancyImport\vacancy_import_v2\src\VacancyImport\Services\ExcelService.cs:line 163
+--- End of stack trace from previous location ---
+   at VacancyImport.Utilities.RetryPolicy.ExecuteWithRetryAsync[T](Func`1 func, Int32 retryCount, Int32 initialDelay, Int32 maxDelay, ILogger logger, CancellationToken cancellationToken) in C:\VacancyImport\vacancy_import_v2\src\VacancyImport\Utilities\RetryPolicy.cs:line 47
+[2025-07-22 12:59:21.106 +09:00 WRN] 処理時間が閾値を超えました: CheckFileUpdates - 16929.773ms (閾値: 5000ms) 
+[2025-07-22 12:59:21.112 +09:00 WRN] 処理時間が閾値を超えました: main_loop - 16935.9216ms (閾値: 5000ms) 
+[2025-07-22 12:59:21.123 +09:00 ERR] パフォーマンス監視: エラーが記録されました - ExcelFileException: ファイル更新チェック中にエラーが発生しました:  
+VacancyImport.Exceptions.ExcelFileException: ファイル更新チェック中にエラーが発生しました: 
+ ---> System.AggregateException: One or more errors occurred. (ファイル変更チェック中に1件のエラーが発生しました (The process cannot access the file '\\192.168.200.20\全社共有\SS予約表\2025年\神奈川\つるみ\~$【つるみ】2025年_SS予約表_241122_bk.xlsm' because it is being used by another process.))
+ ---> System.AggregateException: ファイル変更チェック中に1件のエラーが発生しました (The process cannot access the file '\\192.168.200.20\全社共有\SS予約表\2025年\神奈川\つるみ\~$【つるみ】2025年_SS予約表_241122_bk.xlsm' because it is being used by another process.)
+ ---> System.IO.IOException: The process cannot access the file '\\192.168.200.20\全社共有\SS予約表\2025年\神奈川\つるみ\~$【つるみ】2025年_SS予約表_241122_bk.xlsm' because it is being used by another process.
+   at Microsoft.Win32.SafeHandles.SafeFileHandle.CreateFile(String fullPath, FileMode mode, FileAccess access, FileShare share, FileOptions options)
+   at Microsoft.Win32.SafeHandles.SafeFileHandle.Open(String fullPath, FileMode mode, FileAccess access, FileShare share, FileOptions options, Int64 preallocationSize, Nullable`1 unixCreateMode)
+   at System.IO.Strategies.OSFileStreamStrategy..ctor(String path, FileMode mode, FileAccess access, FileShare share, FileOptions options, Int64 preallocationSize, Nullable`1 unixCreateMode)
+   at VacancyImport.Services.ExcelService.CalculateFileHashAsync(String filePath) in C:\VacancyImport\vacancy_import_v2\src\VacancyImport\Services\ExcelService.cs:line 365
+   at VacancyImport.Services.ExcelService.<>c__DisplayClass10_0.<<CheckFileUpdatesAsync>b__1>d.MoveNext() in C:\VacancyImport\vacancy_import_v2\src\VacancyImport\Services\ExcelService.cs:line 133
+--- End of stack trace from previous location ---
+   at VacancyImport.Utilities.ParallelProcessor.<>c__DisplayClass0_1`2.<<ProcessParallelAsync>b__0>d.MoveNext() in C:\VacancyImport\vacancy_import_v2\src\VacancyImport\Utilities\ParallelProcessor.cs:line 57
+   --- End of inner exception stack trace ---
+   at VacancyImport.Utilities.ParallelProcessor.ProcessParallelAsync[TInput,TOutput](IEnumerable`1 items, Func`3 processFunc, Int32 maxDegreeOfParallelism, ILogger logger, String operationName, CancellationToken cancellationToken) in C:\VacancyImport\vacancy_import_v2\src\VacancyImport\Utilities\ParallelProcessor.cs:line 87
+   --- End of inner exception stack trace ---
+   at System.Threading.Tasks.Task.ThrowIfExceptional(Boolean includeTaskCanceledExceptions)
+   at System.Threading.Tasks.Task`1.GetResultCore(Boolean waitCompletionNotification)
+   at VacancyImport.Services.ExcelService.<>c.<CheckFileUpdatesAsync>b__10_2(Task`1 t) in C:\VacancyImport\vacancy_import_v2\src\VacancyImport\Services\ExcelService.cs:line 149
+   at System.Threading.Tasks.ContinuationResultTaskFromResultTask`2.InnerInvoke()
+   at System.Threading.ExecutionContext.RunFromThreadPoolDispatchLoop(Thread threadPoolThread, ExecutionContext executionContext, ContextCallback callback, Object state)
+--- End of stack trace from previous location ---
+   at System.Threading.ExecutionContext.RunFromThreadPoolDispatchLoop(Thread threadPoolThread, ExecutionContext executionContext, ContextCallback callback, Object state)
+   at System.Threading.Tasks.Task.ExecuteWithThreadLocal(Task& currentTaskSlot, Thread threadPoolThread)
+--- End of stack trace from previous location ---
+   at VacancyImport.Services.ExcelService.<>c__DisplayClass10_0.<<CheckFileUpdatesAsync>b__0>d.MoveNext() in C:\VacancyImport\vacancy_import_v2\src\VacancyImport\Services\ExcelService.cs:line 110
+   --- End of inner exception stack trace ---
+   at VacancyImport.Services.ExcelService.<>c__DisplayClass10_0.<<CheckFileUpdatesAsync>b__0>d.MoveNext() in C:\VacancyImport\vacancy_import_v2\src\VacancyImport\Services\ExcelService.cs:line 163
+--- End of stack trace from previous location ---
+   at VacancyImport.Utilities.RetryPolicy.ExecuteWithRetryAsync[T](Func`1 func, Int32 retryCount, Int32 initialDelay, Int32 maxDelay, ILogger logger, CancellationToken cancellationToken) in C:\VacancyImport\vacancy_import_v2\src\VacancyImport\Utilities\RetryPolicy.cs:line 47
+   at VacancyImport.Utilities.RetryPolicy.ExecuteWithRetryAsync[T](Func`1 func, Int32 retryCount, Int32 initialDelay, Int32 maxDelay, ILogger logger, CancellationToken cancellationToken) in C:\VacancyImport\vacancy_import_v2\src\VacancyImport\Utilities\RetryPolicy.cs:line 65
+   at VacancyImport.Services.ExcelService.CheckFileUpdatesAsync(String filePath) in C:\VacancyImport\vacancy_import_v2\src\VacancyImport\Services\ExcelService.cs:line 92
+   at VacancyImport.Services.ExcelService.CheckFileUpdatesAsync() in C:\VacancyImport\vacancy_import_v2\src\VacancyImport\Services\ExcelService.cs:line 74
+   at VacancyImport.Services.ServiceHost.ExecuteBusinessLogicAsync(CancellationToken cancellationToken) in C:\VacancyImport\vacancy_import_v2\src\VacancyImport\Services\ServiceHost.cs:line 323
+   at VacancyImport.Services.ServiceHost.ExecuteAsync(CancellationToken stoppingToken) in C:\VacancyImport\vacancy_import_v2\src\VacancyImport\Services\ServiceHost.cs:line 132
+[2025-07-22 12:59:21.139 +09:00 ERR] メインループでエラーが発生しました (連続エラー数: 2) 
+VacancyImport.Exceptions.ExcelFileException: ファイル更新チェック中にエラーが発生しました: 
+ ---> System.AggregateException: One or more errors occurred. (ファイル変更チェック中に1件のエラーが発生しました (The process cannot access the file '\\192.168.200.20\全社共有\SS予約表\2025年\神奈川\つるみ\~$【つるみ】2025年_SS予約表_241122_bk.xlsm' because it is being used by another process.))
+ ---> System.AggregateException: ファイル変更チェック中に1件のエラーが発生しました (The process cannot access the file '\\192.168.200.20\全社共有\SS予約表\2025年\神奈川\つるみ\~$【つるみ】2025年_SS予約表_241122_bk.xlsm' because it is being used by another process.)
+ ---> System.IO.IOException: The process cannot access the file '\\192.168.200.20\全社共有\SS予約表\2025年\神奈川\つるみ\~$【つるみ】2025年_SS予約表_241122_bk.xlsm' because it is being used by another process.
+   at Microsoft.Win32.SafeHandles.SafeFileHandle.CreateFile(String fullPath, FileMode mode, FileAccess access, FileShare share, FileOptions options)
+   at Microsoft.Win32.SafeHandles.SafeFileHandle.Open(String fullPath, FileMode mode, FileAccess access, FileShare share, FileOptions options, Int64 preallocationSize, Nullable`1 unixCreateMode)
+   at System.IO.Strategies.OSFileStreamStrategy..ctor(String path, FileMode mode, FileAccess access, FileShare share, FileOptions options, Int64 preallocationSize, Nullable`1 unixCreateMode)
+   at VacancyImport.Services.ExcelService.CalculateFileHashAsync(String filePath) in C:\VacancyImport\vacancy_import_v2\src\VacancyImport\Services\ExcelService.cs:line 365
+   at VacancyImport.Services.ExcelService.<>c__DisplayClass10_0.<<CheckFileUpdatesAsync>b__1>d.MoveNext() in C:\VacancyImport\vacancy_import_v2\src\VacancyImport\Services\ExcelService.cs:line 133
+--- End of stack trace from previous location ---
+   at VacancyImport.Utilities.ParallelProcessor.<>c__DisplayClass0_1`2.<<ProcessParallelAsync>b__0>d.MoveNext() in C:\VacancyImport\vacancy_import_v2\src\VacancyImport\Utilities\ParallelProcessor.cs:line 57
+   --- End of inner exception stack trace ---
+   at VacancyImport.Utilities.ParallelProcessor.ProcessParallelAsync[TInput,TOutput](IEnumerable`1 items, Func`3 processFunc, Int32 maxDegreeOfParallelism, ILogger logger, String operationName, CancellationToken cancellationToken) in C:\VacancyImport\vacancy_import_v2\src\VacancyImport\Utilities\ParallelProcessor.cs:line 87
+   --- End of inner exception stack trace ---
+   at System.Threading.Tasks.Task.ThrowIfExceptional(Boolean includeTaskCanceledExceptions)
+   at System.Threading.Tasks.Task`1.GetResultCore(Boolean waitCompletionNotification)
+   at VacancyImport.Services.ExcelService.<>c.<CheckFileUpdatesAsync>b__10_2(Task`1 t) in C:\VacancyImport\vacancy_import_v2\src\VacancyImport\Services\ExcelService.cs:line 149
+   at System.Threading.Tasks.ContinuationResultTaskFromResultTask`2.InnerInvoke()
+   at System.Threading.ExecutionContext.RunFromThreadPoolDispatchLoop(Thread threadPoolThread, ExecutionContext executionContext, ContextCallback callback, Object state)
+--- End of stack trace from previous location ---
+   at System.Threading.ExecutionContext.RunFromThreadPoolDispatchLoop(Thread threadPoolThread, ExecutionContext executionContext, ContextCallback callback, Object state)
+   at System.Threading.Tasks.Task.ExecuteWithThreadLocal(Task& currentTaskSlot, Thread threadPoolThread)
+--- End of stack trace from previous location ---
+   at VacancyImport.Services.ExcelService.<>c__DisplayClass10_0.<<CheckFileUpdatesAsync>b__0>d.MoveNext() in C:\VacancyImport\vacancy_import_v2\src\VacancyImport\Services\ExcelService.cs:line 110
+   --- End of inner exception stack trace ---
+   at VacancyImport.Services.ExcelService.<>c__DisplayClass10_0.<<CheckFileUpdatesAsync>b__0>d.MoveNext() in C:\VacancyImport\vacancy_import_v2\src\VacancyImport\Services\ExcelService.cs:line 163
+--- End of stack trace from previous location ---
+   at VacancyImport.Utilities.RetryPolicy.ExecuteWithRetryAsync[T](Func`1 func, Int32 retryCount, Int32 initialDelay, Int32 maxDelay, ILogger logger, CancellationToken cancellationToken) in C:\VacancyImport\vacancy_import_v2\src\VacancyImport\Utilities\RetryPolicy.cs:line 47
+   at VacancyImport.Utilities.RetryPolicy.ExecuteWithRetryAsync[T](Func`1 func, Int32 retryCount, Int32 initialDelay, Int32 maxDelay, ILogger logger, CancellationToken cancellationToken) in C:\VacancyImport\vacancy_import_v2\src\VacancyImport\Utilities\RetryPolicy.cs:line 65
+   at VacancyImport.Services.ExcelService.CheckFileUpdatesAsync(String filePath) in C:\VacancyImport\vacancy_import_v2\src\VacancyImport\Services\ExcelService.cs:line 92
+   at VacancyImport.Services.ExcelService.CheckFileUpdatesAsync() in C:\VacancyImport\vacancy_import_v2\src\VacancyImport\Services\ExcelService.cs:line 74
+   at VacancyImport.Services.ServiceHost.ExecuteBusinessLogicAsync(CancellationToken cancellationToken) in C:\VacancyImport\vacancy_import_v2\src\VacancyImport\Services\ServiceHost.cs:line 323
+   at VacancyImport.Services.ServiceHost.ExecuteAsync(CancellationToken stoppingToken) in C:\VacancyImport\vacancy_import_v2\src\VacancyImport\Services\ServiceHost.cs:line 132
+[2025-07-22 12:59:25.848 +09:00 INF] システムリソース使用状況: メモリ=64MB, CPUタイム="00:00:04.5937500", スレッド数=22 
+[2025-07-22 12:59:25.860 +09:00 INF] 操作パフォーマンス: CheckFileUpdates, 平均=16929.773ms, 最大=16929.773ms, 最小=16929.773ms, 件数=1 
+[2025-07-22 12:59:25.874 +09:00 INF] 操作パフォーマンス: main_loop, 平均=16935.9216ms, 最大=16935.9216ms, 最小=16935.9216ms, 件数=1 
+[2025-07-22 12:59:25.886 +09:00 INF] 操作パフォーマンス: CalculateFileHash, 平均=955.49465ms, 最大=4874.5664ms, 最小=27.7816ms, 件数=6 
+[2025-07-22 13:00:25.254 +09:00 ERR] ファイル変更チェックの処理中にエラーが発生しました 
+System.IO.IOException: The process cannot access the file '\\192.168.200.20\全社共有\SS予約表\2025年\神奈川\つるみ\~$【つるみ】2025年_SS予約表_241122_bk.xlsm' because it is being used by another process.
+   at Microsoft.Win32.SafeHandles.SafeFileHandle.CreateFile(String fullPath, FileMode mode, FileAccess access, FileShare share, FileOptions options)
+   at Microsoft.Win32.SafeHandles.SafeFileHandle.Open(String fullPath, FileMode mode, FileAccess access, FileShare share, FileOptions options, Int64 preallocationSize, Nullable`1 unixCreateMode)
+   at System.IO.Strategies.OSFileStreamStrategy..ctor(String path, FileMode mode, FileAccess access, FileShare share, FileOptions options, Int64 preallocationSize, Nullable`1 unixCreateMode)
+   at VacancyImport.Services.ExcelService.CalculateFileHashAsync(String filePath) in C:\VacancyImport\vacancy_import_v2\src\VacancyImport\Services\ExcelService.cs:line 365
+   at VacancyImport.Services.ExcelService.<>c__DisplayClass10_0.<<CheckFileUpdatesAsync>b__1>d.MoveNext() in C:\VacancyImport\vacancy_import_v2\src\VacancyImport\Services\ExcelService.cs:line 133
+--- End of stack trace from previous location ---
+   at VacancyImport.Utilities.ParallelProcessor.<>c__DisplayClass0_1`2.<<ProcessParallelAsync>b__0>d.MoveNext() in C:\VacancyImport\vacancy_import_v2\src\VacancyImport\Utilities\ParallelProcessor.cs:line 57
+[2025-07-22 13:00:25.263 +09:00 ERR] ファイル変更チェックの処理中にエラーが発生しました 
+System.IO.FileNotFoundException: Could not find file '\\192.168.200.20\全社共有\SS予約表\2025年\埼京A1\おおみや\~$【おおみや】2025年_SS予約表_241122.xlsm'.
+File name: '\\192.168.200.20\全社共有\SS予約表\2025年\埼京A1\おおみや\~$【おおみや】2025年_SS予約表_241122.xlsm'
+   at Microsoft.Win32.SafeHandles.SafeFileHandle.CreateFile(String fullPath, FileMode mode, FileAccess access, FileShare share, FileOptions options)
+   at Microsoft.Win32.SafeHandles.SafeFileHandle.Open(String fullPath, FileMode mode, FileAccess access, FileShare share, FileOptions options, Int64 preallocationSize, Nullable`1 unixCreateMode)
+   at System.IO.Strategies.OSFileStreamStrategy..ctor(String path, FileMode mode, FileAccess access, FileShare share, FileOptions options, Int64 preallocationSize, Nullable`1 unixCreateMode)
+   at VacancyImport.Services.ExcelService.CalculateFileHashAsync(String filePath) in C:\VacancyImport\vacancy_import_v2\src\VacancyImport\Services\ExcelService.cs:line 365
+   at VacancyImport.Services.ExcelService.<>c__DisplayClass10_0.<<CheckFileUpdatesAsync>b__1>d.MoveNext() in C:\VacancyImport\vacancy_import_v2\src\VacancyImport\Services\ExcelService.cs:line 133
+--- End of stack trace from previous location ---
+   at VacancyImport.Utilities.ParallelProcessor.<>c__DisplayClass0_1`2.<<ProcessParallelAsync>b__0>d.MoveNext() in C:\VacancyImport\vacancy_import_v2\src\VacancyImport\Utilities\ParallelProcessor.cs:line 57
+[2025-07-22 13:00:25.822 +09:00 INF] ファイルが更新されました: \\192.168.200.20\全社共有\SS予約表\2025年\埼京A1\おおみや\【おおみや】2025年_SS予約表_241122.xlsm 
+[2025-07-22 13:00:25.829 +09:00 ERR] ファイル変更チェック中に2件のエラーが発生しました 
+[2025-07-22 13:00:25.843 +09:00 WRN] エラーが発生しました。200ms後にリトライします (試行回数: 1/3) 
+VacancyImport.Exceptions.ExcelFileException: ファイル更新チェック中にエラーが発生しました: 
+ ---> System.AggregateException: One or more errors occurred. (ファイル変更チェック中に2件のエラーが発生しました (Could not find file '\\192.168.200.20\全社共有\SS予約表\2025年\埼京A1\おおみや\~$【おおみや】2025年_SS予約表_241122.xlsm'.) (The process cannot access the file '\\192.168.200.20\全社共有\SS予約表\2025年\神奈川\つるみ\~$【つるみ】2025年_SS予約表_241122_bk.xlsm' because it is being used by another process.))
+ ---> System.AggregateException: ファイル変更チェック中に2件のエラーが発生しました (Could not find file '\\192.168.200.20\全社共有\SS予約表\2025年\埼京A1\おおみや\~$【おおみや】2025年_SS予約表_241122.xlsm'.) (The process cannot access the file '\\192.168.200.20\全社共有\SS予約表\2025年\神奈川\つるみ\~$【つるみ】2025年_SS予約表_241122_bk.xlsm' because it is being used by another process.)
+ ---> System.IO.FileNotFoundException: Could not find file '\\192.168.200.20\全社共有\SS予約表\2025年\埼京A1\おおみや\~$【おおみや】2025年_SS予約表_241122.xlsm'.
+File name: '\\192.168.200.20\全社共有\SS予約表\2025年\埼京A1\おおみや\~$【おおみや】2025年_SS予約表_241122.xlsm'
+   at Microsoft.Win32.SafeHandles.SafeFileHandle.CreateFile(String fullPath, FileMode mode, FileAccess access, FileShare share, FileOptions options)
+   at Microsoft.Win32.SafeHandles.SafeFileHandle.Open(String fullPath, FileMode mode, FileAccess access, FileShare share, FileOptions options, Int64 preallocationSize, Nullable`1 unixCreateMode)
+   at System.IO.Strategies.OSFileStreamStrategy..ctor(String path, FileMode mode, FileAccess access, FileShare share, FileOptions options, Int64 preallocationSize, Nullable`1 unixCreateMode)
+   at VacancyImport.Services.ExcelService.CalculateFileHashAsync(String filePath) in C:\VacancyImport\vacancy_import_v2\src\VacancyImport\Services\ExcelService.cs:line 365
+   at VacancyImport.Services.ExcelService.<>c__DisplayClass10_0.<<CheckFileUpdatesAsync>b__1>d.MoveNext() in C:\VacancyImport\vacancy_import_v2\src\VacancyImport\Services\ExcelService.cs:line 133
+--- End of stack trace from previous location ---
+   at VacancyImport.Utilities.ParallelProcessor.<>c__DisplayClass0_1`2.<<ProcessParallelAsync>b__0>d.MoveNext() in C:\VacancyImport\vacancy_import_v2\src\VacancyImport\Utilities\ParallelProcessor.cs:line 57
+   --- End of inner exception stack trace ---
+   at VacancyImport.Utilities.ParallelProcessor.ProcessParallelAsync[TInput,TOutput](IEnumerable`1 items, Func`3 processFunc, Int32 maxDegreeOfParallelism, ILogger logger, String operationName, CancellationToken cancellationToken) in C:\VacancyImport\vacancy_import_v2\src\VacancyImport\Utilities\ParallelProcessor.cs:line 87
+ ---> (Inner Exception #1) System.IO.IOException: The process cannot access the file '\\192.168.200.20\全社共有\SS予約表\2025年\神奈川\つるみ\~$【つるみ】2025年_SS予約表_241122_bk.xlsm' because it is being used by another process.
+   at Microsoft.Win32.SafeHandles.SafeFileHandle.CreateFile(String fullPath, FileMode mode, FileAccess access, FileShare share, FileOptions options)
+   at Microsoft.Win32.SafeHandles.SafeFileHandle.Open(String fullPath, FileMode mode, FileAccess access, FileShare share, FileOptions options, Int64 preallocationSize, Nullable`1 unixCreateMode)
+   at System.IO.Strategies.OSFileStreamStrategy..ctor(String path, FileMode mode, FileAccess access, FileShare share, FileOptions options, Int64 preallocationSize, Nullable`1 unixCreateMode)
+   at VacancyImport.Services.ExcelService.CalculateFileHashAsync(String filePath) in C:\VacancyImport\vacancy_import_v2\src\VacancyImport\Services\ExcelService.cs:line 365
+   at VacancyImport.Services.ExcelService.<>c__DisplayClass10_0.<<CheckFileUpdatesAsync>b__1>d.MoveNext() in C:\VacancyImport\vacancy_import_v2\src\VacancyImport\Services\ExcelService.cs:line 133
+--- End of stack trace from previous location ---
+   at VacancyImport.Utilities.ParallelProcessor.<>c__DisplayClass0_1`2.<<ProcessParallelAsync>b__0>d.MoveNext() in C:\VacancyImport\vacancy_import_v2\src\VacancyImport\Utilities\ParallelProcessor.cs:line 57<---
+
+   --- End of inner exception stack trace ---
+   at System.Threading.Tasks.Task.ThrowIfExceptional(Boolean includeTaskCanceledExceptions)
+   at System.Threading.Tasks.Task`1.GetResultCore(Boolean waitCompletionNotification)
+   at VacancyImport.Services.ExcelService.<>c.<CheckFileUpdatesAsync>b__10_2(Task`1 t) in C:\VacancyImport\vacancy_import_v2\src\VacancyImport\Services\ExcelService.cs:line 149
+   at System.Threading.Tasks.ContinuationResultTaskFromResultTask`2.InnerInvoke()
+   at System.Threading.ExecutionContext.RunFromThreadPoolDispatchLoop(Thread threadPoolThread, ExecutionContext executionContext, ContextCallback callback, Object state)
+--- End of stack trace from previous location ---
+   at System.Threading.ExecutionContext.RunFromThreadPoolDispatchLoop(Thread threadPoolThread, ExecutionContext executionContext, ContextCallback callback, Object state)
+   at System.Threading.Tasks.Task.ExecuteWithThreadLocal(Task& currentTaskSlot, Thread threadPoolThread)
+--- End of stack trace from previous location ---
+   at VacancyImport.Services.ExcelService.<>c__DisplayClass10_0.<<CheckFileUpdatesAsync>b__0>d.MoveNext() in C:\VacancyImport\vacancy_import_v2\src\VacancyImport\Services\ExcelService.cs:line 110
+   --- End of inner exception stack trace ---
+   at VacancyImport.Services.ExcelService.<>c__DisplayClass10_0.<<CheckFileUpdatesAsync>b__0>d.MoveNext() in C:\VacancyImport\vacancy_import_v2\src\VacancyImport\Services\ExcelService.cs:line 163
+--- End of stack trace from previous location ---
+   at VacancyImport.Utilities.RetryPolicy.ExecuteWithRetryAsync[T](Func`1 func, Int32 retryCount, Int32 initialDelay, Int32 maxDelay, ILogger logger, CancellationToken cancellationToken) in C:\VacancyImport\vacancy_import_v2\src\VacancyImport\Utilities\RetryPolicy.cs:line 47
+[2025-07-22 13:00:25.861 +09:00 INF] システムリソース使用状況: メモリ=64MB, CPUタイム="00:00:05.0781250", スレッド数=14 
+[2025-07-22 13:00:25.918 +09:00 INF] 操作パフォーマンス: CalculateFileHash, 平均=257.86396666666667ms, 最大=687.5499ms, 最小=38.7845ms, 件数=3 
+[2025-07-22 13:00:26.130 +09:00 WRN] リトライ実行中 (試行回数: 1/3, 遅延: 400ms) 
+[2025-07-22 13:00:26.341 +09:00 ERR] ファイル変更チェックの処理中にエラーが発生しました 
+System.IO.IOException: The process cannot access the file '\\192.168.200.20\全社共有\SS予約表\2025年\神奈川\つるみ\~$【つるみ】2025年_SS予約表_241122_bk.xlsm' because it is being used by another process.
+   at Microsoft.Win32.SafeHandles.SafeFileHandle.CreateFile(String fullPath, FileMode mode, FileAccess access, FileShare share, FileOptions options)
+   at Microsoft.Win32.SafeHandles.SafeFileHandle.Open(String fullPath, FileMode mode, FileAccess access, FileShare share, FileOptions options, Int64 preallocationSize, Nullable`1 unixCreateMode)
+   at System.IO.Strategies.OSFileStreamStrategy..ctor(String path, FileMode mode, FileAccess access, FileShare share, FileOptions options, Int64 preallocationSize, Nullable`1 unixCreateMode)
+   at VacancyImport.Services.ExcelService.CalculateFileHashAsync(String filePath) in C:\VacancyImport\vacancy_import_v2\src\VacancyImport\Services\ExcelService.cs:line 365
+   at VacancyImport.Services.ExcelService.<>c__DisplayClass10_0.<<CheckFileUpdatesAsync>b__1>d.MoveNext() in C:\VacancyImport\vacancy_import_v2\src\VacancyImport\Services\ExcelService.cs:line 133
+--- End of stack trace from previous location ---
+   at VacancyImport.Utilities.ParallelProcessor.<>c__DisplayClass0_1`2.<<ProcessParallelAsync>b__0>d.MoveNext() in C:\VacancyImport\vacancy_import_v2\src\VacancyImport\Utilities\ParallelProcessor.cs:line 57
+[2025-07-22 13:00:31.693 +09:00 WRN] 処理時間が閾値を超えました: CalculateFileHash - 5411.9724ms (閾値: 5000ms) 
+[2025-07-22 13:00:31.703 +09:00 ERR] ファイル変更チェックの処理中にエラーが発生しました 
+System.IO.FileNotFoundException: Could not find file '\\192.168.200.20\全社共有\SS予約表\2025年\千葉\やちよ\~$【やちよ】2025年_SS予約表_241122.xlsm'.
+File name: '\\192.168.200.20\全社共有\SS予約表\2025年\千葉\やちよ\~$【やちよ】2025年_SS予約表_241122.xlsm'
+   at Microsoft.Win32.SafeHandles.SafeFileHandle.CreateFile(String fullPath, FileMode mode, FileAccess access, FileShare share, FileOptions options)
+   at Microsoft.Win32.SafeHandles.SafeFileHandle.Open(String fullPath, FileMode mode, FileAccess access, FileShare share, FileOptions options, Int64 preallocationSize, Nullable`1 unixCreateMode)
+   at System.IO.Strategies.OSFileStreamStrategy..ctor(String path, FileMode mode, FileAccess access, FileShare share, FileOptions options, Int64 preallocationSize, Nullable`1 unixCreateMode)
+   at VacancyImport.Services.ExcelService.CalculateFileHashAsync(String filePath) in C:\VacancyImport\vacancy_import_v2\src\VacancyImport\Services\ExcelService.cs:line 365
+   at VacancyImport.Services.ExcelService.<>c__DisplayClass10_0.<<CheckFileUpdatesAsync>b__1>d.MoveNext() in C:\VacancyImport\vacancy_import_v2\src\VacancyImport\Services\ExcelService.cs:line 133
+--- End of stack trace from previous location ---
+   at VacancyImport.Utilities.ParallelProcessor.<>c__DisplayClass0_1`2.<<ProcessParallelAsync>b__0>d.MoveNext() in C:\VacancyImport\vacancy_import_v2\src\VacancyImport\Utilities\ParallelProcessor.cs:line 57
+[2025-07-22 13:00:31.749 +09:00 ERR] ファイル変更チェック中に2件のエラーが発生しました 
+[2025-07-22 13:00:31.753 +09:00 WRN] エラーが発生しました。400ms後にリトライします (試行回数: 2/3) 
+VacancyImport.Exceptions.ExcelFileException: ファイル更新チェック中にエラーが発生しました: 
+ ---> System.AggregateException: One or more errors occurred. (ファイル変更チェック中に2件のエラーが発生しました (Could not find file '\\192.168.200.20\全社共有\SS予約表\2025年\千葉\やちよ\~$【やちよ】2025年_SS予約表_241122.xlsm'.) (The process cannot access the file '\\192.168.200.20\全社共有\SS予約表\2025年\神奈川\つるみ\~$【つるみ】2025年_SS予約表_241122_bk.xlsm' because it is being used by another process.))
+ ---> System.AggregateException: ファイル変更チェック中に2件のエラーが発生しました (Could not find file '\\192.168.200.20\全社共有\SS予約表\2025年\千葉\やちよ\~$【やちよ】2025年_SS予約表_241122.xlsm'.) (The process cannot access the file '\\192.168.200.20\全社共有\SS予約表\2025年\神奈川\つるみ\~$【つるみ】2025年_SS予約表_241122_bk.xlsm' because it is being used by another process.)
+ ---> System.IO.FileNotFoundException: Could not find file '\\192.168.200.20\全社共有\SS予約表\2025年\千葉\やちよ\~$【やちよ】2025年_SS予約表_241122.xlsm'.
+File name: '\\192.168.200.20\全社共有\SS予約表\2025年\千葉\やちよ\~$【やちよ】2025年_SS予約表_241122.xlsm'
+   at Microsoft.Win32.SafeHandles.SafeFileHandle.CreateFile(String fullPath, FileMode mode, FileAccess access, FileShare share, FileOptions options)
+   at Microsoft.Win32.SafeHandles.SafeFileHandle.Open(String fullPath, FileMode mode, FileAccess access, FileShare share, FileOptions options, Int64 preallocationSize, Nullable`1 unixCreateMode)
+   at System.IO.Strategies.OSFileStreamStrategy..ctor(String path, FileMode mode, FileAccess access, FileShare share, FileOptions options, Int64 preallocationSize, Nullable`1 unixCreateMode)
+   at VacancyImport.Services.ExcelService.CalculateFileHashAsync(String filePath) in C:\VacancyImport\vacancy_import_v2\src\VacancyImport\Services\ExcelService.cs:line 365
+   at VacancyImport.Services.ExcelService.<>c__DisplayClass10_0.<<CheckFileUpdatesAsync>b__1>d.MoveNext() in C:\VacancyImport\vacancy_import_v2\src\VacancyImport\Services\ExcelService.cs:line 133
+--- End of stack trace from previous location ---
+   at VacancyImport.Utilities.ParallelProcessor.<>c__DisplayClass0_1`2.<<ProcessParallelAsync>b__0>d.MoveNext() in C:\VacancyImport\vacancy_import_v2\src\VacancyImport\Utilities\ParallelProcessor.cs:line 57
+   --- End of inner exception stack trace ---
+   at VacancyImport.Utilities.ParallelProcessor.ProcessParallelAsync[TInput,TOutput](IEnumerable`1 items, Func`3 processFunc, Int32 maxDegreeOfParallelism, ILogger logger, String operationName, CancellationToken cancellationToken) in C:\VacancyImport\vacancy_import_v2\src\VacancyImport\Utilities\ParallelProcessor.cs:line 87
+ ---> (Inner Exception #1) System.IO.IOException: The process cannot access the file '\\192.168.200.20\全社共有\SS予約表\2025年\神奈川\つるみ\~$【つるみ】2025年_SS予約表_241122_bk.xlsm' because it is being used by another process.
+   at Microsoft.Win32.SafeHandles.SafeFileHandle.CreateFile(String fullPath, FileMode mode, FileAccess access, FileShare share, FileOptions options)
+   at Microsoft.Win32.SafeHandles.SafeFileHandle.Open(String fullPath, FileMode mode, FileAccess access, FileShare share, FileOptions options, Int64 preallocationSize, Nullable`1 unixCreateMode)
+   at System.IO.Strategies.OSFileStreamStrategy..ctor(String path, FileMode mode, FileAccess access, FileShare share, FileOptions options, Int64 preallocationSize, Nullable`1 unixCreateMode)
+   at VacancyImport.Services.ExcelService.CalculateFileHashAsync(String filePath) in C:\VacancyImport\vacancy_import_v2\src\VacancyImport\Services\ExcelService.cs:line 365
+   at VacancyImport.Services.ExcelService.<>c__DisplayClass10_0.<<CheckFileUpdatesAsync>b__1>d.MoveNext() in C:\VacancyImport\vacancy_import_v2\src\VacancyImport\Services\ExcelService.cs:line 133
+--- End of stack trace from previous location ---
+   at VacancyImport.Utilities.ParallelProcessor.<>c__DisplayClass0_1`2.<<ProcessParallelAsync>b__0>d.MoveNext() in C:\VacancyImport\vacancy_import_v2\src\VacancyImport\Utilities\ParallelProcessor.cs:line 57<---
+
+   --- End of inner exception stack trace ---
+   at System.Threading.Tasks.Task.ThrowIfExceptional(Boolean includeTaskCanceledExceptions)
+   at System.Threading.Tasks.Task`1.GetResultCore(Boolean waitCompletionNotification)
+   at VacancyImport.Services.ExcelService.<>c.<CheckFileUpdatesAsync>b__10_2(Task`1 t) in C:\VacancyImport\vacancy_import_v2\src\VacancyImport\Services\ExcelService.cs:line 149
+   at System.Threading.Tasks.ContinuationResultTaskFromResultTask`2.InnerInvoke()
+   at System.Threading.ExecutionContext.RunFromThreadPoolDispatchLoop(Thread threadPoolThread, ExecutionContext executionContext, ContextCallback callback, Object state)
+--- End of stack trace from previous location ---
+   at System.Threading.ExecutionContext.RunFromThreadPoolDispatchLoop(Thread threadPoolThread, ExecutionContext executionContext, ContextCallback callback, Object state)
+   at System.Threading.Tasks.Task.ExecuteWithThreadLocal(Task& currentTaskSlot, Thread threadPoolThread)
+--- End of stack trace from previous location ---
+   at VacancyImport.Services.ExcelService.<>c__DisplayClass10_0.<<CheckFileUpdatesAsync>b__0>d.MoveNext() in C:\VacancyImport\vacancy_import_v2\src\VacancyImport\Services\ExcelService.cs:line 110
+   --- End of inner exception stack trace ---
+   at VacancyImport.Services.ExcelService.<>c__DisplayClass10_0.<<CheckFileUpdatesAsync>b__0>d.MoveNext() in C:\VacancyImport\vacancy_import_v2\src\VacancyImport\Services\ExcelService.cs:line 163
+--- End of stack trace from previous location ---
+   at VacancyImport.Utilities.RetryPolicy.ExecuteWithRetryAsync[T](Func`1 func, Int32 retryCount, Int32 initialDelay, Int32 maxDelay, ILogger logger, CancellationToken cancellationToken) in C:\VacancyImport\vacancy_import_v2\src\VacancyImport\Utilities\RetryPolicy.cs:line 47
+[2025-07-22 13:00:32.194 +09:00 WRN] リトライ実行中 (試行回数: 2/3, 遅延: 800ms) 
+[2025-07-22 13:00:36.868 +09:00 ERR] ファイル変更チェックの処理中にエラーが発生しました 
+System.IO.IOException: The process cannot access the file '\\192.168.200.20\全社共有\SS予約表\2025年\神奈川\つるみ\~$【つるみ】2025年_SS予約表_241122_bk.xlsm' because it is being used by another process.
+   at Microsoft.Win32.SafeHandles.SafeFileHandle.CreateFile(String fullPath, FileMode mode, FileAccess access, FileShare share, FileOptions options)
+   at Microsoft.Win32.SafeHandles.SafeFileHandle.Open(String fullPath, FileMode mode, FileAccess access, FileShare share, FileOptions options, Int64 preallocationSize, Nullable`1 unixCreateMode)
+   at System.IO.Strategies.OSFileStreamStrategy..ctor(String path, FileMode mode, FileAccess access, FileShare share, FileOptions options, Int64 preallocationSize, Nullable`1 unixCreateMode)
+   at VacancyImport.Services.ExcelService.CalculateFileHashAsync(String filePath) in C:\VacancyImport\vacancy_import_v2\src\VacancyImport\Services\ExcelService.cs:line 365
+   at VacancyImport.Services.ExcelService.<>c__DisplayClass10_0.<<CheckFileUpdatesAsync>b__1>d.MoveNext() in C:\VacancyImport\vacancy_import_v2\src\VacancyImport\Services\ExcelService.cs:line 133
+--- End of stack trace from previous location ---
+   at VacancyImport.Utilities.ParallelProcessor.<>c__DisplayClass0_1`2.<<ProcessParallelAsync>b__0>d.MoveNext() in C:\VacancyImport\vacancy_import_v2\src\VacancyImport\Utilities\ParallelProcessor.cs:line 57
+[2025-07-22 13:00:36.902 +09:00 ERR] ファイル変更チェック中に1件のエラーが発生しました 
+[2025-07-22 13:00:36.906 +09:00 WRN] エラーが発生しました。800ms後にリトライします (試行回数: 3/3) 
+VacancyImport.Exceptions.ExcelFileException: ファイル更新チェック中にエラーが発生しました: 
+ ---> System.AggregateException: One or more errors occurred. (ファイル変更チェック中に1件のエラーが発生しました (The process cannot access the file '\\192.168.200.20\全社共有\SS予約表\2025年\神奈川\つるみ\~$【つるみ】2025年_SS予約表_241122_bk.xlsm' because it is being used by another process.))
+ ---> System.AggregateException: ファイル変更チェック中に1件のエラーが発生しました (The process cannot access the file '\\192.168.200.20\全社共有\SS予約表\2025年\神奈川\つるみ\~$【つるみ】2025年_SS予約表_241122_bk.xlsm' because it is being used by another process.)
+ ---> System.IO.IOException: The process cannot access the file '\\192.168.200.20\全社共有\SS予約表\2025年\神奈川\つるみ\~$【つるみ】2025年_SS予約表_241122_bk.xlsm' because it is being used by another process.
+   at Microsoft.Win32.SafeHandles.SafeFileHandle.CreateFile(String fullPath, FileMode mode, FileAccess access, FileShare share, FileOptions options)
+   at Microsoft.Win32.SafeHandles.SafeFileHandle.Open(String fullPath, FileMode mode, FileAccess access, FileShare share, FileOptions options, Int64 preallocationSize, Nullable`1 unixCreateMode)
+   at System.IO.Strategies.OSFileStreamStrategy..ctor(String path, FileMode mode, FileAccess access, FileShare share, FileOptions options, Int64 preallocationSize, Nullable`1 unixCreateMode)
+   at VacancyImport.Services.ExcelService.CalculateFileHashAsync(String filePath) in C:\VacancyImport\vacancy_import_v2\src\VacancyImport\Services\ExcelService.cs:line 365
+   at VacancyImport.Services.ExcelService.<>c__DisplayClass10_0.<<CheckFileUpdatesAsync>b__1>d.MoveNext() in C:\VacancyImport\vacancy_import_v2\src\VacancyImport\Services\ExcelService.cs:line 133
+--- End of stack trace from previous location ---
+   at VacancyImport.Utilities.ParallelProcessor.<>c__DisplayClass0_1`2.<<ProcessParallelAsync>b__0>d.MoveNext() in C:\VacancyImport\vacancy_import_v2\src\VacancyImport\Utilities\ParallelProcessor.cs:line 57
+   --- End of inner exception stack trace ---
+   at VacancyImport.Utilities.ParallelProcessor.ProcessParallelAsync[TInput,TOutput](IEnumerable`1 items, Func`3 processFunc, Int32 maxDegreeOfParallelism, ILogger logger, String operationName, CancellationToken cancellationToken) in C:\VacancyImport\vacancy_import_v2\src\VacancyImport\Utilities\ParallelProcessor.cs:line 87
+   --- End of inner exception stack trace ---
+   at System.Threading.Tasks.Task.ThrowIfExceptional(Boolean includeTaskCanceledExceptions)
+   at System.Threading.Tasks.Task`1.GetResultCore(Boolean waitCompletionNotification)
+   at VacancyImport.Services.ExcelService.<>c.<CheckFileUpdatesAsync>b__10_2(Task`1 t) in C:\VacancyImport\vacancy_import_v2\src\VacancyImport\Services\ExcelService.cs:line 149
+   at System.Threading.Tasks.ContinuationResultTaskFromResultTask`2.InnerInvoke()
+   at System.Threading.ExecutionContext.RunFromThreadPoolDispatchLoop(Thread threadPoolThread, ExecutionContext executionContext, ContextCallback callback, Object state)
+--- End of stack trace from previous location ---
+   at System.Threading.ExecutionContext.RunFromThreadPoolDispatchLoop(Thread threadPoolThread, ExecutionContext executionContext, ContextCallback callback, Object state)
+   at System.Threading.Tasks.Task.ExecuteWithThreadLocal(Task& currentTaskSlot, Thread threadPoolThread)
+--- End of stack trace from previous location ---
+   at VacancyImport.Services.ExcelService.<>c__DisplayClass10_0.<<CheckFileUpdatesAsync>b__0>d.MoveNext() in C:\VacancyImport\vacancy_import_v2\src\VacancyImport\Services\ExcelService.cs:line 110
+   --- End of inner exception stack trace ---
+   at VacancyImport.Services.ExcelService.<>c__DisplayClass10_0.<<CheckFileUpdatesAsync>b__0>d.MoveNext() in C:\VacancyImport\vacancy_import_v2\src\VacancyImport\Services\ExcelService.cs:line 163
+--- End of stack trace from previous location ---
+   at VacancyImport.Utilities.RetryPolicy.ExecuteWithRetryAsync[T](Func`1 func, Int32 retryCount, Int32 initialDelay, Int32 maxDelay, ILogger logger, CancellationToken cancellationToken) in C:\VacancyImport\vacancy_import_v2\src\VacancyImport\Utilities\RetryPolicy.cs:line 47
+[2025-07-22 13:00:37.740 +09:00 WRN] リトライ実行中 (試行回数: 3/3, 遅延: 1600ms) 
+[2025-07-22 13:00:37.990 +09:00 ERR] ファイル変更チェックの処理中にエラーが発生しました 
+System.IO.IOException: The process cannot access the file '\\192.168.200.20\全社共有\SS予約表\2025年\神奈川\つるみ\~$【つるみ】2025年_SS予約表_241122_bk.xlsm' because it is being used by another process.
+   at Microsoft.Win32.SafeHandles.SafeFileHandle.CreateFile(String fullPath, FileMode mode, FileAccess access, FileShare share, FileOptions options)
+   at Microsoft.Win32.SafeHandles.SafeFileHandle.Open(String fullPath, FileMode mode, FileAccess access, FileShare share, FileOptions options, Int64 preallocationSize, Nullable`1 unixCreateMode)
+   at System.IO.Strategies.OSFileStreamStrategy..ctor(String path, FileMode mode, FileAccess access, FileShare share, FileOptions options, Int64 preallocationSize, Nullable`1 unixCreateMode)
+   at VacancyImport.Services.ExcelService.CalculateFileHashAsync(String filePath) in C:\VacancyImport\vacancy_import_v2\src\VacancyImport\Services\ExcelService.cs:line 365
+   at VacancyImport.Services.ExcelService.<>c__DisplayClass10_0.<<CheckFileUpdatesAsync>b__1>d.MoveNext() in C:\VacancyImport\vacancy_import_v2\src\VacancyImport\Services\ExcelService.cs:line 133
+--- End of stack trace from previous location ---
+   at VacancyImport.Utilities.ParallelProcessor.<>c__DisplayClass0_1`2.<<ProcessParallelAsync>b__0>d.MoveNext() in C:\VacancyImport\vacancy_import_v2\src\VacancyImport\Utilities\ParallelProcessor.cs:line 57
+[2025-07-22 13:00:38.008 +09:00 ERR] ファイル変更チェック中に1件のエラーが発生しました 
+[2025-07-22 13:00:38.022 +09:00 ERR] 最大リトライ回数に達しました (3回) 
+VacancyImport.Exceptions.ExcelFileException: ファイル更新チェック中にエラーが発生しました: 
+ ---> System.AggregateException: One or more errors occurred. (ファイル変更チェック中に1件のエラーが発生しました (The process cannot access the file '\\192.168.200.20\全社共有\SS予約表\2025年\神奈川\つるみ\~$【つるみ】2025年_SS予約表_241122_bk.xlsm' because it is being used by another process.))
+ ---> System.AggregateException: ファイル変更チェック中に1件のエラーが発生しました (The process cannot access the file '\\192.168.200.20\全社共有\SS予約表\2025年\神奈川\つるみ\~$【つるみ】2025年_SS予約表_241122_bk.xlsm' because it is being used by another process.)
+ ---> System.IO.IOException: The process cannot access the file '\\192.168.200.20\全社共有\SS予約表\2025年\神奈川\つるみ\~$【つるみ】2025年_SS予約表_241122_bk.xlsm' because it is being used by another process.
+   at Microsoft.Win32.SafeHandles.SafeFileHandle.CreateFile(String fullPath, FileMode mode, FileAccess access, FileShare share, FileOptions options)
+   at Microsoft.Win32.SafeHandles.SafeFileHandle.Open(String fullPath, FileMode mode, FileAccess access, FileShare share, FileOptions options, Int64 preallocationSize, Nullable`1 unixCreateMode)
+   at System.IO.Strategies.OSFileStreamStrategy..ctor(String path, FileMode mode, FileAccess access, FileShare share, FileOptions options, Int64 preallocationSize, Nullable`1 unixCreateMode)
+   at VacancyImport.Services.ExcelService.CalculateFileHashAsync(String filePath) in C:\VacancyImport\vacancy_import_v2\src\VacancyImport\Services\ExcelService.cs:line 365
+   at VacancyImport.Services.ExcelService.<>c__DisplayClass10_0.<<CheckFileUpdatesAsync>b__1>d.MoveNext() in C:\VacancyImport\vacancy_import_v2\src\VacancyImport\Services\ExcelService.cs:line 133
+--- End of stack trace from previous location ---
+   at VacancyImport.Utilities.ParallelProcessor.<>c__DisplayClass0_1`2.<<ProcessParallelAsync>b__0>d.MoveNext() in C:\VacancyImport\vacancy_import_v2\src\VacancyImport\Utilities\ParallelProcessor.cs:line 57
+   --- End of inner exception stack trace ---
+   at VacancyImport.Utilities.ParallelProcessor.ProcessParallelAsync[TInput,TOutput](IEnumerable`1 items, Func`3 processFunc, Int32 maxDegreeOfParallelism, ILogger logger, String operationName, CancellationToken cancellationToken) in C:\VacancyImport\vacancy_import_v2\src\VacancyImport\Utilities\ParallelProcessor.cs:line 87
+   --- End of inner exception stack trace ---
+   at System.Threading.Tasks.Task.ThrowIfExceptional(Boolean includeTaskCanceledExceptions)
+   at System.Threading.Tasks.Task`1.GetResultCore(Boolean waitCompletionNotification)
+   at VacancyImport.Services.ExcelService.<>c.<CheckFileUpdatesAsync>b__10_2(Task`1 t) in C:\VacancyImport\vacancy_import_v2\src\VacancyImport\Services\ExcelService.cs:line 149
+   at System.Threading.Tasks.ContinuationResultTaskFromResultTask`2.InnerInvoke()
+   at System.Threading.ExecutionContext.RunFromThreadPoolDispatchLoop(Thread threadPoolThread, ExecutionContext executionContext, ContextCallback callback, Object state)
+--- End of stack trace from previous location ---
+   at System.Threading.ExecutionContext.RunFromThreadPoolDispatchLoop(Thread threadPoolThread, ExecutionContext executionContext, ContextCallback callback, Object state)
+   at System.Threading.Tasks.Task.ExecuteWithThreadLocal(Task& currentTaskSlot, Thread threadPoolThread)
+--- End of stack trace from previous location ---
+   at VacancyImport.Services.ExcelService.<>c__DisplayClass10_0.<<CheckFileUpdatesAsync>b__0>d.MoveNext() in C:\VacancyImport\vacancy_import_v2\src\VacancyImport\Services\ExcelService.cs:line 110
+   --- End of inner exception stack trace ---
+   at VacancyImport.Services.ExcelService.<>c__DisplayClass10_0.<<CheckFileUpdatesAsync>b__0>d.MoveNext() in C:\VacancyImport\vacancy_import_v2\src\VacancyImport\Services\ExcelService.cs:line 163
+--- End of stack trace from previous location ---
+   at VacancyImport.Utilities.RetryPolicy.ExecuteWithRetryAsync[T](Func`1 func, Int32 retryCount, Int32 initialDelay, Int32 maxDelay, ILogger logger, CancellationToken cancellationToken) in C:\VacancyImport\vacancy_import_v2\src\VacancyImport\Utilities\RetryPolicy.cs:line 47
+[2025-07-22 13:00:38.060 +09:00 WRN] 処理時間が閾値を超えました: CheckFileUpdates - 16881.3127ms (閾値: 5000ms) 
+[2025-07-22 13:00:38.063 +09:00 WRN] 処理時間が閾値を超えました: main_loop - 16884.0285ms (閾値: 5000ms) 
+[2025-07-22 13:00:38.067 +09:00 ERR] パフォーマンス監視: エラーが記録されました - ExcelFileException: ファイル更新チェック中にエラーが発生しました:  
+VacancyImport.Exceptions.ExcelFileException: ファイル更新チェック中にエラーが発生しました: 
+ ---> System.AggregateException: One or more errors occurred. (ファイル変更チェック中に1件のエラーが発生しました (The process cannot access the file '\\192.168.200.20\全社共有\SS予約表\2025年\神奈川\つるみ\~$【つるみ】2025年_SS予約表_241122_bk.xlsm' because it is being used by another process.))
+ ---> System.AggregateException: ファイル変更チェック中に1件のエラーが発生しました (The process cannot access the file '\\192.168.200.20\全社共有\SS予約表\2025年\神奈川\つるみ\~$【つるみ】2025年_SS予約表_241122_bk.xlsm' because it is being used by another process.)
+ ---> System.IO.IOException: The process cannot access the file '\\192.168.200.20\全社共有\SS予約表\2025年\神奈川\つるみ\~$【つるみ】2025年_SS予約表_241122_bk.xlsm' because it is being used by another process.
+   at Microsoft.Win32.SafeHandles.SafeFileHandle.CreateFile(String fullPath, FileMode mode, FileAccess access, FileShare share, FileOptions options)
+   at Microsoft.Win32.SafeHandles.SafeFileHandle.Open(String fullPath, FileMode mode, FileAccess access, FileShare share, FileOptions options, Int64 preallocationSize, Nullable`1 unixCreateMode)
+   at System.IO.Strategies.OSFileStreamStrategy..ctor(String path, FileMode mode, FileAccess access, FileShare share, FileOptions options, Int64 preallocationSize, Nullable`1 unixCreateMode)
+   at VacancyImport.Services.ExcelService.CalculateFileHashAsync(String filePath) in C:\VacancyImport\vacancy_import_v2\src\VacancyImport\Services\ExcelService.cs:line 365
+   at VacancyImport.Services.ExcelService.<>c__DisplayClass10_0.<<CheckFileUpdatesAsync>b__1>d.MoveNext() in C:\VacancyImport\vacancy_import_v2\src\VacancyImport\Services\ExcelService.cs:line 133
+--- End of stack trace from previous location ---
+   at VacancyImport.Utilities.ParallelProcessor.<>c__DisplayClass0_1`2.<<ProcessParallelAsync>b__0>d.MoveNext() in C:\VacancyImport\vacancy_import_v2\src\VacancyImport\Utilities\ParallelProcessor.cs:line 57
+   --- End of inner exception stack trace ---
+   at VacancyImport.Utilities.ParallelProcessor.ProcessParallelAsync[TInput,TOutput](IEnumerable`1 items, Func`3 processFunc, Int32 maxDegreeOfParallelism, ILogger logger, String operationName, CancellationToken cancellationToken) in C:\VacancyImport\vacancy_import_v2\src\VacancyImport\Utilities\ParallelProcessor.cs:line 87
+   --- End of inner exception stack trace ---
+   at System.Threading.Tasks.Task.ThrowIfExceptional(Boolean includeTaskCanceledExceptions)
+   at System.Threading.Tasks.Task`1.GetResultCore(Boolean waitCompletionNotification)
+   at VacancyImport.Services.ExcelService.<>c.<CheckFileUpdatesAsync>b__10_2(Task`1 t) in C:\VacancyImport\vacancy_import_v2\src\VacancyImport\Services\ExcelService.cs:line 149
+   at System.Threading.Tasks.ContinuationResultTaskFromResultTask`2.InnerInvoke()
+   at System.Threading.ExecutionContext.RunFromThreadPoolDispatchLoop(Thread threadPoolThread, ExecutionContext executionContext, ContextCallback callback, Object state)
+--- End of stack trace from previous location ---
+   at System.Threading.ExecutionContext.RunFromThreadPoolDispatchLoop(Thread threadPoolThread, ExecutionContext executionContext, ContextCallback callback, Object state)
+   at System.Threading.Tasks.Task.ExecuteWithThreadLocal(Task& currentTaskSlot, Thread threadPoolThread)
+--- End of stack trace from previous location ---
+   at VacancyImport.Services.ExcelService.<>c__DisplayClass10_0.<<CheckFileUpdatesAsync>b__0>d.MoveNext() in C:\VacancyImport\vacancy_import_v2\src\VacancyImport\Services\ExcelService.cs:line 110
+   --- End of inner exception stack trace ---
+   at VacancyImport.Services.ExcelService.<>c__DisplayClass10_0.<<CheckFileUpdatesAsync>b__0>d.MoveNext() in C:\VacancyImport\vacancy_import_v2\src\VacancyImport\Services\ExcelService.cs:line 163
+--- End of stack trace from previous location ---
+   at VacancyImport.Utilities.RetryPolicy.ExecuteWithRetryAsync[T](Func`1 func, Int32 retryCount, Int32 initialDelay, Int32 maxDelay, ILogger logger, CancellationToken cancellationToken) in C:\VacancyImport\vacancy_import_v2\src\VacancyImport\Utilities\RetryPolicy.cs:line 47
+   at VacancyImport.Utilities.RetryPolicy.ExecuteWithRetryAsync[T](Func`1 func, Int32 retryCount, Int32 initialDelay, Int32 maxDelay, ILogger logger, CancellationToken cancellationToken) in C:\VacancyImport\vacancy_import_v2\src\VacancyImport\Utilities\RetryPolicy.cs:line 65
+   at VacancyImport.Services.ExcelService.CheckFileUpdatesAsync(String filePath) in C:\VacancyImport\vacancy_import_v2\src\VacancyImport\Services\ExcelService.cs:line 92
+   at VacancyImport.Services.ExcelService.CheckFileUpdatesAsync() in C:\VacancyImport\vacancy_import_v2\src\VacancyImport\Services\ExcelService.cs:line 74
+   at VacancyImport.Services.ServiceHost.ExecuteBusinessLogicAsync(CancellationToken cancellationToken) in C:\VacancyImport\vacancy_import_v2\src\VacancyImport\Services\ServiceHost.cs:line 323
+   at VacancyImport.Services.ServiceHost.ExecuteAsync(CancellationToken stoppingToken) in C:\VacancyImport\vacancy_import_v2\src\VacancyImport\Services\ServiceHost.cs:line 132
+[2025-07-22 13:00:38.114 +09:00 ERR] メインループでエラーが発生しました (連続エラー数: 3) 
+VacancyImport.Exceptions.ExcelFileException: ファイル更新チェック中にエラーが発生しました: 
+ ---> System.AggregateException: One or more errors occurred. (ファイル変更チェック中に1件のエラーが発生しました (The process cannot access the file '\\192.168.200.20\全社共有\SS予約表\2025年\神奈川\つるみ\~$【つるみ】2025年_SS予約表_241122_bk.xlsm' because it is being used by another process.))
+ ---> System.AggregateException: ファイル変更チェック中に1件のエラーが発生しました (The process cannot access the file '\\192.168.200.20\全社共有\SS予約表\2025年\神奈川\つるみ\~$【つるみ】2025年_SS予約表_241122_bk.xlsm' because it is being used by another process.)
+ ---> System.IO.IOException: The process cannot access the file '\\192.168.200.20\全社共有\SS予約表\2025年\神奈川\つるみ\~$【つるみ】2025年_SS予約表_241122_bk.xlsm' because it is being used by another process.
+   at Microsoft.Win32.SafeHandles.SafeFileHandle.CreateFile(String fullPath, FileMode mode, FileAccess access, FileShare share, FileOptions options)
+   at Microsoft.Win32.SafeHandles.SafeFileHandle.Open(String fullPath, FileMode mode, FileAccess access, FileShare share, FileOptions options, Int64 preallocationSize, Nullable`1 unixCreateMode)
+   at System.IO.Strategies.OSFileStreamStrategy..ctor(String path, FileMode mode, FileAccess access, FileShare share, FileOptions options, Int64 preallocationSize, Nullable`1 unixCreateMode)
+   at VacancyImport.Services.ExcelService.CalculateFileHashAsync(String filePath) in C:\VacancyImport\vacancy_import_v2\src\VacancyImport\Services\ExcelService.cs:line 365
+   at VacancyImport.Services.ExcelService.<>c__DisplayClass10_0.<<CheckFileUpdatesAsync>b__1>d.MoveNext() in C:\VacancyImport\vacancy_import_v2\src\VacancyImport\Services\ExcelService.cs:line 133
+--- End of stack trace from previous location ---
+   at VacancyImport.Utilities.ParallelProcessor.<>c__DisplayClass0_1`2.<<ProcessParallelAsync>b__0>d.MoveNext() in C:\VacancyImport\vacancy_import_v2\src\VacancyImport\Utilities\ParallelProcessor.cs:line 57
+   --- End of inner exception stack trace ---
+   at VacancyImport.Utilities.ParallelProcessor.ProcessParallelAsync[TInput,TOutput](IEnumerable`1 items, Func`3 processFunc, Int32 maxDegreeOfParallelism, ILogger logger, String operationName, CancellationToken cancellationToken) in C:\VacancyImport\vacancy_import_v2\src\VacancyImport\Utilities\ParallelProcessor.cs:line 87
+   --- End of inner exception stack trace ---
+   at System.Threading.Tasks.Task.ThrowIfExceptional(Boolean includeTaskCanceledExceptions)
+   at System.Threading.Tasks.Task`1.GetResultCore(Boolean waitCompletionNotification)
+   at VacancyImport.Services.ExcelService.<>c.<CheckFileUpdatesAsync>b__10_2(Task`1 t) in C:\VacancyImport\vacancy_import_v2\src\VacancyImport\Services\ExcelService.cs:line 149
+   at System.Threading.Tasks.ContinuationResultTaskFromResultTask`2.InnerInvoke()
+   at System.Threading.ExecutionContext.RunFromThreadPoolDispatchLoop(Thread threadPoolThread, ExecutionContext executionContext, ContextCallback callback, Object state)
+--- End of stack trace from previous location ---
+   at System.Threading.ExecutionContext.RunFromThreadPoolDispatchLoop(Thread threadPoolThread, ExecutionContext executionContext, ContextCallback callback, Object state)
+   at System.Threading.Tasks.Task.ExecuteWithThreadLocal(Task& currentTaskSlot, Thread threadPoolThread)
+--- End of stack trace from previous location ---
+   at VacancyImport.Services.ExcelService.<>c__DisplayClass10_0.<<CheckFileUpdatesAsync>b__0>d.MoveNext() in C:\VacancyImport\vacancy_import_v2\src\VacancyImport\Services\ExcelService.cs:line 110
+   --- End of inner exception stack trace ---
+   at VacancyImport.Services.ExcelService.<>c__DisplayClass10_0.<<CheckFileUpdatesAsync>b__0>d.MoveNext() in C:\VacancyImport\vacancy_import_v2\src\VacancyImport\Services\ExcelService.cs:line 163
+--- End of stack trace from previous location ---
+   at VacancyImport.Utilities.RetryPolicy.ExecuteWithRetryAsync[T](Func`1 func, Int32 retryCount, Int32 initialDelay, Int32 maxDelay, ILogger logger, CancellationToken cancellationToken) in C:\VacancyImport\vacancy_import_v2\src\VacancyImport\Utilities\RetryPolicy.cs:line 47
+   at VacancyImport.Utilities.RetryPolicy.ExecuteWithRetryAsync[T](Func`1 func, Int32 retryCount, Int32 initialDelay, Int32 maxDelay, ILogger logger, CancellationToken cancellationToken) in C:\VacancyImport\vacancy_import_v2\src\VacancyImport\Utilities\RetryPolicy.cs:line 65
+   at VacancyImport.Services.ExcelService.CheckFileUpdatesAsync(String filePath) in C:\VacancyImport\vacancy_import_v2\src\VacancyImport\Services\ExcelService.cs:line 92
+   at VacancyImport.Services.ExcelService.CheckFileUpdatesAsync() in C:\VacancyImport\vacancy_import_v2\src\VacancyImport\Services\ExcelService.cs:line 74
+   at VacancyImport.Services.ServiceHost.ExecuteBusinessLogicAsync(CancellationToken cancellationToken) in C:\VacancyImport\vacancy_import_v2\src\VacancyImport\Services\ServiceHost.cs:line 323
+   at VacancyImport.Services.ServiceHost.ExecuteAsync(CancellationToken stoppingToken) in C:\VacancyImport\vacancy_import_v2\src\VacancyImport\Services\ServiceHost.cs:line 132
+[2025-07-22 13:00:38.133 +09:00 INF] Start processing HTTP request POST https://auth.worksmobile.com/oauth2/v2.0/token 
+[2025-07-22 13:00:38.138 +09:00 INF] Sending HTTP request POST https://auth.worksmobile.com/oauth2/v2.0/token 
+[2025-07-22 13:00:38.203 +09:00 INF] Received HTTP response headers after 64.2683ms - 400 
+[2025-07-22 13:00:38.205 +09:00 INF] End processing HTTP request after 72.5994ms - 400 
+[2025-07-22 13:00:38.207 +09:00 ERR] アクセストークンの取得中にエラーが発生しました 
+System.Net.Http.HttpRequestException: Response status code does not indicate success: 400.
+   at System.Net.Http.HttpResponseMessage.EnsureSuccessStatusCode()
+   at VacancyImport.Services.LineWorksService.GetAccessTokenAsync() in C:\VacancyImport\vacancy_import_v2\src\VacancyImport\Services\LineWorksService.cs:line 55
+[2025-07-22 13:00:38.211 +09:00 ERR] エラー通知の送信に失敗しました 
+System.Net.Http.HttpRequestException: Response status code does not indicate success: 400.
+   at System.Net.Http.HttpResponseMessage.EnsureSuccessStatusCode()
+   at VacancyImport.Services.LineWorksService.GetAccessTokenAsync() in C:\VacancyImport\vacancy_import_v2\src\VacancyImport\Services\LineWorksService.cs:line 55
+   at VacancyImport.Services.LineWorksService.SendMessageAsync(Object messageObj) in C:\VacancyImport\vacancy_import_v2\src\VacancyImport\Services\LineWorksService.cs:line 169
+   at VacancyImport.Services.LineWorksService.SendErrorNotificationAsync(String errorMessage, Int32 errorCount) in C:\VacancyImport\vacancy_import_v2\src\VacancyImport\Services\LineWorksService.cs:line 154
+[2025-07-22 13:00:38.218 +09:00 ERR] BackgroundService failed 
+VacancyImport.Exceptions.ExcelFileException: ファイル更新チェック中にエラーが発生しました: 
+ ---> System.AggregateException: One or more errors occurred. (ファイル変更チェック中に1件のエラーが発生しました (The process cannot access the file '\\192.168.200.20\全社共有\SS予約表\2025年\神奈川\つるみ\~$【つるみ】2025年_SS予約表_241122_bk.xlsm' because it is being used by another process.))
+ ---> System.AggregateException: ファイル変更チェック中に1件のエラーが発生しました (The process cannot access the file '\\192.168.200.20\全社共有\SS予約表\2025年\神奈川\つるみ\~$【つるみ】2025年_SS予約表_241122_bk.xlsm' because it is being used by another process.)
+ ---> System.IO.IOException: The process cannot access the file '\\192.168.200.20\全社共有\SS予約表\2025年\神奈川\つるみ\~$【つるみ】2025年_SS予約表_241122_bk.xlsm' because it is being used by another process.
+   at Microsoft.Win32.SafeHandles.SafeFileHandle.CreateFile(String fullPath, FileMode mode, FileAccess access, FileShare share, FileOptions options)
+   at Microsoft.Win32.SafeHandles.SafeFileHandle.Open(String fullPath, FileMode mode, FileAccess access, FileShare share, FileOptions options, Int64 preallocationSize, Nullable`1 unixCreateMode)
+   at System.IO.Strategies.OSFileStreamStrategy..ctor(String path, FileMode mode, FileAccess access, FileShare share, FileOptions options, Int64 preallocationSize, Nullable`1 unixCreateMode)
+   at VacancyImport.Services.ExcelService.CalculateFileHashAsync(String filePath) in C:\VacancyImport\vacancy_import_v2\src\VacancyImport\Services\ExcelService.cs:line 365
+   at VacancyImport.Services.ExcelService.<>c__DisplayClass10_0.<<CheckFileUpdatesAsync>b__1>d.MoveNext() in C:\VacancyImport\vacancy_import_v2\src\VacancyImport\Services\ExcelService.cs:line 133
+--- End of stack trace from previous location ---
+   at VacancyImport.Utilities.ParallelProcessor.<>c__DisplayClass0_1`2.<<ProcessParallelAsync>b__0>d.MoveNext() in C:\VacancyImport\vacancy_import_v2\src\VacancyImport\Utilities\ParallelProcessor.cs:line 57
+   --- End of inner exception stack trace ---
+   at VacancyImport.Utilities.ParallelProcessor.ProcessParallelAsync[TInput,TOutput](IEnumerable`1 items, Func`3 processFunc, Int32 maxDegreeOfParallelism, ILogger logger, String operationName, CancellationToken cancellationToken) in C:\VacancyImport\vacancy_import_v2\src\VacancyImport\Utilities\ParallelProcessor.cs:line 87
+   --- End of inner exception stack trace ---
+   at System.Threading.Tasks.Task.ThrowIfExceptional(Boolean includeTaskCanceledExceptions)
+   at System.Threading.Tasks.Task`1.GetResultCore(Boolean waitCompletionNotification)
+   at VacancyImport.Services.ExcelService.<>c.<CheckFileUpdatesAsync>b__10_2(Task`1 t) in C:\VacancyImport\vacancy_import_v2\src\VacancyImport\Services\ExcelService.cs:line 149
+   at System.Threading.Tasks.ContinuationResultTaskFromResultTask`2.InnerInvoke()
+   at System.Threading.ExecutionContext.RunFromThreadPoolDispatchLoop(Thread threadPoolThread, ExecutionContext executionContext, ContextCallback callback, Object state)
+--- End of stack trace from previous location ---
+   at System.Threading.ExecutionContext.RunFromThreadPoolDispatchLoop(Thread threadPoolThread, ExecutionContext executionContext, ContextCallback callback, Object state)
+   at System.Threading.Tasks.Task.ExecuteWithThreadLocal(Task& currentTaskSlot, Thread threadPoolThread)
+--- End of stack trace from previous location ---
+   at VacancyImport.Services.ExcelService.<>c__DisplayClass10_0.<<CheckFileUpdatesAsync>b__0>d.MoveNext() in C:\VacancyImport\vacancy_import_v2\src\VacancyImport\Services\ExcelService.cs:line 110
+   --- End of inner exception stack trace ---
+   at VacancyImport.Services.ExcelService.<>c__DisplayClass10_0.<<CheckFileUpdatesAsync>b__0>d.MoveNext() in C:\VacancyImport\vacancy_import_v2\src\VacancyImport\Services\ExcelService.cs:line 163
+--- End of stack trace from previous location ---
+   at VacancyImport.Utilities.RetryPolicy.ExecuteWithRetryAsync[T](Func`1 func, Int32 retryCount, Int32 initialDelay, Int32 maxDelay, ILogger logger, CancellationToken cancellationToken) in C:\VacancyImport\vacancy_import_v2\src\VacancyImport\Utilities\RetryPolicy.cs:line 47
+   at VacancyImport.Utilities.RetryPolicy.ExecuteWithRetryAsync[T](Func`1 func, Int32 retryCount, Int32 initialDelay, Int32 maxDelay, ILogger logger, CancellationToken cancellationToken) in C:\VacancyImport\vacancy_import_v2\src\VacancyImport\Utilities\RetryPolicy.cs:line 65
+   at VacancyImport.Services.ExcelService.CheckFileUpdatesAsync(String filePath) in C:\VacancyImport\vacancy_import_v2\src\VacancyImport\Services\ExcelService.cs:line 92
+   at VacancyImport.Services.ExcelService.CheckFileUpdatesAsync() in C:\VacancyImport\vacancy_import_v2\src\VacancyImport\Services\ExcelService.cs:line 74
+   at VacancyImport.Services.ServiceHost.ExecuteBusinessLogicAsync(CancellationToken cancellationToken) in C:\VacancyImport\vacancy_import_v2\src\VacancyImport\Services\ServiceHost.cs:line 323
+   at VacancyImport.Services.ServiceHost.ExecuteAsync(CancellationToken stoppingToken) in C:\VacancyImport\vacancy_import_v2\src\VacancyImport\Services\ServiceHost.cs:line 132
+   at VacancyImport.Services.ServiceHost.ExecuteAsync(CancellationToken stoppingToken)
+   at Microsoft.Extensions.Hosting.Internal.Host.TryExecuteBackgroundServiceAsync(BackgroundService backgroundService)
+[2025-07-22 13:00:38.249 +09:00 FTL] The HostOptions.BackgroundServiceExceptionBehavior is configured to StopHost. A BackgroundService has thrown an unhandled exception, and the IHost instance is stopping. To avoid this behavior, configure this to Ignore; however the BackgroundService will not be restarted. 
+VacancyImport.Exceptions.ExcelFileException: ファイル更新チェック中にエラーが発生しました: 
+ ---> System.AggregateException: One or more errors occurred. (ファイル変更チェック中に1件のエラーが発生しました (The process cannot access the file '\\192.168.200.20\全社共有\SS予約表\2025年\神奈川\つるみ\~$【つるみ】2025年_SS予約表_241122_bk.xlsm' because it is being used by another process.))
+ ---> System.AggregateException: ファイル変更チェック中に1件のエラーが発生しました (The process cannot access the file '\\192.168.200.20\全社共有\SS予約表\2025年\神奈川\つるみ\~$【つるみ】2025年_SS予約表_241122_bk.xlsm' because it is being used by another process.)
+ ---> System.IO.IOException: The process cannot access the file '\\192.168.200.20\全社共有\SS予約表\2025年\神奈川\つるみ\~$【つるみ】2025年_SS予約表_241122_bk.xlsm' because it is being used by another process.
+   at Microsoft.Win32.SafeHandles.SafeFileHandle.CreateFile(String fullPath, FileMode mode, FileAccess access, FileShare share, FileOptions options)
+   at Microsoft.Win32.SafeHandles.SafeFileHandle.Open(String fullPath, FileMode mode, FileAccess access, FileShare share, FileOptions options, Int64 preallocationSize, Nullable`1 unixCreateMode)
+   at System.IO.Strategies.OSFileStreamStrategy..ctor(String path, FileMode mode, FileAccess access, FileShare share, FileOptions options, Int64 preallocationSize, Nullable`1 unixCreateMode)
+   at VacancyImport.Services.ExcelService.CalculateFileHashAsync(String filePath) in C:\VacancyImport\vacancy_import_v2\src\VacancyImport\Services\ExcelService.cs:line 365
+   at VacancyImport.Services.ExcelService.<>c__DisplayClass10_0.<<CheckFileUpdatesAsync>b__1>d.MoveNext() in C:\VacancyImport\vacancy_import_v2\src\VacancyImport\Services\ExcelService.cs:line 133
+--- End of stack trace from previous location ---
+   at VacancyImport.Utilities.ParallelProcessor.<>c__DisplayClass0_1`2.<<ProcessParallelAsync>b__0>d.MoveNext() in C:\VacancyImport\vacancy_import_v2\src\VacancyImport\Utilities\ParallelProcessor.cs:line 57
+   --- End of inner exception stack trace ---
+   at VacancyImport.Utilities.ParallelProcessor.ProcessParallelAsync[TInput,TOutput](IEnumerable`1 items, Func`3 processFunc, Int32 maxDegreeOfParallelism, ILogger logger, String operationName, CancellationToken cancellationToken) in C:\VacancyImport\vacancy_import_v2\src\VacancyImport\Utilities\ParallelProcessor.cs:line 87
+   --- End of inner exception stack trace ---
+   at System.Threading.Tasks.Task.ThrowIfExceptional(Boolean includeTaskCanceledExceptions)
+   at System.Threading.Tasks.Task`1.GetResultCore(Boolean waitCompletionNotification)
+   at VacancyImport.Services.ExcelService.<>c.<CheckFileUpdatesAsync>b__10_2(Task`1 t) in C:\VacancyImport\vacancy_import_v2\src\VacancyImport\Services\ExcelService.cs:line 149
+   at System.Threading.Tasks.ContinuationResultTaskFromResultTask`2.InnerInvoke()
+   at System.Threading.ExecutionContext.RunFromThreadPoolDispatchLoop(Thread threadPoolThread, ExecutionContext executionContext, ContextCallback callback, Object state)
+--- End of stack trace from previous location ---
+   at System.Threading.ExecutionContext.RunFromThreadPoolDispatchLoop(Thread threadPoolThread, ExecutionContext executionContext, ContextCallback callback, Object state)
+   at System.Threading.Tasks.Task.ExecuteWithThreadLocal(Task& currentTaskSlot, Thread threadPoolThread)
+--- End of stack trace from previous location ---
+   at VacancyImport.Services.ExcelService.<>c__DisplayClass10_0.<<CheckFileUpdatesAsync>b__0>d.MoveNext() in C:\VacancyImport\vacancy_import_v2\src\VacancyImport\Services\ExcelService.cs:line 110
+   --- End of inner exception stack trace ---
+   at VacancyImport.Services.ExcelService.<>c__DisplayClass10_0.<<CheckFileUpdatesAsync>b__0>d.MoveNext() in C:\VacancyImport\vacancy_import_v2\src\VacancyImport\Services\ExcelService.cs:line 163
+--- End of stack trace from previous location ---
+   at VacancyImport.Utilities.RetryPolicy.ExecuteWithRetryAsync[T](Func`1 func, Int32 retryCount, Int32 initialDelay, Int32 maxDelay, ILogger logger, CancellationToken cancellationToken) in C:\VacancyImport\vacancy_import_v2\src\VacancyImport\Utilities\RetryPolicy.cs:line 47
+   at VacancyImport.Utilities.RetryPolicy.ExecuteWithRetryAsync[T](Func`1 func, Int32 retryCount, Int32 initialDelay, Int32 maxDelay, ILogger logger, CancellationToken cancellationToken) in C:\VacancyImport\vacancy_import_v2\src\VacancyImport\Utilities\RetryPolicy.cs:line 65
+   at VacancyImport.Services.ExcelService.CheckFileUpdatesAsync(String filePath) in C:\VacancyImport\vacancy_import_v2\src\VacancyImport\Services\ExcelService.cs:line 92
+   at VacancyImport.Services.ExcelService.CheckFileUpdatesAsync() in C:\VacancyImport\vacancy_import_v2\src\VacancyImport\Services\ExcelService.cs:line 74
+   at VacancyImport.Services.ServiceHost.ExecuteBusinessLogicAsync(CancellationToken cancellationToken) in C:\VacancyImport\vacancy_import_v2\src\VacancyImport\Services\ServiceHost.cs:line 323
+   at VacancyImport.Services.ServiceHost.ExecuteAsync(CancellationToken stoppingToken) in C:\VacancyImport\vacancy_import_v2\src\VacancyImport\Services\ServiceHost.cs:line 132
+   at VacancyImport.Services.ServiceHost.ExecuteAsync(CancellationToken stoppingToken)
+   at Microsoft.Extensions.Hosting.Internal.Host.TryExecuteBackgroundServiceAsync(BackgroundService backgroundService)
+[2025-07-22 13:00:38.273 +09:00 INF] Application is shutting down... 
+[2025-07-22 13:00:38.277 +09:00 INF] ⏹️ 予約管理システム連携サービス の停止処理を開始します... 
+[2025-07-22 13:01:08.297 +09:00 INF] 🔄 予約管理システム連携サービス が正常に停止しました 
+[2025-07-22 13:01:08.327 +09:00 INF] 📝 ログをフラッシュしています... 

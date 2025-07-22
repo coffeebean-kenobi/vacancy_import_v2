@@ -66,7 +66,7 @@ namespace VacancyImport.Services
             }
         }
 
-        private async Task<bool> CheckDiskSpaceAsync(HealthCheckResult result)
+        private Task<bool> CheckDiskSpaceAsync(HealthCheckResult result)
         {
             try
             {
@@ -76,20 +76,20 @@ namespace VacancyImport.Services
                 if (freeSpaceGB < 1) // 1GB未満の場合は警告
                 {
                     result.FailedChecks.Add($"低ディスク容量: {freeSpaceGB:F1}GB");
-                    return false;
+                    return Task.FromResult(false);
                 }
                 
-                return true;
+                return Task.FromResult(true);
             }
             catch (Exception ex)
             {
                 _logger.LogWarning(ex, "ディスク容量チェックに失敗しました");
                 result.FailedChecks.Add("ディスク容量チェック失敗");
-                return false;
+                return Task.FromResult(false);
             }
         }
 
-        private async Task<bool> CheckExcelPathAccessAsync(HealthCheckResult result)
+        private Task<bool> CheckExcelPathAccessAsync(HealthCheckResult result)
         {
             try
             {
@@ -99,20 +99,20 @@ namespace VacancyImport.Services
                 if (!Directory.Exists(excelPath))
                 {
                     result.FailedChecks.Add($"Excelパスにアクセスできません: {excelPath}");
-                    return false;
+                    return Task.FromResult(false);
                 }
                 
-                return true;
+                return Task.FromResult(true);
             }
             catch (Exception ex)
             {
                 _logger.LogWarning(ex, "Excelパスアクセスチェックに失敗しました");
                 result.FailedChecks.Add("Excelパスアクセスチェック失敗");
-                return false;
+                return Task.FromResult(false);
             }
         }
 
-        private async Task<bool> CheckSupabaseConnectionAsync(HealthCheckResult result)
+        private Task<bool> CheckSupabaseConnectionAsync(HealthCheckResult result)
         {
             try
             {
@@ -120,21 +120,21 @@ namespace VacancyImport.Services
                     string.IsNullOrEmpty(_settings.SupabaseSettings.Key))
                 {
                     result.FailedChecks.Add("Supabase設定が不完全です");
-                    return false;
+                    return Task.FromResult(false);
                 }
                 
                 // 簡易接続チェック（実際のAPI呼び出しは行わない）
-                return true;
+                return Task.FromResult(true);
             }
             catch (Exception ex)
             {
                 _logger.LogWarning(ex, "Supabase接続チェックに失敗しました");
                 result.FailedChecks.Add("Supabase接続チェック失敗");
-                return false;
+                return Task.FromResult(false);
             }
         }
 
-        private async Task<bool> CheckLineWorksConfigurationAsync(HealthCheckResult result)
+        private Task<bool> CheckLineWorksConfigurationAsync(HealthCheckResult result)
         {
             try
             {
@@ -144,20 +144,20 @@ namespace VacancyImport.Services
                     string.IsNullOrEmpty(lineWorksSettings.ClientSecret))
                 {
                     result.FailedChecks.Add("LINE WORKS設定が不完全です");
-                    return false;
+                    return Task.FromResult(false);
                 }
                 
-                return true;
+                return Task.FromResult(true);
             }
             catch (Exception ex)
             {
                 _logger.LogWarning(ex, "LINE WORKS設定チェックに失敗しました");
                 result.FailedChecks.Add("LINE WORKS設定チェック失敗");
-                return false;
+                return Task.FromResult(false);
             }
         }
 
-        private async Task<bool> CheckProofListDirectoryAsync(HealthCheckResult result)
+        private Task<bool> CheckProofListDirectoryAsync(HealthCheckResult result)
         {
             try
             {
@@ -170,16 +170,16 @@ namespace VacancyImport.Services
                 
                 // 書き込み権限テスト
                 var testFile = Path.Combine(proofDirectory, "healthcheck.tmp");
-                await File.WriteAllTextAsync(testFile, "test");
+                File.WriteAllTextAsync(testFile, "test");
                 File.Delete(testFile);
                 
-                return true;
+                return Task.FromResult(true);
             }
             catch (Exception ex)
             {
                 _logger.LogWarning(ex, "プルーフリストディレクトリチェックに失敗しました");
                 result.FailedChecks.Add("プルーフリストディレクトリアクセス失敗");
-                return false;
+                return Task.FromResult(false);
             }
         }
     }

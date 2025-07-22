@@ -1,5 +1,6 @@
 using System;
 using System.Diagnostics;
+using System.Runtime.InteropServices;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using VacancyImport.Configuration;
@@ -7,19 +8,29 @@ using VacancyImport.Configuration;
 namespace VacancyImport.Services
 {
     /// <summary>
-    /// Windows イベントログサービス
+    /// クロスプラットフォーム対応イベントログサービス
     /// </summary>
     public class EventLogService
     {
         private readonly ILogger<EventLogService> _logger;
         private readonly ServiceSettings _serviceSettings;
         private EventLog? _eventLog;
+        private readonly bool _isWindows;
 
         public EventLogService(ILogger<EventLogService> logger, IOptions<ServiceSettings> serviceSettings)
         {
             _logger = logger;
             _serviceSettings = serviceSettings.Value;
-            InitializeEventLog();
+            _isWindows = RuntimeInformation.IsOSPlatform(OSPlatform.Windows);
+            
+            if (_isWindows)
+            {
+                InitializeEventLog();
+            }
+            else
+            {
+                _logger.LogInformation("非Windowsプラットフォームのため、イベントログの代わりにファイルログを使用します");
+            }
         }
 
         private void InitializeEventLog()
@@ -127,7 +138,23 @@ namespace VacancyImport.Services
         {
             try
             {
-                _eventLog?.WriteEntry(message, type, eventId);
+                if (_isWindows && _eventLog != null)
+                {
+                    _eventLog.WriteEntry(message, type, eventId);
+                }
+                else
+                {
+                    // 非Windowsプラットフォームではファイルログに出力
+                    var logLevel = type switch
+                    {
+                        EventLogEntryType.Information => LogLevel.Information,
+                        EventLogEntryType.Warning => LogLevel.Warning,
+                        EventLogEntryType.Error => LogLevel.Error,
+                        _ => LogLevel.Information
+                    };
+                    
+                    _logger.Log(logLevel, "[EventLog] {Message} (EventId: {EventId})", message, eventId);
+                }
             }
             catch (Exception ex)
             {
@@ -150,7 +177,10 @@ namespace VacancyImport.Services
 
         public void Dispose()
         {
-            _eventLog?.Dispose();
+            if (_isWindows)
+            {
+                _eventLog?.Dispose();
+            }
         }
     }
 } 

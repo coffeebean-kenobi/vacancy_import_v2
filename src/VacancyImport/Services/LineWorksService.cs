@@ -25,11 +25,17 @@ public class LineWorksService : ILineWorksService
     /// <summary>
     /// コンストラクタ
     /// </summary>
-    public LineWorksService(IOptions<AppSettings> settings, ILogger<LineWorksService> logger, HttpClient httpClient)
+    public LineWorksService(IOptions<AppSettings> settings, ILogger<LineWorksService> logger, IHttpClientFactory httpClientFactory)
     {
         _settings = settings.Value.LineWorksSettings;
         _logger = logger;
-        _httpClient = httpClient;
+        _httpClient = httpClientFactory.CreateClient("LineWorksClient");
+        
+        // Windows Service環境での適切なタイムアウト設定
+        if (!Environment.UserInteractive)
+        {
+            _logger.LogInformation("Windows Service環境でのLINE WORKS接続設定を適用します");
+        }
     }
 
     /// <summary>
@@ -166,22 +172,63 @@ public class LineWorksService : ILineWorksService
     /// </summary>
     private async Task SendMessageAsync(object messageObj)
     {
-        var token = await GetAccessTokenAsync();
-        var url = string.Format(_settings.MessageUrl, _settings.BotId);
-
-        var request = new HttpRequestMessage(HttpMethod.Post, url)
+        const int maxRetries = 2;
+        var timeoutSeconds = Environment.UserInteractive ? 30 : 15;
+        
+        for (int attempt = 1; attempt <= maxRetries; attempt++)
         {
-            Content = new StringContent(
-                JsonSerializer.Serialize(messageObj),
-                Encoding.UTF8,
-                "application/json"
-            )
-        };
+            try
+            {
+                _logger.LogDebug("LINE WORKSメッセージ送信を試行中... (試行 {Attempt}/{MaxRetries})", attempt, maxRetries);
+                
+                var token = await GetAccessTokenAsync();
+                var url = string.Format(_settings.MessageUrl, _settings.BotId);
 
-        request.Headers.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", token);
+                var request = new HttpRequestMessage(HttpMethod.Post, url)
+                {
+                    Content = new StringContent(
+                        JsonSerializer.Serialize(messageObj),
+                        Encoding.UTF8,
+                        "application/json"
+                    )
+                };
 
-        var response = await _httpClient.SendAsync(request);
-        response.EnsureSuccessStatusCode();
+                request.Headers.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", token);
+
+                // タイムアウト付きでリクエストを送信
+                using var cts = new CancellationTokenSource(TimeSpan.FromSeconds(timeoutSeconds));
+                var response = await _httpClient.SendAsync(request, cts.Token);
+                response.EnsureSuccessStatusCode();
+                
+                _logger.LogDebug("LINE WORKSメッセージ送信が完了しました (試行 {Attempt})", attempt);
+                return;
+            }
+            catch (OperationCanceledException ex) when (ex.CancellationToken.IsCancellationRequested)
+            {
+                _logger.LogWarning("LINE WORKSメッセージ送信がタイムアウトしました (試行 {Attempt}/{MaxRetries}, タイムアウト: {Timeout}秒)", 
+                    attempt, maxRetries, timeoutSeconds);
+                
+                if (attempt == maxRetries)
+                {
+                    throw new Exception($"LINE WORKSメッセージ送信がタイムアウトしました (タイムアウト: {timeoutSeconds}秒)");
+                }
+                
+                // リトライ前に少し待機
+                await Task.Delay(1000 * attempt, CancellationToken.None);
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "LINE WORKSメッセージ送信中にエラーが発生しました (試行 {Attempt}/{MaxRetries})", attempt, maxRetries);
+                
+                if (attempt == maxRetries)
+                {
+                    throw;
+                }
+                
+                // リトライ前に少し待機
+                await Task.Delay(1000 * attempt, CancellationToken.None);
+            }
+        }
     }
 
     /// <summary>

@@ -9,7 +9,7 @@
    - ファイルパス：tests/VacancyImport.Tests/VacancyImport.Tests.csproj
 
 2. テスト対象クラス：
-   - ReservationData
+   - FacilityMonthlyReservation
    - ExcelService
    - SupabaseService
    - LineWorksService

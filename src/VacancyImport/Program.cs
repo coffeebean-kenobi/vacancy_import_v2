@@ -4,6 +4,7 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Serilog;
 using Serilog.Extensions.Hosting;
+using System.Runtime.InteropServices;
 using VacancyImport.Configuration;
 using VacancyImport.Services;
 using VacancyImport.Utilities;
@@ -162,9 +163,22 @@ public class Program
                 services.Configure<HostOptions>(options =>
                 {
                     options.ServicesStartConcurrently = true;
-                    options.ServicesStopConcurrently = true;
+                    options.ServicesStopConcurrently = false; // 順次停止で安全な終了を確保
                     options.BackgroundServiceExceptionBehavior = BackgroundServiceExceptionBehavior.StopHost;
-                    options.ShutdownTimeout = TimeSpan.FromSeconds(30);
+                    
+                    // Windows Service環境での適切なシャットダウンタイムアウト設定
+                    if (Environment.UserInteractive)
+                    {
+                        // Console環境では長めのタイムアウト
+                        options.ShutdownTimeout = TimeSpan.FromSeconds(60);
+                    }
+                    else
+                    {
+                        // Windows Service環境では30秒制限に対応
+                        options.ShutdownTimeout = TimeSpan.FromSeconds(25); // 30秒より少し短く設定
+                    }
+                    
+                    // グレースフルシャットダウンはShutdownTimeoutで制御
                 });
 
                 // 設定の登録
@@ -190,8 +204,39 @@ public class Program
                 services.AddSingleton<EventLogService>();
                 services.AddSingleton<HealthCheckService>();
 
-                // HTTPクライアント
-                services.AddHttpClient();
+                // HTTPクライアント設定（タイムアウト対応）
+                services.AddHttpClient("DefaultClient", client =>
+                {
+                    // Windows Service環境での適切なタイムアウト設定
+                    if (Environment.UserInteractive)
+                    {
+                        // Console環境では長めのタイムアウト
+                        client.Timeout = TimeSpan.FromSeconds(60);
+                    }
+                    else
+                    {
+                        // Windows Service環境では短めのタイムアウト
+                        client.Timeout = TimeSpan.FromSeconds(25);
+                    }
+                    
+                    // 接続プールの設定
+                    client.DefaultRequestHeaders.Add("User-Agent", "VacancyImport/1.0");
+                });
+                
+                // 名前付きHTTPクライアントの登録
+                services.AddHttpClient("SupabaseClient", client =>
+                {
+                    // Supabase専用のタイムアウト設定
+                    client.Timeout = TimeSpan.FromSeconds(20);
+                    client.DefaultRequestHeaders.Add("User-Agent", "VacancyImport-Supabase/1.0");
+                });
+                
+                services.AddHttpClient("LineWorksClient", client =>
+                {
+                    // LINE WORKS専用のタイムアウト設定
+                    client.Timeout = TimeSpan.FromSeconds(15);
+                    client.DefaultRequestHeaders.Add("User-Agent", "VacancyImport-LineWorks/1.0");
+                });
 
                 // アプリケーションサービス
                 services.AddSingleton<ExcelService>();
@@ -217,10 +262,19 @@ public class Program
                 }
                 else
                 {
-                    logging.AddEventLog(settings =>
+                    // WindowsプラットフォームでのみEventLogを追加
+                    if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
                     {
-                        settings.SourceName = "VacancyImportService";
-                    });
+                        logging.AddEventLog(settings =>
+                        {
+                            settings.SourceName = "VacancyImportService";
+                        });
+                    }
+                    else
+                    {
+                        // 非Windowsプラットフォームではファイルログのみ
+                        Log.Information("非Windowsプラットフォームのため、EventLogは無効化されます");
+                    }
                 }
             });
     }
@@ -237,7 +291,7 @@ public class Program
 
     private static void InitializeSerilog(IConfiguration configuration)
     {
-        Log.Logger = new LoggerConfiguration()
+        var loggerConfiguration = new LoggerConfiguration()
             .ReadFrom.Configuration(configuration)
             .WriteTo.Console(
                 outputTemplate: "[{Timestamp:HH:mm:ss} {Level:u3}] {Message:lj} {NewLine}{Exception}")
@@ -245,12 +299,22 @@ public class Program
                 path: "logs/vacancy-import-.log", 
                 rollingInterval: RollingInterval.Day,
                 retainedFileCountLimit: 30,
-                outputTemplate: "[{Timestamp:yyyy-MM-dd HH:mm:ss.fff zzz} {Level:u3}] {Message:lj} {NewLine}{Exception}")
-            .WriteTo.EventLog(
+                outputTemplate: "[{Timestamp:yyyy-MM-dd HH:mm:ss.fff zzz} {Level:u3}] {Message:lj} {NewLine}{Exception}");
+        
+        // WindowsプラットフォームでのみEventLogを追加
+        if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
+        {
+            loggerConfiguration = loggerConfiguration.WriteTo.EventLog(
                 source: "VacancyImportService", 
                 manageEventSource: true,
-                restrictedToMinimumLevel: Serilog.Events.LogEventLevel.Warning)
-            .CreateLogger();
+                restrictedToMinimumLevel: Serilog.Events.LogEventLevel.Warning);
+        }
+        else
+        {
+            Console.WriteLine("非Windowsプラットフォームのため、EventLogは無効化されます");
+        }
+        
+        Log.Logger = loggerConfiguration.CreateLogger();
     }
 
     private static void ShowHelp()

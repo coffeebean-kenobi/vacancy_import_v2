@@ -4,32 +4,28 @@ using VacancyImport.Models;
 
 namespace VacancyImport.Tests.Models;
 
-public class ReservationDataTests
+public class FacilityMonthlyReservationTests
 {
     [Fact]
     public void Equals_SameValues_ReturnsTrue()
     {
         // Arrange
-        var data1 = new ReservationData
+        var data1 = new FacilityMonthlyReservation
         {
-            StoreId = "store1",
-            Date = new DateOnly(2023, 12, 1),
-            TimeSlot = "10:00-11:00",
-            Remain = 5,
-            UpdatedAt = DateTime.Now,
-            FilePath = "path/to/file.xlsx",
-            ChangeType = ChangeType.New
+            TenantId = 1,
+            FacilityId = 7,
+            Year = 2023,
+            Month = 12,
+            ReservationCounts = new[] { "5", "3", "2" }
         };
 
-        var data2 = new ReservationData
+        var data2 = new FacilityMonthlyReservation
         {
-            StoreId = "store1",
-            Date = new DateOnly(2023, 12, 1),
-            TimeSlot = "10:00-11:00",
-            Remain = 5,
-            UpdatedAt = DateTime.Now.AddMinutes(5), // 異なる更新時間
-            FilePath = "different/path.xlsx", // 異なるファイルパス
-            ChangeType = ChangeType.Changed // 異なる変更種別
+            TenantId = 1,
+            FacilityId = 7,
+            Year = 2023,
+            Month = 12,
+            ReservationCounts = new[] { "5", "3", "2" }
         };
 
         // Act & Assert
@@ -41,44 +37,58 @@ public class ReservationDataTests
     public void Equals_DifferentValues_ReturnsFalse()
     {
         // Arrange
-        var data1 = new ReservationData
+        var data1 = new FacilityMonthlyReservation
         {
-            StoreId = "store1",
-            Date = new DateOnly(2023, 12, 1),
-            TimeSlot = "10:00-11:00",
-            Remain = 5
+            TenantId = 1,
+            FacilityId = 7,
+            Year = 2023,
+            Month = 12,
+            ReservationCounts = new[] { "5", "3", "2" }
         };
 
-        var data2 = new ReservationData
+        var data2 = new FacilityMonthlyReservation
         {
-            StoreId = "store2", // 異なる店舗ID
-            Date = new DateOnly(2023, 12, 1),
-            TimeSlot = "10:00-11:00",
-            Remain = 5
+            TenantId = 2, // 異なるテナントID
+            FacilityId = 7,
+            Year = 2023,
+            Month = 12,
+            ReservationCounts = new[] { "5", "3", "2" }
         };
 
-        var data3 = new ReservationData
+        var data3 = new FacilityMonthlyReservation
         {
-            StoreId = "store1",
-            Date = new DateOnly(2023, 12, 2), // 異なる日付
-            TimeSlot = "10:00-11:00",
-            Remain = 5
+            TenantId = 1,
+            FacilityId = 10, // 異なる施設ID
+            Year = 2023,
+            Month = 12,
+            ReservationCounts = new[] { "5", "3", "2" }
         };
 
-        var data4 = new ReservationData
+        var data4 = new FacilityMonthlyReservation
         {
-            StoreId = "store1",
-            Date = new DateOnly(2023, 12, 1),
-            TimeSlot = "11:00-12:00", // 異なる時間帯
-            Remain = 5
+            TenantId = 1,
+            FacilityId = 7,
+            Year = 2024, // 異なる年
+            Month = 12,
+            ReservationCounts = new[] { "5", "3", "2" }
         };
 
-        var data5 = new ReservationData
+        var data5 = new FacilityMonthlyReservation
         {
-            StoreId = "store1",
-            Date = new DateOnly(2023, 12, 1),
-            TimeSlot = "10:00-11:00",
-            Remain = 3 // 異なる残り枠数
+            TenantId = 1,
+            FacilityId = 7,
+            Year = 2023,
+            Month = 11, // 異なる月
+            ReservationCounts = new[] { "5", "3", "2" }
+        };
+
+        var data6 = new FacilityMonthlyReservation
+        {
+            TenantId = 1,
+            FacilityId = 7,
+            Year = 2023,
+            Month = 12,
+            ReservationCounts = new[] { "5", "3", "1" } // 異なる予約数
         };
 
         // Act & Assert
@@ -86,86 +96,89 @@ public class ReservationDataTests
         Assert.False(data1.Equals(data3));
         Assert.False(data1.Equals(data4));
         Assert.False(data1.Equals(data5));
+        Assert.False(data1.Equals(data6));
         Assert.False(data1.Equals(null));
-        Assert.False(data1.Equals("not a reservation data"));
+        Assert.False(data1.Equals("not a facility monthly reservation"));
     }
 
     [Fact]
     public void GetHashCode_SameValues_ReturnsSameHashCode()
     {
         // Arrange
-        var data1 = new ReservationData
+        var data1 = new FacilityMonthlyReservation
         {
-            StoreId = "store1",
-            Date = new DateOnly(2023, 12, 1),
-            TimeSlot = "10:00-11:00",
-            Remain = 5
+            TenantId = 1,
+            FacilityId = 7,
+            Year = 2023,
+            Month = 12,
+            ReservationCounts = new[] { "5", "3", "2" }
         };
 
-        var data2 = new ReservationData
+        var data2 = new FacilityMonthlyReservation
         {
-            StoreId = "store1",
-            Date = new DateOnly(2023, 12, 1),
-            TimeSlot = "10:00-11:00",
-            Remain = 5,
-            UpdatedAt = DateTime.Now, // 異なる更新時間
-            FilePath = "path/to/file.xlsx", // 追加のプロパティ
-            ChangeType = ChangeType.New // 追加のプロパティ
+            TenantId = 1,
+            FacilityId = 7,
+            Year = 2023,
+            Month = 12,
+            ReservationCounts = new[] { "5", "3", "2" }
         };
 
         // Act
-        var hashCode1 = data1.GetHashCode();
-        var hashCode2 = data2.GetHashCode();
+        var hash1 = data1.GetHashCode();
+        var hash2 = data2.GetHashCode();
 
-        // Assert
-        Assert.Equal(hashCode1, hashCode2);
+        // Assert - 同じ値を持つオブジェクトは同じハッシュコードを返すべき
+        Assert.Equal(hash1, hash2);
+        Assert.True(hash1 != 0, "ハッシュコードは0以外の値であるべき");
     }
 
     [Fact]
     public void GetHashCode_DifferentValues_ReturnsDifferentHashCodes()
     {
         // Arrange
-        var data1 = new ReservationData
+        var data1 = new FacilityMonthlyReservation
         {
-            StoreId = "store1",
-            Date = new DateOnly(2023, 12, 1),
-            TimeSlot = "10:00-11:00",
-            Remain = 5
+            TenantId = 1,
+            FacilityId = 7,
+            Year = 2023,
+            Month = 12,
+            ReservationCounts = new[] { "5", "3", "2" }
         };
 
-        var data2 = new ReservationData
+        var data2 = new FacilityMonthlyReservation
         {
-            StoreId = "store2", // 異なる店舗ID
-            Date = new DateOnly(2023, 12, 1),
-            TimeSlot = "10:00-11:00",
-            Remain = 5
+            TenantId = 2,
+            FacilityId = 7,
+            Year = 2023,
+            Month = 12,
+            ReservationCounts = new[] { "5", "3", "2" }
         };
 
-        // Act
-        var hashCode1 = data1.GetHashCode();
-        var hashCode2 = data2.GetHashCode();
-
-        // Assert
-        Assert.NotEqual(hashCode1, hashCode2);
+        // Act & Assert
+        Assert.NotEqual(data1.GetHashCode(), data2.GetHashCode());
     }
 
     [Fact]
     public void ToString_ReturnsExpectedFormat()
     {
         // Arrange
-        var data = new ReservationData
+        var data = new FacilityMonthlyReservation
         {
-            StoreId = "store1",
-            Date = new DateOnly(2023, 12, 1),
-            TimeSlot = "10:00-11:00",
-            Remain = 5,
-            ChangeType = ChangeType.New
+            TenantId = 1,
+            FacilityId = 7,
+            Year = 2023,
+            Month = 12,
+            ReservationCounts = new[] { "5", "3", "2" }
         };
 
         // Act
         var result = data.ToString();
 
         // Assert
-        Assert.Equal("store1 - 2023/12/01 10:00-11:00 - 残り5枠 (New)", result);
+        Assert.Contains("1", result);
+        Assert.Contains("7", result);
+        Assert.Contains("2023", result);
+        Assert.Contains("12", result);
+        Assert.Contains("5,3,2", result);
     }
 } 

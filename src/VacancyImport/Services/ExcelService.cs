@@ -67,7 +67,7 @@ public class ExcelService : IExcelService
     }
 
     /// <summary>
-    /// ファイルの更新を確認
+    /// ファイルの更新を確認（段階的処理対応）
     /// </summary>
     public async Task<bool> CheckFileUpdatesAsync()
     {
@@ -75,7 +75,7 @@ public class ExcelService : IExcelService
     }
 
     /// <summary>
-    /// ファイルの更新を確認
+    /// ファイルの更新を確認（段階的処理対応）
     /// </summary>
     public async Task<bool> CheckFileUpdatesAsync(string filePath)
     {
@@ -98,77 +98,94 @@ public class ExcelService : IExcelService
                     // 対象ファイルをすべて取得
                     var files = Directory.GetFiles(_excelSettings.BasePath, "*.xlsm", SearchOption.AllDirectories);
                     
-                    // 並列処理で複数ファイルのハッシュを計算
-                    await ParallelProcessor.ProcessParallelAsync(
-                        files, 
-                        async (file, ct) => 
+                    // ファイルロックチェックを実行
+                    var unlockedFiles = await FileLockChecker.GetUnlockedFilesAsync(files, _logger);
+                    
+                    if (unlockedFiles.Length == 0)
+                    {
+                        _logger.LogWarning("処理可能なファイルが見つかりませんでした");
+                        return false;
+                    }
+                    
+                    // ロックされていないファイルのみを処理
+                    var results = await ParallelProcessor.ProcessParallelAsync(
+                        unlockedFiles,
+                        async (file, ct) =>
                         {
-                            var fileInfo = new FileInfo(file);
-                            
-                            if (!fileInfo.Exists)
+                            try
                             {
-                                _logger.LogWarning("ファイルが存在しません: {FilePath}", file);
+                                var fileName = Path.GetFileName(file);
+                                var fileInfo = new FileInfo(file);
+                                
+                                // キャッシュから前回の状態を取得
+                                var cacheKey = file;
+                                if (_fileStateCache.TryGet(cacheKey, out var cachedState))
+                                {
+                                    // ファイルの更新をチェック
+                                    var currentHash = await CalculateFileHashAsync(file);
+                                    var currentLastWriteTime = fileInfo.LastWriteTime;
+                                    
+                                    if (cachedState.Hash != currentHash)
+                                    {
+                                        _logger.LogInformation("ファイルが更新されました: {FilePath}", file);
+                                        
+                                        // キャッシュを更新
+                                        _fileStateCache.Set(cacheKey, (currentLastWriteTime, currentHash));
+                                        
+                                        return true;
+                                    }
+                                }
+                                else
+                                {
+                                    // 初回処理の場合
+                                    var currentHash = await CalculateFileHashAsync(file);
+                                    var currentLastWriteTime = fileInfo.LastWriteTime;
+                                    
+                                    _logger.LogInformation("新規ファイルを検出しました: {FilePath}", file);
+                                    
+                                    // キャッシュに保存
+                                    _fileStateCache.Set(cacheKey, (currentLastWriteTime, currentHash));
+                                    
+                                    return true;
+                                }
+                                
                                 return false;
                             }
-                            
-                            // キャッシュから前回の状態を取得
-                            if (_fileStateCache.TryGet(file, out var cachedState))
+                            catch (Exception ex)
                             {
-                                // 最終更新日時が同じならハッシュ計算をスキップ
-                                if (cachedState.LastWriteTime == fileInfo.LastWriteTime)
-                                {
-                                    return false;
-                                }
+                                _logger.LogWarning(ex, "ファイル変更チェック中にエラーが発生しました: {FilePath}", file);
+                                return false;
                             }
-                            
-                            // ファイルのハッシュを計算
-                            var currentHash = await CalculateFileHashAsync(file);
-                            
-                            if (!_fileStateCache.TryGet(file, out var state) ||
-                                state.LastWriteTime != fileInfo.LastWriteTime ||
-                                state.Hash != currentHash)
-                            {
-                                _fileStateCache.Set(file, (fileInfo.LastWriteTime, currentHash));
-                                _logger.LogInformation("ファイルが更新されました: {FilePath}", file);
-                                return true;
-                            }
-                            
-                            return false;
-                        }, 
-                        maxDegreeOfParallelism: 4,
-                        logger: _logger,
-                        operationName: "ファイル変更チェック")
-                        .ContinueWith(t => t.Result.Any(updated => updated));
+                        },
+                        maxDegreeOfParallelism: 5,
+                        _logger,
+                        "ファイル変更チェック",
+                        CancellationToken.None);
+                    
+                    hasUpdates = results.Any(r => r);
+                    
+                    if (hasUpdates)
+                    {
+                        _logger.LogInformation("ファイル更新を検出しました: {UpdatedFiles}個のファイルが更新されています", 
+                            results.Count(r => r));
+                    }
                     
                     return hasUpdates;
                 }
-                catch (IOException ex)
+                catch (Exception ex)
                 {
-                    throw ExcelFileException.ReadError(filePath, ex);
-                }
-                catch (UnauthorizedAccessException ex)
-                {
-                    throw ExcelFileException.ReadError(filePath, ex);
-                }
-                catch (Exception ex) when (!(ex is ExcelFileException))
-                {
-                    throw new ExcelFileException(
-                        $"ファイル更新チェック中にエラーが発生しました: {filePath}", 
-                        filePath, 
-                        "EXCEL-UPDATE-CHECK-ERR", 
-                        ErrorSeverity.Error, 
-                        true, 
-                        ex);
+                    _logger.LogError(ex, "ファイル更新チェック中に予期しないエラーが発生しました");
+                    throw;
                 }
             },
-            _settings.Value.ExcelSettings.RetryCount,
-            200,
-            5000,
+            retryCount: 3,
+            initialDelay: 1000,
+            maxDelay: 5000,
             _logger);
     }
 
     /// <summary>
-    /// 月別予約データを抽出
+    /// 月別予約データを抽出（段階的処理対応）
     /// </summary>
     public async Task<IEnumerable<FacilityMonthlyReservation>> ExtractMonthlyReservationsAsync()
     {
@@ -176,7 +193,7 @@ public class ExcelService : IExcelService
     }
 
     /// <summary>
-    /// 月別予約データを抽出
+    /// 月別予約データを抽出（段階的処理対応）
     /// </summary>
     public async Task<IEnumerable<FacilityMonthlyReservation>> ExtractMonthlyReservationsAsync(string filePath)
     {
@@ -187,100 +204,132 @@ public class ExcelService : IExcelService
             {
                 try
                 {
-                    var fullPath = Path.Combine(_excelSettings.BasePath, filePath);
-                    var allResults = new List<FacilityMonthlyReservation>();
-                    
                     if (!Directory.Exists(_excelSettings.BasePath))
                     {
                         throw ExcelFileException.FileNotFound(_excelSettings.BasePath);
                     }
                     
+                    // 対象ファイルをすべて取得
                     var files = Directory.GetFiles(_excelSettings.BasePath, "*.xlsm", SearchOption.AllDirectories);
                     
-                    // 並列処理で複数ファイルのデータを抽出
-                    var results = await ParallelProcessor.ProcessParallelAsync(
-                        files,
-                        async (file, ct) =>
+                    // ファイルロックチェックを実行
+                    var unlockedFiles = await FileLockChecker.GetUnlockedFilesAsync(files, _logger);
+                    
+                    if (unlockedFiles.Length == 0)
+                    {
+                        _logger.LogWarning("処理可能なファイルが見つかりませんでした");
+                        return Enumerable.Empty<FacilityMonthlyReservation>();
+                    }
+                    
+                    _logger.LogInformation("データ抽出を開始します: {FileCount}個のファイルを処理", unlockedFiles.Length);
+                    
+                    var allResults = new List<FacilityMonthlyReservation>();
+                    var successCount = 0;
+                    var errorCount = 0;
+                    
+                    // 段階的処理: ファイルごとに個別処理
+                    foreach (var file in unlockedFiles)
+                    {
+                        try
                         {
-                            // ファイルごとの処理結果
-                            var fileResults = new List<FacilityMonthlyReservation>();
+                            var fileName = Path.GetFileName(file);
+                            var facilityId = ExtractFacilityIdFromFileName(fileName);
                             
-                            if (!File.Exists(file))
+                            if (facilityId == 0)
                             {
-                                _logger.LogWarning("ファイルが存在しません: {FilePath}", file);
-                                return fileResults;
+                                _logger.LogDebug("対象外のファイルをスキップ: {FileName}", fileName);
+                                continue;
                             }
                             
-                            // ファイルアクセスのロックを取得
-                            await _fileLock.WaitAsync(ct);
+                            _logger.LogDebug("ファイルを処理中: {FileName} (FacilityId: {FacilityId})", fileName, facilityId);
+                            
+                            // ファイルロックを取得してから処理を開始
+                            await _fileLock.WaitAsync();
+                            XLWorkbook? workbook = null;
+                            var monthlyReservations = Enumerable.Empty<FacilityMonthlyReservation>();
                             
                             try
                             {
-                                using var performance = _performanceMonitor.MeasureOperation($"ProcessExcelFile_{Path.GetFileName(file)}");
-                                using var workbook = new XLWorkbook(file);
+                                // ファイルがロックされているか再チェック
+                                if (!await FileLockChecker.IsFileUnlockedAsync(file, _logger, 500))
+                                {
+                                    _logger.LogWarning("ファイルがロックされているためスキップ: {FileName}", fileName);
+                                    continue;
+                                }
+                                
+                                workbook = new XLWorkbook(file);
+                                
+                                // ワークシート名を動的に検出
                                 var worksheet = workbook.Worksheet(_excelSettings.SheetName);
-
                                 if (worksheet == null)
                                 {
-                                    _logger.LogWarning("ワークシートが見つかりません: {SheetName} in {FilePath}", _excelSettings.SheetName, file);
-                                    return fileResults;
+                                    // 代替ワークシート名を試行
+                                    var availableSheets = workbook.Worksheets.Select(w => w.Name).ToList();
+                                    _logger.LogWarning("ワークシート '{SheetName}' が見つかりません: {FileName}。利用可能なシート: {AvailableSheets}", 
+                                        _excelSettings.SheetName, fileName, string.Join(", ", availableSheets));
+                                    
+                                    // 最初のワークシートを使用
+                                    if (availableSheets.Any())
+                                    {
+                                        worksheet = workbook.Worksheet(availableSheets.First());
+                                        _logger.LogInformation("代替ワークシート '{SheetName}' を使用します: {FileName}", 
+                                            worksheet.Name, fileName);
+                                    }
+                                    else
+                                    {
+                                        continue;
+                                    }
                                 }
-
-                                // ファイル名から施設IDを抽出
-                                var fileName = Path.GetFileNameWithoutExtension(file);
-                                var facilityId = ExtractFacilityIdFromFileName(fileName);
                                 
-                                if (facilityId == 0)
-                                {
-                                    _logger.LogWarning("施設IDを抽出できませんでした: {FileName}", fileName);
-                                    return fileResults;
-                                }
-
-                                // 月別の予約数を抽出
-                                var monthlyReservations = ExtractMonthlyReservations(worksheet, facilityId);
-                                fileResults.AddRange(monthlyReservations);
-                            }
-                            catch (IOException ex)
-                            {
-                                throw ExcelFileException.ReadError(file, ex);
-                            }
-                            catch (Exception ex) when (!(ex is ExcelFileException))
-                            {
-                                throw ExcelFileException.DataFormatError(file, ex.Message, ex);
+                                monthlyReservations = ExtractMonthlyReservations(worksheet, facilityId);
+                                allResults.AddRange(monthlyReservations);
                             }
                             finally
                             {
+                                // リソースの確実な解放
+                                if (workbook != null)
+                                {
+                                    try
+                                    {
+                                        workbook.Dispose();
+                                        _logger.LogDebug("ワークブックを解放しました: {FileName}", fileName);
+                                    }
+                                    catch (Exception ex)
+                                    {
+                                        _logger.LogWarning(ex, "ワークブックの解放中にエラーが発生しました: {FileName}", fileName);
+                                    }
+                                }
+                                
+                                // ファイルロックを解放
                                 _fileLock.Release();
                             }
                             
-                            return fileResults;
-                        },
-                        maxDegreeOfParallelism: 2, // Excelファイルは同時アクセス数を制限
-                        logger: _logger,
-                        operationName: "Excelファイル処理");
-                    
-                    // 並列処理の結果を結合
-                    foreach (var result in results)
-                    {
-                        allResults.AddRange(result);
+                            successCount++;
+                            _logger.LogDebug("ファイル処理完了: {FileName} ({ReservationCount}件の予約データ)", 
+                                fileName, monthlyReservations.Count());
+                        }
+                        catch (Exception ex)
+                        {
+                            errorCount++;
+                            _logger.LogError(ex, "ファイル処理中にエラーが発生しました: {FilePath}", file);
+                            // エラーが発生しても他のファイルの処理は継続
+                        }
                     }
-
+                    
+                    _logger.LogInformation("データ抽出完了: 成功{SuccessCount}件, エラー{ErrorCount}件, 総予約データ{TotalReservations}件", 
+                        successCount, errorCount, allResults.Count);
+                    
                     return allResults;
                 }
-                catch (Exception ex) when (!(ex is ExcelFileException))
+                catch (Exception ex)
                 {
-                    throw new ExcelFileException(
-                        $"月別予約データの抽出中にエラーが発生しました: {filePath}", 
-                        filePath, 
-                        "EXCEL-EXTRACT-ERR", 
-                        ErrorSeverity.Error, 
-                        true, 
-                        ex);
+                    _logger.LogError(ex, "月別予約データ抽出中に予期しないエラーが発生しました");
+                    throw;
                 }
             },
-            _settings.Value.ExcelSettings.RetryCount,
-            200,
-            5000,
+            retryCount: 3,
+            initialDelay: 1000,
+            maxDelay: 5000,
             _logger);
     }
 
@@ -329,6 +378,54 @@ public class ExcelService : IExcelService
             200,
             5000,
             _logger);
+    }
+
+    /// <summary>
+    /// ワークシート名を確認（デバッグ用）
+    /// </summary>
+    public Task<List<string>> GetWorksheetNamesAsync(string filePath)
+    {
+        try
+        {
+            using var workbook = new XLWorkbook(filePath);
+            var worksheetNames = workbook.Worksheets.Select(w => w.Name).ToList();
+            
+            _logger.LogInformation("ファイル {FilePath} のワークシート名: {WorksheetNames}", 
+                filePath, string.Join(", ", worksheetNames));
+            
+            return Task.FromResult(worksheetNames);
+        }
+        catch (Exception ex)
+        {
+            _logger.LogError(ex, "ワークシート名の取得中にエラーが発生しました: {FilePath}", filePath);
+            return Task.FromResult(new List<string>());
+        }
+    }
+
+    /// <summary>
+    /// 全ファイルのワークシート名を確認（デバッグ用）
+    /// </summary>
+    public async Task CheckAllWorksheetNamesAsync()
+    {
+        try
+        {
+            if (!Directory.Exists(_excelSettings.BasePath))
+            {
+                _logger.LogWarning("ベースパスが存在しません: {BasePath}", _excelSettings.BasePath);
+                return;
+            }
+            
+            var files = Directory.GetFiles(_excelSettings.BasePath, "*.xlsm", SearchOption.AllDirectories);
+            
+            foreach (var file in files)
+            {
+                await GetWorksheetNamesAsync(file);
+            }
+        }
+        catch (Exception ex)
+        {
+            _logger.LogError(ex, "ワークシート名確認中にエラーが発生しました");
+        }
     }
 
     /// <summary>
@@ -444,5 +541,50 @@ public class ExcelService : IExcelService
         }
         
         return results;
+    }
+    
+    /// <summary>
+    /// リソースの解放
+    /// </summary>
+    public void Dispose()
+    {
+        try
+        {
+            _logger.LogDebug("ExcelServiceのリソースクリーンアップを開始します");
+            
+            // ファイルロックの解放
+            if (_fileLock != null)
+            {
+                try
+                {
+                    _fileLock.Dispose();
+                    _logger.LogDebug("ファイルロックを解放しました");
+                }
+                catch (Exception ex)
+                {
+                    _logger.LogWarning(ex, "ファイルロックの解放中にエラーが発生しました");
+                }
+            }
+            
+            // キャッシュの解放
+            if (_fileStateCache != null)
+            {
+                try
+                {
+                    _fileStateCache.Dispose();
+                    _logger.LogDebug("ファイル状態キャッシュを解放しました");
+                }
+                catch (Exception ex)
+                {
+                    _logger.LogWarning(ex, "ファイル状態キャッシュの解放中にエラーが発生しました");
+                }
+            }
+            
+            _logger.LogDebug("ExcelServiceのリソースクリーンアップが完了しました");
+        }
+        catch (Exception ex)
+        {
+            _logger.LogError(ex, "ExcelServiceのDispose中にエラーが発生しました");
+        }
     }
 } 
