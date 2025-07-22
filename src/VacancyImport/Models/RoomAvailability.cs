@@ -5,26 +5,23 @@ using Postgrest.Models;
 namespace VacancyImport.Models;
 
 /// <summary>
-/// 部屋の空室状況を表すモデル
+/// 施設の月別予約数を表すモデル
 /// </summary>
-[Table("room_availability")]
-public class RoomAvailability : BaseModel
+[Table("facility_monthly_reservations")]
+public class FacilityMonthlyReservation : BaseModel
 {
-    [PrimaryKey("id")]
-    public int Id { get; set; }
+    [PrimaryKey("tenant_id")]
+    public int TenantId { get; set; }
 
-    [Column("store_id")]
-    public string StoreId { get; set; } = string.Empty;
+    [PrimaryKey("facility_id")]
+    public int FacilityId { get; set; }
 
-    [Column("date")]
-    public DateOnly Date { get; set; }
+    [PrimaryKey("year")]
+    public int Year { get; set; }
 
-    [Column("time_slot")]
-    public string TimeSlot { get; set; } = string.Empty;
+    [PrimaryKey("month")]
+    public int Month { get; set; }
 
-    [Column("remain")]
-    public int Remain { get; set; }
-
-    [Column("updated_at")]
-    public DateTime UpdatedAt { get; set; }
+    [Column("reservation_counts")]
+    public string[] ReservationCounts { get; set; } = Array.Empty<string>();
 } 

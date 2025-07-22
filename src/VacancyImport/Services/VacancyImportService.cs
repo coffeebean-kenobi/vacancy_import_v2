@@ -69,11 +69,11 @@ public partial class VacancyImportService : ServiceBase
                     _logger.LogInformation("ファイル更新を検出しました。データ処理を開始します");
 
                     // 予約データを抽出
-                    var reservationData = await excelService.ExtractReservationDataAsync();
+                    var reservationData = await excelService.ExtractMonthlyReservationsAsync();
 
-                    // Supabaseにデータを送信
+                    // Supabaseにデータを送信し、変更情報を取得
                     var supabaseService = _serviceProvider.GetRequiredService<SupabaseService>();
-                    await supabaseService.UpdateReservationsAsync(reservationData);
+                    var changes = await supabaseService.UpdateMonthlyReservationsAsync(reservationData);
 
                     // LINE WORKSに通知
                     var lineWorksService = _serviceProvider.GetRequiredService<LineWorksService>();

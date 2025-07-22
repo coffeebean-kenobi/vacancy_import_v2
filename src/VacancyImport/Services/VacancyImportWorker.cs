@@ -156,11 +156,11 @@ public class VacancyImportWorker : BackgroundService, IHostedLifecycleService
                 _logger.LogInformation("📊 Excelファイルの更新を検出しました");
                 
                 // 予約データを抽出
-                var reservationData = await excelService.ExtractReservationDataAsync();
-                
-                // Supabaseにデータを送信
+                var reservationData = await excelService.ExtractMonthlyReservationsAsync();
+
+                // Supabaseにデータを送信し、変更情報を取得
                 var supabaseService = scope.ServiceProvider.GetRequiredService<SupabaseService>();
-                await supabaseService.UpdateReservationsAsync(reservationData);
+                var changes = await supabaseService.UpdateMonthlyReservationsAsync(reservationData);
                 
                 // LINE WORKSに通知
                 var lineWorksService = scope.ServiceProvider.GetRequiredService<LineWorksService>();

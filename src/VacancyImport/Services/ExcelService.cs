@@ -75,14 +75,6 @@ public class ExcelService : IExcelService
     }
 
     /// <summary>
-    /// 予約データを抽出
-    /// </summary>
-    public async Task<IEnumerable<ReservationData>> ExtractReservationDataAsync()
-    {
-        return await ExtractReservationDataAsync(string.Empty);
-    }
-
-    /// <summary>
     /// ファイルの更新を確認
     /// </summary>
     public async Task<bool> CheckFileUpdatesAsync(string filePath)
@@ -176,11 +168,19 @@ public class ExcelService : IExcelService
     }
 
     /// <summary>
-    /// 予約データを抽出
+    /// 月別予約データを抽出
     /// </summary>
-    public async Task<IEnumerable<ReservationData>> ExtractReservationDataAsync(string filePath)
+    public async Task<IEnumerable<FacilityMonthlyReservation>> ExtractMonthlyReservationsAsync()
     {
-        using var performance = _performanceMonitor.MeasureOperation("ExtractReservationData");
+        return await ExtractMonthlyReservationsAsync(string.Empty);
+    }
+
+    /// <summary>
+    /// 月別予約データを抽出
+    /// </summary>
+    public async Task<IEnumerable<FacilityMonthlyReservation>> ExtractMonthlyReservationsAsync(string filePath)
+    {
+        using var performance = _performanceMonitor.MeasureOperation("ExtractMonthlyReservations");
         
         return await RetryPolicy.ExecuteWithRetryAsync(
             async () =>
@@ -188,7 +188,7 @@ public class ExcelService : IExcelService
                 try
                 {
                     var fullPath = Path.Combine(_excelSettings.BasePath, filePath);
-                    var allResults = new List<ReservationData>();
+                    var allResults = new List<FacilityMonthlyReservation>();
                     
                     if (!Directory.Exists(_excelSettings.BasePath))
                     {
@@ -203,7 +203,7 @@ public class ExcelService : IExcelService
                         async (file, ct) =>
                         {
                             // ファイルごとの処理結果
-                            var fileResults = new List<ReservationData>();
+                            var fileResults = new List<FacilityMonthlyReservation>();
                             
                             if (!File.Exists(file))
                             {
@@ -226,43 +226,19 @@ public class ExcelService : IExcelService
                                     return fileResults;
                                 }
 
-                                var storeId = Path.GetFileNameWithoutExtension(file).Split('_')[0];
-                                var today = DateOnly.FromDateTime(DateTime.Today);
-                                var endDate = today.AddDays(60);
+                                // ファイル名から施設IDを抽出
+                                var fileName = Path.GetFileNameWithoutExtension(file);
+                                var facilityId = ExtractFacilityIdFromFileName(fileName);
+                                
+                                if (facilityId == 0)
+                                {
+                                    _logger.LogWarning("施設IDを抽出できませんでした: {FileName}", fileName);
+                                    return fileResults;
+                                }
 
-                                // 日付行を取得してバッファに格納
-                                var rowBuffer = new List<(DateTime Date, string TimeSlot, int Remain)>();
-                                
-                                var dateRow = worksheet.FirstRowUsed();
-                                while (dateRow != null)
-                                {
-                                    var dateCell = dateRow.Cell(_excelSettings.ColumnIndex);
-                                    if (dateCell.TryGetValue(out DateTime date) && date >= today.ToDateTime(TimeOnly.MinValue) && date <= endDate.ToDateTime(TimeOnly.MaxValue))
-                                    {
-                                        var timeSlot = dateCell.GetValue<string>();
-                                        var remain = dateCell.CellRight().GetValue<int>();
-                                        
-                                        rowBuffer.Add((date, timeSlot, remain));
-                                    }
-                                    dateRow = dateRow.RowBelow();
-                                }
-                                
-                                // バッファからReservationDataオブジェクトを生成
-                                foreach (var (date, timeSlot, remain) in rowBuffer)
-                                {
-                                    var reservation = new ReservationData
-                                    {
-                                        StoreId = storeId,
-                                        Date = DateOnly.FromDateTime(date),
-                                        TimeSlot = timeSlot,
-                                        Remain = remain,
-                                        UpdatedAt = DateTime.Now,
-                                        FilePath = file,
-                                        ChangeType = ChangeType.New
-                                    };
-                                    
-                                    fileResults.Add(reservation);
-                                }
+                                // 月別の予約数を抽出
+                                var monthlyReservations = ExtractMonthlyReservations(worksheet, facilityId);
+                                fileResults.AddRange(monthlyReservations);
                             }
                             catch (IOException ex)
                             {
@@ -294,7 +270,7 @@ public class ExcelService : IExcelService
                 catch (Exception ex) when (!(ex is ExcelFileException))
                 {
                     throw new ExcelFileException(
-                        $"予約データの抽出中にエラーが発生しました: {filePath}", 
+                        $"月別予約データの抽出中にエラーが発生しました: {filePath}", 
                         filePath, 
                         "EXCEL-EXTRACT-ERR", 
                         ErrorSeverity.Error, 
@@ -311,7 +287,7 @@ public class ExcelService : IExcelService
     /// <summary>
     /// プルーフリストを保存
     /// </summary>
-    public async Task SaveProofListAsync(IEnumerable<ReservationData> changes)
+    public async Task SaveProofListAsync(IEnumerable<FacilityMonthlyReservation> changes)
     {
         using var performance = _performanceMonitor.MeasureOperation("SaveProofList");
         
@@ -331,8 +307,8 @@ public class ExcelService : IExcelService
                     await StreamProcessor.WriteFileStreamAsync(
                         filePath,
                         changes,
-                        change => $"{change.StoreId},{change.Date:yyyy/MM/dd},{change.TimeSlot},{change.Remain},{change.ChangeType},{change.FilePath}",
-                        header: "StoreId,Date,TimeSlot,Remain,ChangeType,FilePath",
+                        change => $"{change.FacilityId},{change.Year},{change.Month},{string.Join(",", change.ReservationCounts)}",
+                        header: "FacilityId,Year,Month,ReservationCounts",
                         bufferSize: 8192,
                         logger: _logger);
                     
@@ -372,5 +348,101 @@ public class ExcelService : IExcelService
         using var sha = SHA256.Create();
         byte[] hash = await sha.ComputeHashAsync(stream);
         return BitConverter.ToString(hash).Replace("-", "").ToLowerInvariant();
+    }
+
+    /// <summary>
+    /// ファイル名から施設IDを抽出
+    /// </summary>
+    private int ExtractFacilityIdFromFileName(string fileName)
+    {
+        // 施設IDマッピング
+        var facilityMapping = new Dictionary<string, int>
+        {
+            { "ふじみの", 7 },
+            { "みさと", 10 },
+            { "いちかわ", 14 }
+        };
+        
+        foreach (var mapping in facilityMapping)
+        {
+            if (fileName.Contains(mapping.Key))
+            {
+                return mapping.Value;
+            }
+        }
+        
+        return 0; // マッピングが見つからない場合
+    }
+
+    /// <summary>
+    /// 月別の予約数を抽出
+    /// </summary>
+    private IEnumerable<FacilityMonthlyReservation> ExtractMonthlyReservations(IXLWorksheet worksheet, int facilityId)
+    {
+        var results = new List<FacilityMonthlyReservation>();
+        var currentYear = DateTime.Now.Year;
+        
+        // A列から日付を取得し、CH列から予約数を取得
+        var dateReservationPairs = new List<(DateTime Date, int ReservationCount)>();
+        
+        var usedRows = worksheet.RowsUsed();
+        foreach (var row in usedRows)
+        {
+            var dateCell = row.Cell("A");
+            var reservationCell = row.Cell("CH");
+            
+            if (dateCell.TryGetValue(out DateTime date) && 
+                reservationCell.TryGetValue(out int reservationCount))
+            {
+                dateReservationPairs.Add((date, reservationCount));
+            }
+        }
+        
+        // 月別にグループ化
+        var monthlyGroups = dateReservationPairs
+            .GroupBy(pair => new { pair.Date.Year, pair.Date.Month })
+            .Where(group => group.Key.Year == currentYear);
+        
+        foreach (var group in monthlyGroups)
+        {
+            var year = group.Key.Year;
+            var month = group.Key.Month;
+            
+            // その月の日数分の配列を作成
+            var daysInMonth = DateTime.DaysInMonth(year, month);
+            var reservationCounts = new string[daysInMonth];
+            
+            // 各日の予約数を設定
+            foreach (var (date, reservationCount) in group)
+            {
+                var dayIndex = date.Day - 1; // 0ベースのインデックス
+                if (dayIndex < daysInMonth)
+                {
+                    reservationCounts[dayIndex] = reservationCount.ToString();
+                }
+            }
+            
+            // 未設定の日は0で埋める
+            for (int i = 0; i < daysInMonth; i++)
+            {
+                if (string.IsNullOrEmpty(reservationCounts[i]))
+                {
+                    reservationCounts[i] = "0";
+                }
+            }
+            
+            var monthlyReservation = new FacilityMonthlyReservation
+            {
+                TenantId = 1,
+                FacilityId = facilityId,
+                Year = year,
+                Month = month,
+                ReservationCounts = reservationCounts
+            };
+            
+            results.Add(monthlyReservation);
+        }
+        
+        return results;
     }
 } 

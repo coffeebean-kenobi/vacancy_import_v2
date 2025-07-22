@@ -44,14 +44,14 @@ public class SupabaseService : ISupabaseService
     }
 
     /// <summary>
-    /// 現在の予約データを取得
+    /// 現在の月別予約データを取得
     /// </summary>
-    public async Task<IEnumerable<ReservationData>> GetCurrentReservationsAsync()
+    public async Task<IEnumerable<FacilityMonthlyReservation>> GetCurrentMonthlyReservationsAsync()
     {
         try
         {
             var response = await _client
-                .From<ReservationData>()
+                .From<FacilityMonthlyReservation>()
                 .Select("*")
                 .Get();
 
@@ -59,61 +59,62 @@ public class SupabaseService : ISupabaseService
         }
         catch (Exception ex)
         {
-            _logger.LogError(ex, "予約データの取得中にエラーが発生しました");
-            throw new SupabaseException("予約データの取得に失敗しました", ex.Message);
+            _logger.LogError(ex, "月別予約データの取得中にエラーが発生しました");
+            throw new SupabaseException("月別予約データの取得に失敗しました", ex.Message);
         }
     }
 
     /// <summary>
-    /// 予約データをSupabaseに更新し、変更情報を返す
+    /// 月別予約データをSupabaseに更新し、変更情報を返す
     /// </summary>
-    /// <param name="reservationData">更新する予約データ</param>
+    /// <param name="monthlyReservations">更新する月別予約データ</param>
     /// <returns>変更情報のリスト</returns>
-    public async Task<IEnumerable<ReservationChange>> UpdateReservationsAsync(IEnumerable<ReservationData> reservationData)
+    public async Task<IEnumerable<ReservationChange>> UpdateMonthlyReservationsAsync(IEnumerable<FacilityMonthlyReservation> monthlyReservations)
     {
         var changes = new List<ReservationChange>();
         
         try
         {
-            _logger.LogInformation("予約データの更新を開始します");
+            _logger.LogInformation("月別予約データの更新を開始します");
             
             // バッチサイズに分割して処理
-            var batches = reservationData
+            var batches = monthlyReservations
                 .Select((item, index) => new { item, index })
                 .GroupBy(x => x.index / _appSettings.PerformanceSettings.DatabaseBatchSize)
                 .Select(g => g.Select(x => x.item));
 
             foreach (var batch in batches)
             {
-                var batchChanges = await ProcessBatchAsync(batch);
+                var batchChanges = await ProcessMonthlyReservationBatchAsync(batch);
                 changes.AddRange(batchChanges);
             }
 
-            _logger.LogInformation($"予約データの更新が完了しました。変更件数: {changes.Count}");
+            _logger.LogInformation($"月別予約データの更新が完了しました。変更件数: {changes.Count}");
             
             return changes;
         }
         catch (Exception ex)
         {
-            _logger.LogError(ex, "予約データの更新中にエラーが発生しました");
+            _logger.LogError(ex, "月別予約データの更新中にエラーが発生しました");
             throw;
         }
     }
 
-    private async Task<IEnumerable<ReservationChange>> ProcessBatchAsync(IEnumerable<ReservationData> batch)
+    private async Task<IEnumerable<ReservationChange>> ProcessMonthlyReservationBatchAsync(IEnumerable<FacilityMonthlyReservation> batch)
     {
         var changes = new List<ReservationChange>();
         
-        foreach (var reservation in batch)
+        foreach (var monthlyReservation in batch)
         {
             try
             {
                 // 既存データの取得
                 var existingQuery = _client
-                    .From<RoomAvailability>()
-                    .Where(x => x.StoreId == reservation.StoreId)
-                    .Where(x => x.Date == reservation.Date)
-                    .Where(x => x.TimeSlot == reservation.TimeSlot);
+                    .From<FacilityMonthlyReservation>()
+                    .Where(x => x.TenantId == monthlyReservation.TenantId)
+                    .Where(x => x.FacilityId == monthlyReservation.FacilityId)
+                    .Where(x => x.Year == monthlyReservation.Year)
+                    .Where(x => x.Month == monthlyReservation.Month);
 
                 var existingResult = await existingQuery.Get();
                 var existingData = existingResult?.Models?.FirstOrDefault();
@@ -121,55 +122,52 @@ public class SupabaseService : ISupabaseService
                 if (existingData == null)
                 {
                     // 新規作成
-                    var newData = new RoomAvailability
-                    {
-                        StoreId = reservation.StoreId,
-                        Date = reservation.Date,
-                        TimeSlot = reservation.TimeSlot,
-                        Remain = reservation.Remain,
-                        UpdatedAt = DateTime.UtcNow
-                    };
-
                     await _client
-                        .From<RoomAvailability>()
-                        .Insert(newData);
+                        .From<FacilityMonthlyReservation>()
+                        .Insert(monthlyReservation);
 
                     changes.Add(ReservationChange.CreateNew(
-                        reservation.StoreId,
-                        reservation.Date.ToDateTime(TimeOnly.MinValue),
-                        reservation.TimeSlot,
-                        reservation.Remain
+                        monthlyReservation.FacilityId.ToString(),
+                        new DateTime(monthlyReservation.Year, monthlyReservation.Month, 1),
+                        $"{monthlyReservation.Year}-{monthlyReservation.Month}",
+                        monthlyReservation.ReservationCounts.Length
                     ));
 
-                    _logger.LogDebug($"新規作成: {reservation.StoreId} {reservation.Date:yyyy-MM-dd} {reservation.TimeSlot}");
+                    _logger.LogDebug($"新規作成: 施設{monthlyReservation.FacilityId} {monthlyReservation.Year}-{monthlyReservation.Month}");
                 }
-                else if (existingData.Remain != reservation.Remain)
+                else
                 {
-                    // 更新
-                    var oldRemain = existingData.Remain;
-                    existingData.Remain = reservation.Remain;
-                    existingData.UpdatedAt = DateTime.UtcNow;
+                    // 更新（配列の内容を比較）
+                    var oldCounts = existingData.ReservationCounts;
+                    var newCounts = monthlyReservation.ReservationCounts;
+                    
+                    if (!oldCounts.SequenceEqual(newCounts))
+                    {
+                        existingData.ReservationCounts = newCounts;
 
-                    await _client
-                        .From<RoomAvailability>()
-                        .Where(x => x.Id == existingData.Id)
-                        .Update(existingData);
+                        await _client
+                            .From<FacilityMonthlyReservation>()
+                            .Where(x => x.TenantId == existingData.TenantId)
+                            .Where(x => x.FacilityId == existingData.FacilityId)
+                            .Where(x => x.Year == existingData.Year)
+                            .Where(x => x.Month == existingData.Month)
+                            .Update(existingData);
 
-                    changes.Add(ReservationChange.CreateChanged(
-                        reservation.StoreId,
-                        reservation.Date.ToDateTime(TimeOnly.MinValue),
-                        reservation.TimeSlot,
-                        oldRemain,
-                        reservation.Remain
-                    ));
+                        changes.Add(ReservationChange.CreateChanged(
+                            monthlyReservation.FacilityId.ToString(),
+                            new DateTime(monthlyReservation.Year, monthlyReservation.Month, 1),
+                            $"{monthlyReservation.Year}-{monthlyReservation.Month}",
+                            oldCounts.Length,
+                            newCounts.Length
+                        ));
 
-                    _logger.LogDebug($"更新: {reservation.StoreId} {reservation.Date:yyyy-MM-dd} {reservation.TimeSlot} ({oldRemain} → {reservation.Remain})");
+                        _logger.LogDebug($"更新: 施設{monthlyReservation.FacilityId} {monthlyReservation.Year}-{monthlyReservation.Month}");
+                    }
                 }
-                // 変更なしの場合は何もしない
             }
             catch (Exception ex)
             {
-                _logger.LogError(ex, $"予約データの処理中にエラーが発生しました: {reservation.StoreId} {reservation.Date:yyyy-MM-dd} {reservation.TimeSlot}");
+                _logger.LogError(ex, $"月別予約データの処理中にエラーが発生しました: 施設{monthlyReservation.FacilityId} {monthlyReservation.Year}-{monthlyReservation.Month}");
                 // 個別エラーは継続して処理
             }
         }

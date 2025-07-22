@@ -6,6 +6,6 @@ namespace VacancyImport.Services;
 public interface IExcelService
 {
     Task<bool> CheckFileUpdatesAsync();
-    Task<IEnumerable<ReservationData>> ExtractReservationDataAsync();
-    Task SaveProofListAsync(IEnumerable<ReservationData> changes);
+    Task<IEnumerable<FacilityMonthlyReservation>> ExtractMonthlyReservationsAsync();
+    Task SaveProofListAsync(IEnumerable<FacilityMonthlyReservation> changes);
 } 
