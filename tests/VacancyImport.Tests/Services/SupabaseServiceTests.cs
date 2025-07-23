@@ -79,21 +79,21 @@ public class SupabaseServiceTests
     // モックを使用した機能テスト
     // 注：このテストは実際のSupabaseClientをモックできない場合は機能しない
     [Fact(Skip = "Requires mocking of Supabase Client which is challenging")]
-    public async Task GetCurrentMonthlyReservationsAsync_ReturnsReservations()
+    public void GetCurrentMonthlyReservationsAsync_ReturnsReservations()
     {
         // このテストは実際のSupabaseClientをモックする方法が必要
         // 実際の統合テストでは、テスト用のSupabaseインスタンスを使用する必要がある
     }
 
     [Fact(Skip = "Requires mocking of Supabase Client which is challenging")]
-    public async Task UpdateMonthlyReservationsAsync_UpdatesReservations()
+    public void UpdateMonthlyReservationsAsync_UpdatesReservations()
     {
         // このテストは実際のSupabaseClientをモックする方法が必要
         // 実際の統合テストでは、テスト用のSupabaseインスタンスを使用する必要がある
     }
 
     [Fact(Skip = "Requires mocking of Supabase Client which is challenging")]
-    public async Task StartRealtimeSubscriptionAsync_StartsSubscription()
+    public void StartRealtimeSubscriptionAsync_StartsSubscription()
     {
         // このテストは実際のSupabaseClientをモックする方法が必要
         // 実際の統合テストでは、テスト用のSupabaseインスタンスを使用する必要がある

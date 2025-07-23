@@ -48,14 +48,16 @@ public class ServiceHost : BackgroundService, IHostedLifecycleService
 
     #region IHostedLifecycleService Implementation
 
-    public async Task StartingAsync(CancellationToken cancellationToken)
+    public Task StartingAsync(CancellationToken cancellationToken)
     {
         _logger.LogInformation("🚀 {ServiceName} の開始準備中...", _serviceSettings.ServiceDisplayName);
         
         // 設定検証
-        await ValidateConfigurationAsync();
+        ValidateConfiguration();
         
         _logger.LogInformation("📋 開始準備が完了しました");
+        
+        return Task.CompletedTask;
     }
 
     public Task StartedAsync(CancellationToken cancellationToken)
@@ -111,7 +113,7 @@ public class ServiceHost : BackgroundService, IHostedLifecycleService
             }
             
             // リソースのクリーンアップ
-            await PerformEmergencyCleanupAsync();
+            PerformEmergencyCleanup();
             
             _logger.LogInformation("✅ 停止処理が完了しました");
         }
@@ -122,7 +124,7 @@ public class ServiceHost : BackgroundService, IHostedLifecycleService
             // エラーが発生しても強制クリーンアップを実行
             try
             {
-                await PerformEmergencyCleanupAsync();
+                PerformEmergencyCleanup();
             }
             catch (Exception cleanupEx)
             {
@@ -354,7 +356,7 @@ public class ServiceHost : BackgroundService, IHostedLifecycleService
         }
     }
 
-    private async Task ValidateConfigurationAsync()
+    private void ValidateConfiguration()
     {
         _logger.LogInformation("🔍 設定の検証を開始します");
         
@@ -706,7 +708,7 @@ public class ServiceHost : BackgroundService, IHostedLifecycleService
     /// <summary>
     /// 緊急クリーンアップ処理を実行
     /// </summary>
-    private async Task PerformEmergencyCleanupAsync()
+    private void PerformEmergencyCleanup()
     {
         try
         {
