@@ -226,6 +226,7 @@ public class ExcelService : IExcelService
                     var allResults = new List<FacilityMonthlyReservation>();
                     var successCount = 0;
                     var errorCount = 0;
+                    var skippedFilesCount = 0;
                     
                     // 段階的処理: ファイルごとに個別処理
                     foreach (var file in unlockedFiles)
@@ -238,6 +239,7 @@ public class ExcelService : IExcelService
                             if (facilityId == 0)
                             {
                                 _logger.LogDebug("対象外のファイルをスキップ: {FileName}", fileName);
+                                skippedFilesCount++;
                                 continue;
                             }
                             
@@ -316,14 +318,22 @@ public class ExcelService : IExcelService
                         }
                     }
                     
-                    _logger.LogInformation("データ抽出完了: 成功{SuccessCount}件, エラー{ErrorCount}件, 総予約データ{TotalReservations}件", 
-                        successCount, errorCount, allResults.Count);
+                    _logger.LogInformation("データ抽出完了: 成功{SuccessCount}件, エラー{ErrorCount}件, スキップ{SkippedFiles}件, 総予約データ{TotalReservations}件", 
+                        successCount, errorCount, skippedFilesCount, allResults.Count);
                     
                     return allResults;
                 }
                 catch (Exception ex)
                 {
                     _logger.LogError(ex, "月別予約データ抽出中に予期しないエラーが発生しました");
+                    
+                    // 重大エラーの場合はServiceCriticalExceptionをスロー
+                    if (ex is ConfigurationException || ex is ServiceCriticalException)
+                    {
+                        _logger.LogCritical(ex, "重大エラーのため処理を終了します");
+                        throw new ServiceCriticalException("月別予約データ抽出中に重大エラーが発生しました", ex);
+                    }
+                    
                     throw;
                 }
             },
@@ -452,7 +462,7 @@ public class ExcelService : IExcelService
     /// </summary>
     private int ExtractFacilityIdFromFileName(string fileName)
     {
-        // 施設IDマッピング
+        // 施設IDマッピング（3拠点のみ）
         var facilityMapping = new Dictionary<string, int>
         {
             { "ふじみの", 7 },
@@ -464,10 +474,12 @@ public class ExcelService : IExcelService
         {
             if (fileName.Contains(mapping.Key))
             {
+                _logger.LogDebug("施設IDを特定しました: {FacilityName} -> {FacilityId}", mapping.Key, mapping.Value);
                 return mapping.Value;
             }
         }
         
+        _logger.LogWarning("施設IDが特定できませんでした: {FileName}", fileName);
         return 0; // マッピングが見つからない場合
     }
 
@@ -476,6 +488,13 @@ public class ExcelService : IExcelService
     /// </summary>
     private IEnumerable<FacilityMonthlyReservation> ExtractMonthlyReservations(IXLWorksheet worksheet, int facilityId)
     {
+        // facility_idが0の場合は空のリストを返す
+        if (facilityId == 0)
+        {
+            _logger.LogWarning("施設IDが0のため、データ抽出をスキップします");
+            return Enumerable.Empty<FacilityMonthlyReservation>();
+        }
+        
         var results = new List<FacilityMonthlyReservation>();
         var currentYear = DateTime.Now.Year;
         
@@ -530,7 +549,7 @@ public class ExcelService : IExcelService
             
             var monthlyReservation = new FacilityMonthlyReservation
             {
-                TenantId = 1,
+                TenantId = 1, // ハードコード
                 FacilityId = facilityId,
                 Year = year,
                 Month = month,

@@ -1,0 +1,584 @@
+[07:17:40 INF] ?? 予約管理システム連携ツールを開始します (モード: Console) 
+????????????????????????????????????????????????????????????????????
+?              予約管理システム連携ツール (Console Mode)              ?
+????????????????????????????????????????????????????????????????????
+
+[07:17:41 INF] ?? コンソールモードで実行を開始します 
+[07:17:41 INF] イベントログサービスが初期化されました 
+[07:17:41 INF] パフォーマンスモニタリングを開始しました (間隔: 60秒) 
+[07:17:41 INF] ?? 予約管理システム連携サービス の開始準備中... 
+[07:17:41 INF] ?? 設定の検証を開始します 
+[07:17:41 INF] ? 設定の検証が完了しました 
+[07:17:41 INF] ?? 開始準備が完了しました 
+[07:17:41 INF] ?? メインループを開始します (ポーリング間隔: 5分) 
+[07:17:41 INF] ワークシート名の確認を開始します 
+[07:17:50 INF] ファイル \\192.168.200.20\全社共有\SS予約表\2025年\【原本（共有なし）】2025年_SS予約表_250302.xlsm のワークシート名: SS予約表, 連絡管理, 空きFAX, 利用者メモ, 月集計, 設定 
+[07:17:52 INF] ファイル \\192.168.200.20\全社共有\SS予約表\2025年\千葉\いちかわ\【いちかわ】2025年_SS予約表_241122.xlsm のワークシート名: SS予約表, 連絡管理, 空きFAX, 利用者メモ, 月集計, 設定 
+[07:17:53 INF] ファイル \\192.168.200.20\全社共有\SS予約表\2025年\千葉\まつど\2025年_SS予約表_241122(使用していない).xlsm のワークシート名: SS予約表, 連絡管理, 空きFAX, 利用者メモ, 月集計, 設定 
+[07:17:56 INF] ファイル \\192.168.200.20\全社共有\SS予約表\2025年\千葉\まつど\【まつど】2025年_SS予約表2_241122.xlsm のワークシート名: SS予約表, 居宅連絡, 空きFAX, 利用者メモ, 月集計, 設定 
+[07:17:57 INF] ファイル \\192.168.200.20\全社共有\SS予約表\2025年\千葉\やちよ\【やちよ】2025年_SS予約表_241122.xlsm のワークシート名: SS予約表, 連絡管理, 空きFAX, 利用者メモ, 月集計, 設定 
+[07:17:59 INF] ファイル \\192.168.200.20\全社共有\SS予約表\2025年\千葉\わかば\【わかば】2025年_SS予約表_241122.xlsm のワークシート名: SS予約表, 連絡管理, 空きFAX, 利用者メモ, 月集計, 設定 
+[07:18:02 INF] ファイル \\192.168.200.20\全社共有\SS予約表\2025年\千葉\寿クラブ\【寿クラブ】2025年_SS予約表_241122.xlsm のワークシート名: SS予約表, 連絡管理, 空きFAX, 利用者メモ, 月集計, 設定 
+[07:18:04 INF] ファイル \\192.168.200.20\全社共有\SS予約表\2025年\埼京A1\あだち\【あだち】2025年_SS予約表_241122.xlsm のワークシート名: SS予約表, 連絡管理, 空きFAX, 利用者メモ, 月集計, 設定 
+[07:18:06 INF] ファイル \\192.168.200.20\全社共有\SS予約表\2025年\埼京A1\あだち\コピー【あだち】2025年_SS予約表_241122.xlsm のワークシート名: SS予約表, 連絡管理, 空きFAX, 利用者メモ, 月集計, 設定 
+[07:18:08 ERR] ワークシート名の取得中にエラーが発生しました: \\192.168.200.20\全社共有\SS予約表\2025年\埼京A1\おおみや\【おおみや】2025年_SS予約表_241122.xlsm 
+System.ArgumentException: Phonetic runs must be in ascending order and can't overlap.
+   at ClosedXML.Excel.XLImmutableRichText.Create[T](XLFormattedText`1 formattedText)
+   at ClosedXML.Excel.XLRichText.OnContentChanged()
+   at ClosedXML.Excel.XLWorkbook.SetCellText(XLCell xlCell, RstType element)
+   at ClosedXML.Excel.XLWorkbook.SetCellValue(CellValues dataType, String cellValue, XLCell xlCell, SharedStringItem[] sharedStrings)
+   at ClosedXML.Excel.XLWorkbook.LoadCell(SharedStringItem[] sharedStrings, Stylesheet s, NumberingFormats numberingFormats, Fills fills, Borders borders, Fonts fonts, Dictionary`2 sharedFormulasR1C1, XLWorksheet ws, Dictionary`2 styleList, OpenXmlPartReader reader, Int32 rowIndex)
+   at ClosedXML.Excel.XLWorkbook.LoadRow(Stylesheet s, NumberingFormats numberingFormats, Fills fills, Borders borders, Fonts fonts, XLWorksheet ws, SharedStringItem[] sharedStrings, Dictionary`2 sharedFormulasR1C1, Dictionary`2 styleList, OpenXmlPartReader reader)
+   at ClosedXML.Excel.XLWorkbook.LoadSpreadsheetDocument(SpreadsheetDocument dSpreadsheet)
+   at ClosedXML.Excel.XLWorkbook.LoadSheets(String fileName)
+   at ClosedXML.Excel.XLWorkbook.Load(String file)
+   at ClosedXML.Excel.XLWorkbook..ctor(String file, LoadOptions loadOptions)
+   at ClosedXML.Excel.XLWorkbook..ctor(String file)
+   at VacancyImport.Services.ExcelService.GetWorksheetNamesAsync(String filePath) in C:\VacancyImport\vacancy_import_v2\src\VacancyImport\Services\ExcelService.cs:line 390
+[07:18:10 INF] ファイル \\192.168.200.20\全社共有\SS予約表\2025年\埼京A1\みどり\【みどり】2025年_SS予約表_241122.xlsm のワークシート名: SS予約表, 連絡管理, １１１, 空きFAX, 利用者メモ, 月集計, 設定 
+[07:18:12 INF] ファイル \\192.168.200.20\全社共有\SS予約表\2025年\埼京A1\みどり\コピー【みどり】2025年_SS予約表_241122.xlsm のワークシート名: SS予約表, 連絡管理, １１１, 空きFAX, 利用者メモ, 月集計, 設定 
+[07:18:14 ERR] ワークシート名の取得中にエラーが発生しました: \\192.168.200.20\全社共有\SS予約表\2025年\埼京A1\わらび\【わらび】2025年_SS予約表_241122.xlsm 
+System.ArgumentException: Phonetic runs must be in ascending order and can't overlap.
+   at ClosedXML.Excel.XLImmutableRichText.Create[T](XLFormattedText`1 formattedText)
+   at ClosedXML.Excel.XLRichText.OnContentChanged()
+   at ClosedXML.Excel.XLWorkbook.SetCellText(XLCell xlCell, RstType element)
+   at ClosedXML.Excel.XLWorkbook.SetCellValue(CellValues dataType, String cellValue, XLCell xlCell, SharedStringItem[] sharedStrings)
+   at ClosedXML.Excel.XLWorkbook.LoadCell(SharedStringItem[] sharedStrings, Stylesheet s, NumberingFormats numberingFormats, Fills fills, Borders borders, Fonts fonts, Dictionary`2 sharedFormulasR1C1, XLWorksheet ws, Dictionary`2 styleList, OpenXmlPartReader reader, Int32 rowIndex)
+   at ClosedXML.Excel.XLWorkbook.LoadRow(Stylesheet s, NumberingFormats numberingFormats, Fills fills, Borders borders, Fonts fonts, XLWorksheet ws, SharedStringItem[] sharedStrings, Dictionary`2 sharedFormulasR1C1, Dictionary`2 styleList, OpenXmlPartReader reader)
+   at ClosedXML.Excel.XLWorkbook.LoadSpreadsheetDocument(SpreadsheetDocument dSpreadsheet)
+   at ClosedXML.Excel.XLWorkbook.LoadSheets(String fileName)
+   at ClosedXML.Excel.XLWorkbook.Load(String file)
+   at ClosedXML.Excel.XLWorkbook..ctor(String file, LoadOptions loadOptions)
+   at ClosedXML.Excel.XLWorkbook..ctor(String file)
+   at VacancyImport.Services.ExcelService.GetWorksheetNamesAsync(String filePath) in C:\VacancyImport\vacancy_import_v2\src\VacancyImport\Services\ExcelService.cs:line 390
+[07:18:16 INF] ファイル \\192.168.200.20\全社共有\SS予約表\2025年\埼京A2\いたばし\★【いたばし】2025年2025年2月1日から使用_SS予約表.xlsm のワークシート名: SS予約表, Sheet2, 連絡管理, 空きFAX, 利用者メモ, 月集計, 設定, Sheet1 
+[07:18:18 INF] ファイル \\192.168.200.20\全社共有\SS予約表\2025年\埼京A2\さやま\2025年　2月～.xlsm のワークシート名: SS予約表, 連絡管理, 空きFAX, 利用者メモ, 月集計, 設定 
+[07:18:20 INF] ファイル \\192.168.200.20\全社共有\SS予約表\2025年\埼京A2\さやま\【さやま】2025年_SS予約表_241122.xlsm のワークシート名: SS予約表, 連絡管理, 空きFAX, 利用者メモ, 月集計, 設定 
+[07:18:22 INF] ファイル \\192.168.200.20\全社共有\SS予約表\2025年\埼京A2\さやま\コピー2025年　2月～.xlsm のワークシート名: SS予約表, 連絡管理, 空きFAX, 利用者メモ, 月集計, 設定 
+[07:18:23 INF] ファイル \\192.168.200.20\全社共有\SS予約表\2025年\埼京A2\しき\【しき】2025年_SS予約表_250111.xlsm のワークシート名: SS予約表, 連絡管理, 空きFAX, 利用者メモ, 月集計, 設定 
+[07:18:25 INF] ファイル \\192.168.200.20\全社共有\SS予約表\2025年\埼京A2\にいざ\【にいざ】2025年_SS予約表_241122.xlsm のワークシート名: SS予約表, 連絡管理, 空きFAX, 利用者メモ, 月集計, 設定 
+[07:18:27 INF] ファイル \\192.168.200.20\全社共有\SS予約表\2025年\埼京A2\にいざ\コピー【にいざ】2025年_SS予約表_241122.xlsm のワークシート名: SS予約表, 連絡管理, 送迎確認, 空きFAX, 利用者メモ, 月集計, 設定 
+[07:18:29 INF] ファイル \\192.168.200.20\全社共有\SS予約表\2025年\埼京A2\ねりま\【ねりま】2025年_SS予約表_241122　２.xlsm のワークシート名: SS予約表, Sheet3, 連絡管理, 空きFAX, 利用者メモ, 設定, 月集計, Sheet1, Sheet2 
+[07:18:31 INF] ファイル \\192.168.200.20\全社共有\SS予約表\2025年\埼京A2\ねりま\コピー【ねりま】2025年_SS予約表_241122　２.xlsm のワークシート名: SS予約表, 連絡管理, 空きFAX, 利用者メモ, 設定, Sheet1, 月集計, Sheet2 
+[07:18:32 ERR] ワークシート名の取得中にエラーが発生しました: \\192.168.200.20\全社共有\SS予約表\2025年\埼京A2\ふじみの\【ふじみの】2025年_SS予約表_250111.xlsm 
+System.ArgumentException: Phonetic runs must be in ascending order and can't overlap.
+   at ClosedXML.Excel.XLImmutableRichText.Create[T](XLFormattedText`1 formattedText)
+   at ClosedXML.Excel.XLRichText.OnContentChanged()
+   at ClosedXML.Excel.XLWorkbook.SetCellText(XLCell xlCell, RstType element)
+   at ClosedXML.Excel.XLWorkbook.SetCellValue(CellValues dataType, String cellValue, XLCell xlCell, SharedStringItem[] sharedStrings)
+   at ClosedXML.Excel.XLWorkbook.LoadCell(SharedStringItem[] sharedStrings, Stylesheet s, NumberingFormats numberingFormats, Fills fills, Borders borders, Fonts fonts, Dictionary`2 sharedFormulasR1C1, XLWorksheet ws, Dictionary`2 styleList, OpenXmlPartReader reader, Int32 rowIndex)
+   at ClosedXML.Excel.XLWorkbook.LoadRow(Stylesheet s, NumberingFormats numberingFormats, Fills fills, Borders borders, Fonts fonts, XLWorksheet ws, SharedStringItem[] sharedStrings, Dictionary`2 sharedFormulasR1C1, Dictionary`2 styleList, OpenXmlPartReader reader)
+   at ClosedXML.Excel.XLWorkbook.LoadSpreadsheetDocument(SpreadsheetDocument dSpreadsheet)
+   at ClosedXML.Excel.XLWorkbook.LoadSheets(String fileName)
+   at ClosedXML.Excel.XLWorkbook.Load(String file)
+   at ClosedXML.Excel.XLWorkbook..ctor(String file, LoadOptions loadOptions)
+   at ClosedXML.Excel.XLWorkbook..ctor(String file)
+   at VacancyImport.Services.ExcelService.GetWorksheetNamesAsync(String filePath) in C:\VacancyImport\vacancy_import_v2\src\VacancyImport\Services\ExcelService.cs:line 390
+[07:18:34 INF] ファイル \\192.168.200.20\全社共有\SS予約表\2025年\埼京A2\わこう\【わこう】2025年_SS予約表_241122.xlsm のワークシート名: SS予約表, 連絡管理, 空きFAX, 利用者メモ, 月集計, Sheet1, 設定 
+[07:18:36 INF] ファイル \\192.168.200.20\全社共有\SS予約表\2025年\埼京B\かわぐち\【かわぐち】2025年_SS予約表_241122.xlsm のワークシート名: SS予約表, Sheet1, １月体重測定, 連絡管理, 空きFAX, 利用者メモ, 月集計, 設定 
+[07:18:38 ERR] ワークシート名の取得中にエラーが発生しました: \\192.168.200.20\全社共有\SS予約表\2025年\埼京B\こしがや\【こしがや】2025年_SS予約表_241122 のコピー.xlsm 
+System.ArgumentException: Phonetic runs must be in ascending order and can't overlap.
+   at ClosedXML.Excel.XLImmutableRichText.Create[T](XLFormattedText`1 formattedText)
+   at ClosedXML.Excel.XLRichText.OnContentChanged()
+   at ClosedXML.Excel.XLWorkbook.SetCellText(XLCell xlCell, RstType element)
+   at ClosedXML.Excel.XLWorkbook.SetCellValue(CellValues dataType, String cellValue, XLCell xlCell, SharedStringItem[] sharedStrings)
+   at ClosedXML.Excel.XLWorkbook.LoadCell(SharedStringItem[] sharedStrings, Stylesheet s, NumberingFormats numberingFormats, Fills fills, Borders borders, Fonts fonts, Dictionary`2 sharedFormulasR1C1, XLWorksheet ws, Dictionary`2 styleList, OpenXmlPartReader reader, Int32 rowIndex)
+   at ClosedXML.Excel.XLWorkbook.LoadRow(Stylesheet s, NumberingFormats numberingFormats, Fills fills, Borders borders, Fonts fonts, XLWorksheet ws, SharedStringItem[] sharedStrings, Dictionary`2 sharedFormulasR1C1, Dictionary`2 styleList, OpenXmlPartReader reader)
+   at ClosedXML.Excel.XLWorkbook.LoadSpreadsheetDocument(SpreadsheetDocument dSpreadsheet)
+   at ClosedXML.Excel.XLWorkbook.LoadSheets(String fileName)
+   at ClosedXML.Excel.XLWorkbook.Load(String file)
+   at ClosedXML.Excel.XLWorkbook..ctor(String file, LoadOptions loadOptions)
+   at ClosedXML.Excel.XLWorkbook..ctor(String file)
+   at VacancyImport.Services.ExcelService.GetWorksheetNamesAsync(String filePath) in C:\VacancyImport\vacancy_import_v2\src\VacancyImport\Services\ExcelService.cs:line 390
+[07:18:40 ERR] ワークシート名の取得中にエラーが発生しました: \\192.168.200.20\全社共有\SS予約表\2025年\埼京B\こしがや\【こしがや】2025年_SS予約表_241122.xlsm 
+System.ArgumentException: Phonetic runs must be in ascending order and can't overlap.
+   at ClosedXML.Excel.XLImmutableRichText.Create[T](XLFormattedText`1 formattedText)
+   at ClosedXML.Excel.XLRichText.OnContentChanged()
+   at ClosedXML.Excel.XLWorkbook.SetCellText(XLCell xlCell, RstType element)
+   at ClosedXML.Excel.XLWorkbook.SetCellValue(CellValues dataType, String cellValue, XLCell xlCell, SharedStringItem[] sharedStrings)
+   at ClosedXML.Excel.XLWorkbook.LoadCell(SharedStringItem[] sharedStrings, Stylesheet s, NumberingFormats numberingFormats, Fills fills, Borders borders, Fonts fonts, Dictionary`2 sharedFormulasR1C1, XLWorksheet ws, Dictionary`2 styleList, OpenXmlPartReader reader, Int32 rowIndex)
+   at ClosedXML.Excel.XLWorkbook.LoadRow(Stylesheet s, NumberingFormats numberingFormats, Fills fills, Borders borders, Fonts fonts, XLWorksheet ws, SharedStringItem[] sharedStrings, Dictionary`2 sharedFormulasR1C1, Dictionary`2 styleList, OpenXmlPartReader reader)
+   at ClosedXML.Excel.XLWorkbook.LoadSpreadsheetDocument(SpreadsheetDocument dSpreadsheet)
+   at ClosedXML.Excel.XLWorkbook.LoadSheets(String fileName)
+   at ClosedXML.Excel.XLWorkbook.Load(String file)
+   at ClosedXML.Excel.XLWorkbook..ctor(String file, LoadOptions loadOptions)
+   at ClosedXML.Excel.XLWorkbook..ctor(String file)
+   at VacancyImport.Services.ExcelService.GetWorksheetNamesAsync(String filePath) in C:\VacancyImport\vacancy_import_v2\src\VacancyImport\Services\ExcelService.cs:line 390
+[07:18:41 INF] システムリソース使用状況: メモリ=137MB, CPUタイム=00:00:29.3125000, スレッド数=11 
+[07:18:41 INF] ファイル \\192.168.200.20\全社共有\SS予約表\2025年\埼京B\そうか\ss202504４.xlsm のワークシート名: シフト, SS予実, 業務日誌, 出勤簿, CSV 
+[07:18:43 ERR] ワークシート名の取得中にエラーが発生しました: \\192.168.200.20\全社共有\SS予約表\2025年\埼京B\そうか\【そうか】2025年_SS予約表_241122.xlsm 
+System.ArgumentException: Phonetic run text can't be empty. (Parameter 'text')
+   at ClosedXML.Excel.XLImmutableRichText.PhoneticRun..ctor(String text, Int32 startIndex, Int32 endIndex)
+   at ClosedXML.Excel.XLImmutableRichText.Create[T](XLFormattedText`1 formattedText)
+   at ClosedXML.Excel.XLRichText.OnContentChanged()
+   at ClosedXML.Excel.XLWorkbook.SetCellText(XLCell xlCell, RstType element)
+   at ClosedXML.Excel.XLWorkbook.SetCellValue(CellValues dataType, String cellValue, XLCell xlCell, SharedStringItem[] sharedStrings)
+   at ClosedXML.Excel.XLWorkbook.LoadCell(SharedStringItem[] sharedStrings, Stylesheet s, NumberingFormats numberingFormats, Fills fills, Borders borders, Fonts fonts, Dictionary`2 sharedFormulasR1C1, XLWorksheet ws, Dictionary`2 styleList, OpenXmlPartReader reader, Int32 rowIndex)
+   at ClosedXML.Excel.XLWorkbook.LoadRow(Stylesheet s, NumberingFormats numberingFormats, Fills fills, Borders borders, Fonts fonts, XLWorksheet ws, SharedStringItem[] sharedStrings, Dictionary`2 sharedFormulasR1C1, Dictionary`2 styleList, OpenXmlPartReader reader)
+   at ClosedXML.Excel.XLWorkbook.LoadSpreadsheetDocument(SpreadsheetDocument dSpreadsheet)
+   at ClosedXML.Excel.XLWorkbook.LoadSheets(String fileName)
+   at ClosedXML.Excel.XLWorkbook.Load(String file)
+   at ClosedXML.Excel.XLWorkbook..ctor(String file, LoadOptions loadOptions)
+   at ClosedXML.Excel.XLWorkbook..ctor(String file)
+   at VacancyImport.Services.ExcelService.GetWorksheetNamesAsync(String filePath) in C:\VacancyImport\vacancy_import_v2\src\VacancyImport\Services\ExcelService.cs:line 390
+[07:18:44 ERR] ワークシート名の取得中にエラーが発生しました: \\192.168.200.20\全社共有\SS予約表\2025年\埼京B\そうか\コピー【そうか】2025年_SS予約表_241122.xlsm 
+System.ArgumentException: Phonetic run text can't be empty. (Parameter 'text')
+   at ClosedXML.Excel.XLImmutableRichText.PhoneticRun..ctor(String text, Int32 startIndex, Int32 endIndex)
+   at ClosedXML.Excel.XLImmutableRichText.Create[T](XLFormattedText`1 formattedText)
+   at ClosedXML.Excel.XLRichText.OnContentChanged()
+   at ClosedXML.Excel.XLWorkbook.SetCellText(XLCell xlCell, RstType element)
+   at ClosedXML.Excel.XLWorkbook.SetCellValue(CellValues dataType, String cellValue, XLCell xlCell, SharedStringItem[] sharedStrings)
+   at ClosedXML.Excel.XLWorkbook.LoadCell(SharedStringItem[] sharedStrings, Stylesheet s, NumberingFormats numberingFormats, Fills fills, Borders borders, Fonts fonts, Dictionary`2 sharedFormulasR1C1, XLWorksheet ws, Dictionary`2 styleList, OpenXmlPartReader reader, Int32 rowIndex)
+   at ClosedXML.Excel.XLWorkbook.LoadRow(Stylesheet s, NumberingFormats numberingFormats, Fills fills, Borders borders, Fonts fonts, XLWorksheet ws, SharedStringItem[] sharedStrings, Dictionary`2 sharedFormulasR1C1, Dictionary`2 styleList, OpenXmlPartReader reader)
+   at ClosedXML.Excel.XLWorkbook.LoadSpreadsheetDocument(SpreadsheetDocument dSpreadsheet)
+   at ClosedXML.Excel.XLWorkbook.LoadSheets(String fileName)
+   at ClosedXML.Excel.XLWorkbook.Load(String file)
+   at ClosedXML.Excel.XLWorkbook..ctor(String file, LoadOptions loadOptions)
+   at ClosedXML.Excel.XLWorkbook..ctor(String file)
+   at VacancyImport.Services.ExcelService.GetWorksheetNamesAsync(String filePath) in C:\VacancyImport\vacancy_import_v2\src\VacancyImport\Services\ExcelService.cs:line 390
+[07:18:46 INF] ファイル \\192.168.200.20\全社共有\SS予約表\2025年\埼京B\みさと\【みさと】2025年_SS予約表_241122.xlsm のワークシート名: SS予約表, 連絡, 空きFAX, 利用者メモ, 月集計, 設定 
+[07:18:48 INF] ファイル \\192.168.200.20\全社共有\SS予約表\2025年\神奈川\かなざわ\【かなざわ】2025年_SS予約表_241122.xlsm のワークシート名: SS予約表, 連絡管理, 空きFAX, 利用者メモ, 月集計, 設定 
+[07:18:50 INF] ファイル \\192.168.200.20\全社共有\SS予約表\2025年\神奈川\たかつ\【たかつ】2025年_SS予約表_241122_bk.xlsm のワークシート名: SS予約表, 連絡管理, 空きFAX, 利用者メモ, 月集計, 設定 
+[07:18:51 INF] ファイル \\192.168.200.20\全社共有\SS予約表\2025年\神奈川\つるみ\【つるみ】2025年_SS予約表_241122_bk.xlsm のワークシート名: SS予約表, 連絡管理, 空きFAX, 利用者メモ, 月集計, 設定 
+[07:18:53 INF] ファイル \\192.168.200.20\全社共有\SS予約表\2025年\神奈川\ふじさわ\【ふじさわ】2025年_SS予約表_241122.xlsm のワークシート名: SS予約表, 空きFAX, 連絡管理, 月集計, 設定, 利用者メモ 
+[07:18:55 ERR] ワークシート名の取得中にエラーが発生しました: \\192.168.200.20\全社共有\SS予約表\2025年\神奈川\やまと\【やまと】2025年_SS予約表_241122.xlsm 
+System.ArgumentException: Phonetic runs must be in ascending order and can't overlap.
+   at ClosedXML.Excel.XLImmutableRichText.Create[T](XLFormattedText`1 formattedText)
+   at ClosedXML.Excel.XLRichText.OnContentChanged()
+   at ClosedXML.Excel.XLWorkbook.SetCellText(XLCell xlCell, RstType element)
+   at ClosedXML.Excel.XLWorkbook.SetCellValue(CellValues dataType, String cellValue, XLCell xlCell, SharedStringItem[] sharedStrings)
+   at ClosedXML.Excel.XLWorkbook.LoadCell(SharedStringItem[] sharedStrings, Stylesheet s, NumberingFormats numberingFormats, Fills fills, Borders borders, Fonts fonts, Dictionary`2 sharedFormulasR1C1, XLWorksheet ws, Dictionary`2 styleList, OpenXmlPartReader reader, Int32 rowIndex)
+   at ClosedXML.Excel.XLWorkbook.LoadRow(Stylesheet s, NumberingFormats numberingFormats, Fills fills, Borders borders, Fonts fonts, XLWorksheet ws, SharedStringItem[] sharedStrings, Dictionary`2 sharedFormulasR1C1, Dictionary`2 styleList, OpenXmlPartReader reader)
+   at ClosedXML.Excel.XLWorkbook.LoadSpreadsheetDocument(SpreadsheetDocument dSpreadsheet)
+   at ClosedXML.Excel.XLWorkbook.LoadSheets(String fileName)
+   at ClosedXML.Excel.XLWorkbook.Load(String file)
+   at ClosedXML.Excel.XLWorkbook..ctor(String file, LoadOptions loadOptions)
+   at ClosedXML.Excel.XLWorkbook..ctor(String file)
+   at VacancyImport.Services.ExcelService.GetWorksheetNamesAsync(String filePath) in C:\VacancyImport\vacancy_import_v2\src\VacancyImport\Services\ExcelService.cs:line 390
+[07:18:56 ERR] ワークシート名の取得中にエラーが発生しました: \\192.168.200.20\全社共有\SS予約表\2025年\神奈川\やまと\コピー【やまと】2025年_SS予約表_241122.xlsm 
+System.ArgumentException: Phonetic runs must be in ascending order and can't overlap.
+   at ClosedXML.Excel.XLImmutableRichText.Create[T](XLFormattedText`1 formattedText)
+   at ClosedXML.Excel.XLRichText.OnContentChanged()
+   at ClosedXML.Excel.XLWorkbook.SetCellText(XLCell xlCell, RstType element)
+   at ClosedXML.Excel.XLWorkbook.SetCellValue(CellValues dataType, String cellValue, XLCell xlCell, SharedStringItem[] sharedStrings)
+   at ClosedXML.Excel.XLWorkbook.LoadCell(SharedStringItem[] sharedStrings, Stylesheet s, NumberingFormats numberingFormats, Fills fills, Borders borders, Fonts fonts, Dictionary`2 sharedFormulasR1C1, XLWorksheet ws, Dictionary`2 styleList, OpenXmlPartReader reader, Int32 rowIndex)
+   at ClosedXML.Excel.XLWorkbook.LoadRow(Stylesheet s, NumberingFormats numberingFormats, Fills fills, Borders borders, Fonts fonts, XLWorksheet ws, SharedStringItem[] sharedStrings, Dictionary`2 sharedFormulasR1C1, Dictionary`2 styleList, OpenXmlPartReader reader)
+   at ClosedXML.Excel.XLWorkbook.LoadSpreadsheetDocument(SpreadsheetDocument dSpreadsheet)
+   at ClosedXML.Excel.XLWorkbook.LoadSheets(String fileName)
+   at ClosedXML.Excel.XLWorkbook.Load(String file)
+   at ClosedXML.Excel.XLWorkbook..ctor(String file, LoadOptions loadOptions)
+   at ClosedXML.Excel.XLWorkbook..ctor(String file)
+   at VacancyImport.Services.ExcelService.GetWorksheetNamesAsync(String filePath) in C:\VacancyImport\vacancy_import_v2\src\VacancyImport\Services\ExcelService.cs:line 390
+[07:18:58 INF] ファイル \\192.168.200.20\全社共有\SS予約表\2025年\神奈川\よこすか\【よこすか】2025年_SS予約表_241122 最新.xlsm のワークシート名: SS予約表, 事務所, 連絡管理, 空きFAX, 利用者メモ, 月集計, 設定 
+[07:19:00 INF] ファイル \\192.168.200.20\全社共有\SS予約表\2025年\神奈川\よこすか\【よこすか】2025年_SS予約表のバックアップ_241122.xlsm のワークシート名: SS予約表, 連絡管理, 空きFAX, 利用者メモ, 月集計, 設定 
+[07:19:00 ERR] ワークシート名の取得中にエラーが発生しました: \\192.168.200.20\全社共有\SS予約表\2025年\千葉\いちかわ\過去\?【いちかわ】2025年_SS予約表_241122.xlsm 
+System.IO.FileFormatException: File contains corrupted data.
+   at System.IO.Packaging.ZipPackage..ctor(Stream s, FileMode packageFileMode, FileAccess packageFileAccess)
+   at System.IO.Packaging.Package.Open(Stream stream, FileMode packageMode, FileAccess packageAccess)
+   at DocumentFormat.OpenXml.Features.StreamPackageFeature.InitializePackage(Nullable`1 mode, Nullable`1 access)
+   at DocumentFormat.OpenXml.Features.StreamPackageFeature..ctor(Stream stream, PackageOpenMode openMode, Boolean isOwned)
+   at DocumentFormat.OpenXml.Features.FilePackageFeature..ctor(String path, PackageOpenMode mode)
+   at DocumentFormat.OpenXml.Builder.OpenXmlPackageBuilderExtensions.Open[TPackage](IPackageFactory`1 builder, String file, PackageOpenMode mode)
+   at DocumentFormat.OpenXml.Builder.OpenXmlPackageBuilderExtensions.Open[TPackage](IPackageFactory`1 builder, String file, Boolean isEditing)
+   at DocumentFormat.OpenXml.Packaging.SpreadsheetDocument.Open(String path, Boolean isEditable, OpenSettings openSettings)
+   at DocumentFormat.OpenXml.Packaging.SpreadsheetDocument.Open(String path, Boolean isEditable)
+   at ClosedXML.Excel.XLWorkbook.LoadSheets(String fileName)
+   at ClosedXML.Excel.XLWorkbook.Load(String file)
+   at ClosedXML.Excel.XLWorkbook..ctor(String file, LoadOptions loadOptions)
+   at ClosedXML.Excel.XLWorkbook..ctor(String file)
+   at VacancyImport.Services.ExcelService.GetWorksheetNamesAsync(String filePath) in C:\VacancyImport\vacancy_import_v2\src\VacancyImport\Services\ExcelService.cs:line 390
+[07:19:02 INF] ファイル \\192.168.200.20\全社共有\SS予約表\2025年\千葉\いちかわ\過去\【いちかわ】SS予約表_240507.xlsm のワークシート名: SS予約表, 連絡管理, 空きFAX, 利用者メモ, 月集計, 設定 
+[07:19:04 INF] ファイル \\192.168.200.20\全社共有\SS予約表\2025年\埼京A1\おおみや\過去\【おおみや】2024年_SS予約表_231215.xlsm のワークシート名: SS予約表, Sheet1, Sheet2, 連絡管理, 空きFAX, 利用者メモ, 設定 
+[07:19:05 INF] ファイル \\192.168.200.20\全社共有\SS予約表\2025年\埼京A1\おおみや\過去\【おおみや】2024年_SS予約表_240519.xlsm のワークシート名: SS予約表, 連絡管理, 空きFAX, 利用者メモ, 月集計, 設定 
+[07:19:07 INF] ファイル \\192.168.200.20\全社共有\SS予約表\2025年\埼京A2\にいざ\使用不可\?【にいざ】2025年_SS予約表_241122.xlsm のワークシート名: SS予約表, 連絡管理, 空きFAX, 利用者メモ, 月集計, 設定 
+[07:19:09 INF] ファイル \\192.168.200.20\全社共有\SS予約表\2025年\埼京A2\ねりま\過去\?【ねりま】2025年_SS予約表_241122.xlsm のワークシート名: SS予約表, 連絡管理, 空きFAX, 利用者メモ, 月集計, 設定 
+[07:19:11 INF] ファイル \\192.168.200.20\全社共有\SS予約表\2025年\埼京A1\おおみや\ボード係\3.旧予約表\【おおみや】2024年_SS予約表_231215.xlsm のワークシート名: SS予約表, Sheet1, Sheet2, 連絡管理, 空きFAX, 利用者メモ, 設定 
+[07:19:13 INF] ファイル \\192.168.200.20\全社共有\SS予約表\2025年\埼京A1\おおみや\ボード係\3.旧予約表\【おおみや】2024年_SS予約表_240519.xlsm のワークシート名: SS予約表, 連絡管理, 空きFAX, 利用者メモ, 月集計, 設定 
+[07:19:14 INF] ファイル \\192.168.200.20\全社共有\SS予約表\2025年\埼京A1\おおみや\ボード係\3.旧予約表\【原本】SS予約表（3ユニット）.xlsm のワークシート名: SS予約表, Sheet1, 予約連絡帳, 空き情報, 空きFAX用, 定期利用者一覧 
+[07:19:16 INF] ファイル \\192.168.200.20\全社共有\SS予約表\2025年\埼京A1\おおみや\ボード係\3.旧予約表\【原本】SS予約表（3ユニット）_230303.xlsm のワークシート名: SS予約表, Sheet1, 予約連絡帳, 空き情報, 空きFAX用, 定期利用者一覧 
+[07:19:16 INF] ワークシート名の確認が完了しました 
+[07:19:16 INF] 定期ヘルスチェックを開始します 
+[07:19:16 WRN] プルーフリストディレクトリチェックに失敗しました 
+System.IO.IOException: The process cannot access the file 'C:\VacancyImport\proof\healthcheck.tmp' because it is being used by another process.
+   at System.IO.FileSystem.DeleteFile(String fullPath)
+   at VacancyImport.Services.HealthCheckService.CheckProofListDirectoryAsync(HealthCheckResult result) in C:\VacancyImport\vacancy_import_v2\src\VacancyImport\Services\HealthCheckService.cs:line 172
+[07:19:16 INF] 定期ヘルスチェックが完了しました 
+[07:19:16 INF] Supabase接続のタイムアウト設定が完了しました 
+[07:19:20 INF] ファイルロックチェックを開始します: 49個のファイル 
+[07:19:20 INF] ? 予約管理システム連携サービス が正常に開始されました 
+[07:19:20 INF] Application started. Press Ctrl+C to shut down. 
+[07:19:20 INF] Hosting environment: Production 
+[07:19:20 INF] Content root path: C:\VacancyImport 
+[07:19:32 INF] ロックチェック完了: 49個中49個が利用可能 (処理時間: 12.01秒) 
+[07:19:32 INF] 新規ファイルを検出しました: \\192.168.200.20\全社共有\SS予約表\2025年\千葉\いちかわ\【いちかわ】2025年_SS予約表_241122.xlsm 
+[07:19:32 INF] 新規ファイルを検出しました: \\192.168.200.20\全社共有\SS予約表\2025年\千葉\まつど\2025年_SS予約表_241122(使用していない).xlsm 
+[07:19:32 INF] 新規ファイルを検出しました: \\192.168.200.20\全社共有\SS予約表\2025年\千葉\まつど\【まつど】2025年_SS予約表2_241122.xlsm 
+[07:19:32 INF] 新規ファイルを検出しました: \\192.168.200.20\全社共有\SS予約表\2025年\【原本（共有なし）】2025年_SS予約表_250302.xlsm 
+[07:19:32 INF] 新規ファイルを検出しました: \\192.168.200.20\全社共有\SS予約表\2025年\埼京A1\あだち\【あだち】2025年_SS予約表_241122.xlsm 
+[07:19:32 INF] 新規ファイルを検出しました: \\192.168.200.20\全社共有\SS予約表\2025年\千葉\わかば\【わかば】2025年_SS予約表_241122.xlsm 
+[07:19:32 INF] 新規ファイルを検出しました: \\192.168.200.20\全社共有\SS予約表\2025年\埼京A1\あだち\コピー【あだち】2025年_SS予約表_241122.xlsm 
+[07:19:32 INF] 新規ファイルを検出しました: \\192.168.200.20\全社共有\SS予約表\2025年\埼京A1\みどり\【みどり】2025年_SS予約表_241122.xlsm 
+[07:19:32 INF] 新規ファイルを検出しました: \\192.168.200.20\全社共有\SS予約表\2025年\千葉\寿クラブ\【寿クラブ】2025年_SS予約表_241122.xlsm 
+[07:19:32 INF] 新規ファイルを検出しました: \\192.168.200.20\全社共有\SS予約表\2025年\埼京A1\みどり\コピー【みどり】2025年_SS予約表_241122.xlsm 
+[07:19:32 INF] 新規ファイルを検出しました: \\192.168.200.20\全社共有\SS予約表\2025年\埼京A1\わらび\【わらび】2025年_SS予約表_241122.xlsm 
+[07:19:32 INF] 新規ファイルを検出しました: \\192.168.200.20\全社共有\SS予約表\2025年\埼京A2\いたばし\★【いたばし】2025年2025年2月1日から使用_SS予約表.xlsm 
+[07:19:32 INF] 新規ファイルを検出しました: \\192.168.200.20\全社共有\SS予約表\2025年\埼京A2\さやま\2025年　2月～.xlsm 
+[07:19:32 INF] 新規ファイルを検出しました: \\192.168.200.20\全社共有\SS予約表\2025年\埼京A2\さやま\【さやま】2025年_SS予約表_241122.xlsm 
+[07:19:32 INF] 新規ファイルを検出しました: \\192.168.200.20\全社共有\SS予約表\2025年\埼京A2\さやま\コピー2025年　2月～.xlsm 
+[07:19:32 INF] 新規ファイルを検出しました: \\192.168.200.20\全社共有\SS予約表\2025年\埼京A2\しき\【しき】2025年_SS予約表_250111.xlsm 
+[07:19:32 INF] 新規ファイルを検出しました: \\192.168.200.20\全社共有\SS予約表\2025年\埼京A2\にいざ\【にいざ】2025年_SS予約表_241122.xlsm 
+[07:19:32 INF] 新規ファイルを検出しました: \\192.168.200.20\全社共有\SS予約表\2025年\埼京A2\にいざ\コピー【にいざ】2025年_SS予約表_241122.xlsm 
+[07:19:32 INF] 新規ファイルを検出しました: \\192.168.200.20\全社共有\SS予約表\2025年\埼京A2\ねりま\コピー【ねりま】2025年_SS予約表_241122　２.xlsm 
+[07:19:32 INF] 新規ファイルを検出しました: \\192.168.200.20\全社共有\SS予約表\2025年\埼京A2\ねりま\【ねりま】2025年_SS予約表_241122　２.xlsm 
+[07:19:32 INF] 新規ファイルを検出しました: \\192.168.200.20\全社共有\SS予約表\2025年\埼京A2\ふじみの\【ふじみの】2025年_SS予約表_250111.xlsm 
+[07:19:32 INF] 新規ファイルを検出しました: \\192.168.200.20\全社共有\SS予約表\2025年\埼京A2\わこう\【わこう】2025年_SS予約表_241122.xlsm 
+[07:19:32 INF] 新規ファイルを検出しました: \\192.168.200.20\全社共有\SS予約表\2025年\埼京B\かわぐち\【かわぐち】2025年_SS予約表_241122.xlsm 
+[07:19:32 INF] 新規ファイルを検出しました: \\192.168.200.20\全社共有\SS予約表\2025年\埼京B\そうか\ss202504４.xlsm 
+[07:19:32 INF] 新規ファイルを検出しました: \\192.168.200.20\全社共有\SS予約表\2025年\埼京B\こしがや\【こしがや】2025年_SS予約表_241122 のコピー.xlsm 
+[07:19:32 INF] 新規ファイルを検出しました: \\192.168.200.20\全社共有\SS予約表\2025年\埼京B\こしがや\【こしがや】2025年_SS予約表_241122.xlsm 
+[07:19:32 INF] 新規ファイルを検出しました: \\192.168.200.20\全社共有\SS予約表\2025年\埼京B\そうか\【そうか】2025年_SS予約表_241122.xlsm 
+[07:19:32 INF] 新規ファイルを検出しました: \\192.168.200.20\全社共有\SS予約表\2025年\埼京B\みさと\【みさと】2025年_SS予約表_241122.xlsm 
+[07:19:32 INF] 新規ファイルを検出しました: \\192.168.200.20\全社共有\SS予約表\2025年\埼京B\そうか\コピー【そうか】2025年_SS予約表_241122.xlsm 
+[07:19:32 INF] 新規ファイルを検出しました: \\192.168.200.20\全社共有\SS予約表\2025年\神奈川\つるみ\【つるみ】2025年_SS予約表_241122_bk.xlsm 
+[07:19:33 INF] 新規ファイルを検出しました: \\192.168.200.20\全社共有\SS予約表\2025年\千葉\やちよ\【やちよ】2025年_SS予約表_241122.xlsm 
+[07:19:33 INF] 新規ファイルを検出しました: \\192.168.200.20\全社共有\SS予約表\2025年\神奈川\やまと\【やまと】2025年_SS予約表_241122.xlsm 
+[07:19:33 INF] 新規ファイルを検出しました: \\192.168.200.20\全社共有\SS予約表\2025年\神奈川\やまと\コピー【やまと】2025年_SS予約表_241122.xlsm 
+[07:19:33 INF] 新規ファイルを検出しました: \\192.168.200.20\全社共有\SS予約表\2025年\神奈川\よこすか\【よこすか】2025年_SS予約表_241122 最新.xlsm 
+[07:19:33 INF] 新規ファイルを検出しました: \\192.168.200.20\全社共有\SS予約表\2025年\神奈川\よこすか\【よこすか】2025年_SS予約表のバックアップ_241122.xlsm 
+[07:19:35 INF] 新規ファイルを検出しました: \\192.168.200.20\全社共有\SS予約表\2025年\神奈川\かなざわ\【かなざわ】2025年_SS予約表_241122.xlsm 
+[07:19:35 INF] 新規ファイルを検出しました: \\192.168.200.20\全社共有\SS予約表\2025年\千葉\いちかわ\過去\【いちかわ】SS予約表_240507.xlsm 
+[07:19:35 INF] 新規ファイルを検出しました: \\192.168.200.20\全社共有\SS予約表\2025年\埼京A1\おおみや\過去\【おおみや】2024年_SS予約表_231215.xlsm 
+[07:19:35 INF] 新規ファイルを検出しました: \\192.168.200.20\全社共有\SS予約表\2025年\埼京A1\おおみや\過去\【おおみや】2024年_SS予約表_240519.xlsm 
+[07:19:35 INF] 新規ファイルを検出しました: \\192.168.200.20\全社共有\SS予約表\2025年\埼京A2\にいざ\使用不可\?【にいざ】2025年_SS予約表_241122.xlsm 
+[07:19:35 INF] 新規ファイルを検出しました: \\192.168.200.20\全社共有\SS予約表\2025年\埼京A2\ねりま\過去\?【ねりま】2025年_SS予約表_241122.xlsm 
+[07:19:35 INF] 新規ファイルを検出しました: \\192.168.200.20\全社共有\SS予約表\2025年\埼京A1\おおみや\ボード係\3.旧予約表\【おおみや】2024年_SS予約表_231215.xlsm 
+[07:19:35 INF] 新規ファイルを検出しました: \\192.168.200.20\全社共有\SS予約表\2025年\埼京A1\おおみや\ボード係\3.旧予約表\【おおみや】2024年_SS予約表_240519.xlsm 
+[07:19:35 INF] 新規ファイルを検出しました: \\192.168.200.20\全社共有\SS予約表\2025年\埼京A1\おおみや\ボード係\3.旧予約表\【原本】SS予約表（3ユニット）.xlsm 
+[07:19:35 INF] 新規ファイルを検出しました: \\192.168.200.20\全社共有\SS予約表\2025年\埼京A1\おおみや\ボード係\3.旧予約表\【原本】SS予約表（3ユニット）_230303.xlsm 
+[07:19:35 INF] 新規ファイルを検出しました: \\192.168.200.20\全社共有\SS予約表\2025年\埼京A1\おおみや\【おおみや】2025年_SS予約表_241122.xlsm 
+[07:19:35 INF] 新規ファイルを検出しました: \\192.168.200.20\全社共有\SS予約表\2025年\神奈川\たかつ\【たかつ】2025年_SS予約表_241122_bk.xlsm 
+[07:19:35 INF] 新規ファイルを検出しました: \\192.168.200.20\全社共有\SS予約表\2025年\千葉\いちかわ\過去\?【いちかわ】2025年_SS予約表_241122.xlsm 
+[07:19:36 INF] 新規ファイルを検出しました: \\192.168.200.20\全社共有\SS予約表\2025年\神奈川\ふじさわ\【ふじさわ】2025年_SS予約表_241122.xlsm 
+[07:19:36 INF] ファイル更新を検出しました: 49個のファイルが更新されています 
+[07:19:36 WRN] 処理時間が閾値を超えました: CheckFileUpdates - 20152.5562ms (閾値: 5000ms) 
+[07:19:36 INF] ファイル更新を検出しました。データ処理を開始します 
+[07:19:40 INF] ファイルロックチェックを開始します: 49個のファイル 
+[07:19:40 INF] ロックチェック完了: 49個中49個が利用可能 (処理時間: 0.11秒) 
+[07:19:40 INF] データ抽出を開始します: 49個のファイルを処理 
+[07:19:41 INF] システムリソース使用状況: メモリ=137MB, CPUタイム=00:00:48.4062500, スレッド数=19 
+[07:19:41 INF] 操作パフォーマンス: CheckFileUpdates, 平均=20152.5562ms, 最大=20152.5562ms, 最小=20152.5562ms, 件数=1 
+[07:19:41 INF] 操作パフォーマンス: CalculateFileHash, 平均=347.82685918367355ms, 最大=4026.5217ms, 最小=0.8862ms, 件数=49 
+[07:19:41 ERR] ファイル処理中にエラーが発生しました: \\192.168.200.20\全社共有\SS予約表\2025年\埼京A2\ふじみの\【ふじみの】2025年_SS予約表_250111.xlsm 
+System.ArgumentException: Phonetic runs must be in ascending order and can't overlap.
+   at ClosedXML.Excel.XLImmutableRichText.Create[T](XLFormattedText`1 formattedText)
+   at ClosedXML.Excel.XLRichText.OnContentChanged()
+   at ClosedXML.Excel.XLWorkbook.SetCellText(XLCell xlCell, RstType element)
+   at ClosedXML.Excel.XLWorkbook.SetCellValue(CellValues dataType, String cellValue, XLCell xlCell, SharedStringItem[] sharedStrings)
+   at ClosedXML.Excel.XLWorkbook.LoadCell(SharedStringItem[] sharedStrings, Stylesheet s, NumberingFormats numberingFormats, Fills fills, Borders borders, Fonts fonts, Dictionary`2 sharedFormulasR1C1, XLWorksheet ws, Dictionary`2 styleList, OpenXmlPartReader reader, Int32 rowIndex)
+   at ClosedXML.Excel.XLWorkbook.LoadRow(Stylesheet s, NumberingFormats numberingFormats, Fills fills, Borders borders, Fonts fonts, XLWorksheet ws, SharedStringItem[] sharedStrings, Dictionary`2 sharedFormulasR1C1, Dictionary`2 styleList, OpenXmlPartReader reader)
+   at ClosedXML.Excel.XLWorkbook.LoadSpreadsheetDocument(SpreadsheetDocument dSpreadsheet)
+   at ClosedXML.Excel.XLWorkbook.LoadSheets(String fileName)
+   at ClosedXML.Excel.XLWorkbook.Load(String file)
+   at ClosedXML.Excel.XLWorkbook..ctor(String file, LoadOptions loadOptions)
+   at ClosedXML.Excel.XLWorkbook..ctor(String file)
+   at VacancyImport.Services.ExcelService.<ExtractMonthlyReservationsAsync>b__11_0() in C:\VacancyImport\vacancy_import_v2\src\VacancyImport\Services\ExcelService.cs:line 260
+[07:19:42 ERR] ファイル処理中にエラーが発生しました: \\192.168.200.20\全社共有\SS予約表\2025年\千葉\いちかわ\過去\?【いちかわ】2025年_SS予約表_241122.xlsm 
+System.IO.FileFormatException: File contains corrupted data.
+   at System.IO.Packaging.ZipPackage..ctor(Stream s, FileMode packageFileMode, FileAccess packageFileAccess)
+   at System.IO.Packaging.Package.Open(Stream stream, FileMode packageMode, FileAccess packageAccess)
+   at DocumentFormat.OpenXml.Features.StreamPackageFeature.InitializePackage(Nullable`1 mode, Nullable`1 access)
+   at DocumentFormat.OpenXml.Features.StreamPackageFeature..ctor(Stream stream, PackageOpenMode openMode, Boolean isOwned)
+   at DocumentFormat.OpenXml.Features.FilePackageFeature..ctor(String path, PackageOpenMode mode)
+   at DocumentFormat.OpenXml.Builder.OpenXmlPackageBuilderExtensions.Open[TPackage](IPackageFactory`1 builder, String file, PackageOpenMode mode)
+   at DocumentFormat.OpenXml.Builder.OpenXmlPackageBuilderExtensions.Open[TPackage](IPackageFactory`1 builder, String file, Boolean isEditing)
+   at DocumentFormat.OpenXml.Packaging.SpreadsheetDocument.Open(String path, Boolean isEditable, OpenSettings openSettings)
+   at DocumentFormat.OpenXml.Packaging.SpreadsheetDocument.Open(String path, Boolean isEditable)
+   at ClosedXML.Excel.XLWorkbook.LoadSheets(String fileName)
+   at ClosedXML.Excel.XLWorkbook.Load(String file)
+   at ClosedXML.Excel.XLWorkbook..ctor(String file, LoadOptions loadOptions)
+   at ClosedXML.Excel.XLWorkbook..ctor(String file)
+   at VacancyImport.Services.ExcelService.<ExtractMonthlyReservationsAsync>b__11_0() in C:\VacancyImport\vacancy_import_v2\src\VacancyImport\Services\ExcelService.cs:line 260
+[07:19:44 INF] データ抽出完了: 成功3件, エラー2件, 総予約データ26件 
+[07:19:44 WRN] 処理時間が閾値を超えました: ExtractMonthlyReservations - 7741.279ms (閾値: 5000ms) 
+[07:19:44 INF] データ抽出完了: 26件の予約データ 
+[07:19:44 INF] 月別予約データの更新を開始します 
+[07:19:44 ERR] 月別予約データの処理中にエラーが発生しました: 施設14 2025-1 
+Postgrest.Exceptions.PostgrestException: {"code":"23502","details":"Failing row contains (null, null, null, null, {19,18,17,15,12,13,13,12,12,10,16,16,11,7,13,12,13,16,13,8,11,14...).","hint":null,"message":"null value in column \"tenant_id\" of relation \"facility_monthly_reservations\" violates not-null constraint"}
+   at Postgrest.Helpers.MakeRequest(ClientOptions clientOptions, HttpMethod method, String url, JsonSerializerSettings serializerSettings, Object data, Dictionary`2 headers, CancellationToken cancellationToken)
+   at Postgrest.Helpers.MakeRequest[T](ClientOptions clientOptions, HttpMethod method, String url, JsonSerializerSettings serializerSettings, Object data, Dictionary`2 headers, Func`1 getHeaders, CancellationToken cancellationToken)
+   at VacancyImport.Services.SupabaseService.ProcessMonthlyReservationBatchAsync(IEnumerable`1 batch) in C:\VacancyImport\vacancy_import_v2\src\VacancyImport\Services\SupabaseService.cs:line 197
+[07:19:44 ERR] 月別予約データの処理中にエラーが発生しました: 施設14 2025-2 
+Postgrest.Exceptions.PostgrestException: {"code":"23502","details":"Failing row contains (null, null, null, null, {18,17,15,14,14,12,11,17,18,14,12,11,11,12,16,13,12,15,18,15,17,...).","hint":null,"message":"null value in column \"tenant_id\" of relation \"facility_monthly_reservations\" violates not-null constraint"}
+   at Postgrest.Helpers.MakeRequest(ClientOptions clientOptions, HttpMethod method, String url, JsonSerializerSettings serializerSettings, Object data, Dictionary`2 headers, CancellationToken cancellationToken)
+   at Postgrest.Helpers.MakeRequest[T](ClientOptions clientOptions, HttpMethod method, String url, JsonSerializerSettings serializerSettings, Object data, Dictionary`2 headers, Func`1 getHeaders, CancellationToken cancellationToken)
+   at VacancyImport.Services.SupabaseService.ProcessMonthlyReservationBatchAsync(IEnumerable`1 batch) in C:\VacancyImport\vacancy_import_v2\src\VacancyImport\Services\SupabaseService.cs:line 197
+[07:19:45 ERR] 月別予約データの処理中にエラーが発生しました: 施設14 2025-3 
+Postgrest.Exceptions.PostgrestException: {"code":"23502","details":"Failing row contains (null, null, null, null, {15,12,11,10,12,11,14,15,14,11,12,14,12,9,9,8,5,8,12,13,14,17,15...).","hint":null,"message":"null value in column \"tenant_id\" of relation \"facility_monthly_reservations\" violates not-null constraint"}
+   at Postgrest.Helpers.MakeRequest(ClientOptions clientOptions, HttpMethod method, String url, JsonSerializerSettings serializerSettings, Object data, Dictionary`2 headers, CancellationToken cancellationToken)
+   at Postgrest.Helpers.MakeRequest[T](ClientOptions clientOptions, HttpMethod method, String url, JsonSerializerSettings serializerSettings, Object data, Dictionary`2 headers, Func`1 getHeaders, CancellationToken cancellationToken)
+   at VacancyImport.Services.SupabaseService.ProcessMonthlyReservationBatchAsync(IEnumerable`1 batch) in C:\VacancyImport\vacancy_import_v2\src\VacancyImport\Services\SupabaseService.cs:line 197
+[07:19:45 ERR] 月別予約データの処理中にエラーが発生しました: 施設14 2025-4 
+Postgrest.Exceptions.PostgrestException: {"code":"23502","details":"Failing row contains (null, null, null, null, {9,12,12,12,13,13,9,10,12,11,15,15,12,8,11,12,15,18,15,16,18,13,...).","hint":null,"message":"null value in column \"tenant_id\" of relation \"facility_monthly_reservations\" violates not-null constraint"}
+   at Postgrest.Helpers.MakeRequest(ClientOptions clientOptions, HttpMethod method, String url, JsonSerializerSettings serializerSettings, Object data, Dictionary`2 headers, CancellationToken cancellationToken)
+   at Postgrest.Helpers.MakeRequest[T](ClientOptions clientOptions, HttpMethod method, String url, JsonSerializerSettings serializerSettings, Object data, Dictionary`2 headers, Func`1 getHeaders, CancellationToken cancellationToken)
+   at VacancyImport.Services.SupabaseService.ProcessMonthlyReservationBatchAsync(IEnumerable`1 batch) in C:\VacancyImport\vacancy_import_v2\src\VacancyImport\Services\SupabaseService.cs:line 197
+[07:19:45 ERR] 月別予約データの処理中にエラーが発生しました: 施設14 2025-11 
+Postgrest.Exceptions.PostgrestException: {"code":"23502","details":"Failing row contains (null, null, null, null, {4,3,2,3,3,3,4,3,3,4,2,2,2,2,0,0,0,0,0,0,1,3,3,2,1,2,2,2,2,2}).","hint":null,"message":"null value in column \"tenant_id\" of relation \"facility_monthly_reservations\" violates not-null constraint"}
+   at Postgrest.Helpers.MakeRequest(ClientOptions clientOptions, HttpMethod method, String url, JsonSerializerSettings serializerSettings, Object data, Dictionary`2 headers, CancellationToken cancellationToken)
+   at Postgrest.Helpers.MakeRequest[T](ClientOptions clientOptions, HttpMethod method, String url, JsonSerializerSettings serializerSettings, Object data, Dictionary`2 headers, Func`1 getHeaders, CancellationToken cancellationToken)
+   at VacancyImport.Services.SupabaseService.ProcessMonthlyReservationBatchAsync(IEnumerable`1 batch) in C:\VacancyImport\vacancy_import_v2\src\VacancyImport\Services\SupabaseService.cs:line 197
+[07:19:46 ERR] 月別予約データの処理中にエラーが発生しました: 施設14 2025-12 
+Postgrest.Exceptions.PostgrestException: {"code":"23502","details":"Failing row contains (null, null, null, null, {2,2,2,2,2,2,3,2,2,2,2,3,1,1,1,0,0,0,0,1,1,1,1,1,2,3,3,3,4,4,4}).","hint":null,"message":"null value in column \"tenant_id\" of relation \"facility_monthly_reservations\" violates not-null constraint"}
+   at Postgrest.Helpers.MakeRequest(ClientOptions clientOptions, HttpMethod method, String url, JsonSerializerSettings serializerSettings, Object data, Dictionary`2 headers, CancellationToken cancellationToken)
+   at Postgrest.Helpers.MakeRequest[T](ClientOptions clientOptions, HttpMethod method, String url, JsonSerializerSettings serializerSettings, Object data, Dictionary`2 headers, Func`1 getHeaders, CancellationToken cancellationToken)
+   at VacancyImport.Services.SupabaseService.ProcessMonthlyReservationBatchAsync(IEnumerable`1 batch) in C:\VacancyImport\vacancy_import_v2\src\VacancyImport\Services\SupabaseService.cs:line 197
+[07:19:46 ERR] 月別予約データの処理中にエラーが発生しました: 施設10 2025-1 
+Postgrest.Exceptions.PostgrestException: {"code":"23502","details":"Failing row contains (null, null, null, null, {16,19,18,15,14,13,15,15,12,11,11,11,12,14,12,11,12,12,11,14,15,...).","hint":null,"message":"null value in column \"tenant_id\" of relation \"facility_monthly_reservations\" violates not-null constraint"}
+   at Postgrest.Helpers.MakeRequest(ClientOptions clientOptions, HttpMethod method, String url, JsonSerializerSettings serializerSettings, Object data, Dictionary`2 headers, CancellationToken cancellationToken)
+   at Postgrest.Helpers.MakeRequest[T](ClientOptions clientOptions, HttpMethod method, String url, JsonSerializerSettings serializerSettings, Object data, Dictionary`2 headers, Func`1 getHeaders, CancellationToken cancellationToken)
+   at VacancyImport.Services.SupabaseService.ProcessMonthlyReservationBatchAsync(IEnumerable`1 batch) in C:\VacancyImport\vacancy_import_v2\src\VacancyImport\Services\SupabaseService.cs:line 197
+[07:19:46 ERR] 月別予約データの処理中にエラーが発生しました: 施設10 2025-2 
+Postgrest.Exceptions.PostgrestException: {"code":"23502","details":"Failing row contains (null, null, null, null, {18,18,15,16,16,17,19,20,18,19,17,15,16,14,15,14,17,17,17,18,17,...).","hint":null,"message":"null value in column \"tenant_id\" of relation \"facility_monthly_reservations\" violates not-null constraint"}
+   at Postgrest.Helpers.MakeRequest(ClientOptions clientOptions, HttpMethod method, String url, JsonSerializerSettings serializerSettings, Object data, Dictionary`2 headers, CancellationToken cancellationToken)
+   at Postgrest.Helpers.MakeRequest[T](ClientOptions clientOptions, HttpMethod method, String url, JsonSerializerSettings serializerSettings, Object data, Dictionary`2 headers, Func`1 getHeaders, CancellationToken cancellationToken)
+   at VacancyImport.Services.SupabaseService.ProcessMonthlyReservationBatchAsync(IEnumerable`1 batch) in C:\VacancyImport\vacancy_import_v2\src\VacancyImport\Services\SupabaseService.cs:line 197
+[07:19:46 ERR] 月別予約データの処理中にエラーが発生しました: 施設10 2025-3 
+Postgrest.Exceptions.PostgrestException: {"code":"23502","details":"Failing row contains (null, null, null, null, {17,16,16,17,19,17,20,19,16,14,15,16,17,19,19,18,20,18,19,16,18,...).","hint":null,"message":"null value in column \"tenant_id\" of relation \"facility_monthly_reservations\" violates not-null constraint"}
+   at Postgrest.Helpers.MakeRequest(ClientOptions clientOptions, HttpMethod method, String url, JsonSerializerSettings serializerSettings, Object data, Dictionary`2 headers, CancellationToken cancellationToken)
+   at Postgrest.Helpers.MakeRequest[T](ClientOptions clientOptions, HttpMethod method, String url, JsonSerializerSettings serializerSettings, Object data, Dictionary`2 headers, Func`1 getHeaders, CancellationToken cancellationToken)
+   at VacancyImport.Services.SupabaseService.ProcessMonthlyReservationBatchAsync(IEnumerable`1 batch) in C:\VacancyImport\vacancy_import_v2\src\VacancyImport\Services\SupabaseService.cs:line 197
+[07:19:46 ERR] 月別予約データの処理中にエラーが発生しました: 施設10 2025-4 
+Postgrest.Exceptions.PostgrestException: {"code":"23502","details":"Failing row contains (null, null, null, null, {18,19,17,16,17,16,16,15,16,15,17,18,18,18,18,19,17,18,18,16,16,...).","hint":null,"message":"null value in column \"tenant_id\" of relation \"facility_monthly_reservations\" violates not-null constraint"}
+   at Postgrest.Helpers.MakeRequest(ClientOptions clientOptions, HttpMethod method, String url, JsonSerializerSettings serializerSettings, Object data, Dictionary`2 headers, CancellationToken cancellationToken)
+   at Postgrest.Helpers.MakeRequest[T](ClientOptions clientOptions, HttpMethod method, String url, JsonSerializerSettings serializerSettings, Object data, Dictionary`2 headers, Func`1 getHeaders, CancellationToken cancellationToken)
+   at VacancyImport.Services.SupabaseService.ProcessMonthlyReservationBatchAsync(IEnumerable`1 batch) in C:\VacancyImport\vacancy_import_v2\src\VacancyImport\Services\SupabaseService.cs:line 197
+[07:19:47 ERR] 月別予約データの処理中にエラーが発生しました: 施設10 2025-10 
+Postgrest.Exceptions.PostgrestException: {"code":"23502","details":"Failing row contains (null, null, null, null, {3,3,6,5,5,3,3,4,4,5,4,4,4,3,3,3,4,3,3,4,4,5,5,5,4,4,3,2,3,3,5}).","hint":null,"message":"null value in column \"tenant_id\" of relation \"facility_monthly_reservations\" violates not-null constraint"}
+   at Postgrest.Helpers.MakeRequest(ClientOptions clientOptions, HttpMethod method, String url, JsonSerializerSettings serializerSettings, Object data, Dictionary`2 headers, CancellationToken cancellationToken)
+   at Postgrest.Helpers.MakeRequest[T](ClientOptions clientOptions, HttpMethod method, String url, JsonSerializerSettings serializerSettings, Object data, Dictionary`2 headers, Func`1 getHeaders, CancellationToken cancellationToken)
+   at VacancyImport.Services.SupabaseService.ProcessMonthlyReservationBatchAsync(IEnumerable`1 batch) in C:\VacancyImport\vacancy_import_v2\src\VacancyImport\Services\SupabaseService.cs:line 197
+[07:19:47 ERR] 月別予約データの処理中にエラーが発生しました: 施設10 2025-11 
+Postgrest.Exceptions.PostgrestException: {"code":"23502","details":"Failing row contains (null, null, null, null, {4,4,4,3,2,1,1,1,1,1,1,1,2,2,2,2,1,1,1,1,2,2,2,2,2,1,1,1,1,0}).","hint":null,"message":"null value in column \"tenant_id\" of relation \"facility_monthly_reservations\" violates not-null constraint"}
+   at Postgrest.Helpers.MakeRequest(ClientOptions clientOptions, HttpMethod method, String url, JsonSerializerSettings serializerSettings, Object data, Dictionary`2 headers, CancellationToken cancellationToken)
+   at Postgrest.Helpers.MakeRequest[T](ClientOptions clientOptions, HttpMethod method, String url, JsonSerializerSettings serializerSettings, Object data, Dictionary`2 headers, Func`1 getHeaders, CancellationToken cancellationToken)
+   at VacancyImport.Services.SupabaseService.ProcessMonthlyReservationBatchAsync(IEnumerable`1 batch) in C:\VacancyImport\vacancy_import_v2\src\VacancyImport\Services\SupabaseService.cs:line 197
+[07:19:47 ERR] 月別予約データの処理中にエラーが発生しました: 施設10 2025-12 
+Postgrest.Exceptions.PostgrestException: {"code":"23502","details":"Failing row contains (null, null, null, null, {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}).","hint":null,"message":"null value in column \"tenant_id\" of relation \"facility_monthly_reservations\" violates not-null constraint"}
+   at Postgrest.Helpers.MakeRequest(ClientOptions clientOptions, HttpMethod method, String url, JsonSerializerSettings serializerSettings, Object data, Dictionary`2 headers, CancellationToken cancellationToken)
+   at Postgrest.Helpers.MakeRequest[T](ClientOptions clientOptions, HttpMethod method, String url, JsonSerializerSettings serializerSettings, Object data, Dictionary`2 headers, Func`1 getHeaders, CancellationToken cancellationToken)
+   at VacancyImport.Services.SupabaseService.ProcessMonthlyReservationBatchAsync(IEnumerable`1 batch) in C:\VacancyImport\vacancy_import_v2\src\VacancyImport\Services\SupabaseService.cs:line 197
+[07:19:47 ERR] 月別予約データの処理中にエラーが発生しました: 施設14 2025-1 
+Postgrest.Exceptions.PostgrestException: {"code":"23502","details":"Failing row contains (null, null, null, null, {20,17,17,13,12,14,16,15,14,13,19,19,15,12,14,13,15,17,14,9,9,11...).","hint":null,"message":"null value in column \"tenant_id\" of relation \"facility_monthly_reservations\" violates not-null constraint"}
+   at Postgrest.Helpers.MakeRequest(ClientOptions clientOptions, HttpMethod method, String url, JsonSerializerSettings serializerSettings, Object data, Dictionary`2 headers, CancellationToken cancellationToken)
+   at Postgrest.Helpers.MakeRequest[T](ClientOptions clientOptions, HttpMethod method, String url, JsonSerializerSettings serializerSettings, Object data, Dictionary`2 headers, Func`1 getHeaders, CancellationToken cancellationToken)
+   at VacancyImport.Services.SupabaseService.ProcessMonthlyReservationBatchAsync(IEnumerable`1 batch) in C:\VacancyImport\vacancy_import_v2\src\VacancyImport\Services\SupabaseService.cs:line 197
+[07:19:47 ERR] 月別予約データの処理中にエラーが発生しました: 施設14 2025-2 
+Postgrest.Exceptions.PostgrestException: {"code":"23502","details":"Failing row contains (null, null, null, null, {14,12,10,10,9,8,13,17,16,10,9,10,9,12,16,13,8,9,10,8,11,17,16,7...).","hint":null,"message":"null value in column \"tenant_id\" of relation \"facility_monthly_reservations\" violates not-null constraint"}
+   at Postgrest.Helpers.MakeRequest(ClientOptions clientOptions, HttpMethod method, String url, JsonSerializerSettings serializerSettings, Object data, Dictionary`2 headers, CancellationToken cancellationToken)
+   at Postgrest.Helpers.MakeRequest[T](ClientOptions clientOptions, HttpMethod method, String url, JsonSerializerSettings serializerSettings, Object data, Dictionary`2 headers, Func`1 getHeaders, CancellationToken cancellationToken)
+   at VacancyImport.Services.SupabaseService.ProcessMonthlyReservationBatchAsync(IEnumerable`1 batch) in C:\VacancyImport\vacancy_import_v2\src\VacancyImport\Services\SupabaseService.cs:line 197
+[07:19:47 INF] 月別予約データの更新が完了しました。変更件数: 11 
+[07:19:47 INF] DB更新完了: 11件の変更 
+[07:19:47 INF] プルーフリストを保存しました: C:\VacancyImport\proofs\proof_20250725_071947.csv 
+[07:19:47 INF] プルーフリストを生成しました 
+[07:19:47 INF] Start processing HTTP request POST https://auth.worksmobile.com/oauth2/v2.0/token 
+[07:19:47 INF] Sending HTTP request POST https://auth.worksmobile.com/oauth2/v2.0/token 
+[07:19:47 INF] Received HTTP response headers after 101.1843ms - 400 
+[07:19:47 INF] End processing HTTP request after 118.0942ms - 400 
+[07:19:47 ERR] アクセストークンの取得中にエラーが発生しました 
+System.Net.Http.HttpRequestException: Response status code does not indicate success: 400.
+   at System.Net.Http.HttpResponseMessage.EnsureSuccessStatusCode()
+   at VacancyImport.Services.LineWorksService.GetAccessTokenAsync() in C:\VacancyImport\vacancy_import_v2\src\VacancyImport\Services\LineWorksService.cs:line 61
+[07:19:47 ERR] LINE WORKSメッセージ送信中にエラーが発生しました (試行 1/2) 
+System.Net.Http.HttpRequestException: Response status code does not indicate success: 400.
+   at System.Net.Http.HttpResponseMessage.EnsureSuccessStatusCode()
+   at VacancyImport.Services.LineWorksService.GetAccessTokenAsync() in C:\VacancyImport\vacancy_import_v2\src\VacancyImport\Services\LineWorksService.cs:line 61
+   at VacancyImport.Services.LineWorksService.SendMessageAsync(Object messageObj) in C:\VacancyImport\vacancy_import_v2\src\VacancyImport\Services\LineWorksService.cs:line 184
+[07:19:48 INF] Start processing HTTP request POST https://auth.worksmobile.com/oauth2/v2.0/token 
+[07:19:48 INF] Sending HTTP request POST https://auth.worksmobile.com/oauth2/v2.0/token 
+[07:19:48 INF] Received HTTP response headers after 13.7433ms - 400 
+[07:19:48 INF] End processing HTTP request after 16.6823ms - 400 
+[07:19:48 ERR] アクセストークンの取得中にエラーが発生しました 
+System.Net.Http.HttpRequestException: Response status code does not indicate success: 400.
+   at System.Net.Http.HttpResponseMessage.EnsureSuccessStatusCode()
+   at VacancyImport.Services.LineWorksService.GetAccessTokenAsync() in C:\VacancyImport\vacancy_import_v2\src\VacancyImport\Services\LineWorksService.cs:line 61
+[07:19:48 ERR] LINE WORKSメッセージ送信中にエラーが発生しました (試行 2/2) 
+System.Net.Http.HttpRequestException: Response status code does not indicate success: 400.
+   at System.Net.Http.HttpResponseMessage.EnsureSuccessStatusCode()
+   at VacancyImport.Services.LineWorksService.GetAccessTokenAsync() in C:\VacancyImport\vacancy_import_v2\src\VacancyImport\Services\LineWorksService.cs:line 61
+   at VacancyImport.Services.LineWorksService.SendMessageAsync(Object messageObj) in C:\VacancyImport\vacancy_import_v2\src\VacancyImport\Services\LineWorksService.cs:line 184
+[07:19:48 ERR] 通知メッセージの送信中にエラーが発生しました 
+System.Net.Http.HttpRequestException: Response status code does not indicate success: 400.
+   at System.Net.Http.HttpResponseMessage.EnsureSuccessStatusCode()
+   at VacancyImport.Services.LineWorksService.GetAccessTokenAsync() in C:\VacancyImport\vacancy_import_v2\src\VacancyImport\Services\LineWorksService.cs:line 61
+   at VacancyImport.Services.LineWorksService.SendMessageAsync(Object messageObj) in C:\VacancyImport\vacancy_import_v2\src\VacancyImport\Services\LineWorksService.cs:line 184
+   at VacancyImport.Services.LineWorksService.SendMessageAsync(Object messageObj) in C:\VacancyImport\vacancy_import_v2\src\VacancyImport\Services\LineWorksService.cs:line 225
+   at VacancyImport.Services.LineWorksService.SendNotificationAsync(String message) in C:\VacancyImport\vacancy_import_v2\src\VacancyImport\Services\LineWorksService.cs:line 99
+[07:19:48 ERR] LINE WORKS通知中にエラーが発生しました 
+System.Net.Http.HttpRequestException: Response status code does not indicate success: 400.
+   at System.Net.Http.HttpResponseMessage.EnsureSuccessStatusCode()
+   at VacancyImport.Services.LineWorksService.GetAccessTokenAsync() in C:\VacancyImport\vacancy_import_v2\src\VacancyImport\Services\LineWorksService.cs:line 61
+   at VacancyImport.Services.LineWorksService.SendMessageAsync(Object messageObj) in C:\VacancyImport\vacancy_import_v2\src\VacancyImport\Services\LineWorksService.cs:line 184
+   at VacancyImport.Services.LineWorksService.SendMessageAsync(Object messageObj) in C:\VacancyImport\vacancy_import_v2\src\VacancyImport\Services\LineWorksService.cs:line 225
+   at VacancyImport.Services.LineWorksService.SendNotificationAsync(String message) in C:\VacancyImport\vacancy_import_v2\src\VacancyImport\Services\LineWorksService.cs:line 99
+   at VacancyImport.Services.ServiceHost.SendNotificationAsync(LineWorksService lineWorksService, IEnumerable`1 changes) in C:\VacancyImport\vacancy_import_v2\src\VacancyImport\Services\ServiceHost.cs:line 532
+[07:19:48 INF] ビジネスロジックの実行が完了しました 
+[07:19:48 WRN] 処理時間が閾値を超えました: main_loop - 32544.095ms (閾値: 5000ms) 
+[07:20:41 INF] システムリソース使用状況: メモリ=137MB, CPUタイム=00:00:53.6406250, スレッド数=19 
+[07:20:41 INF] 操作パフォーマンス: main_loop, 平均=32544.095ms, 最大=32544.095ms, 最小=32544.095ms, 件数=1 
+[07:20:41 INF] 操作パフォーマンス: SaveProofList, 平均=22.712ms, 最大=22.712ms, 最小=22.712ms, 件数=1 
+[07:20:41 INF] 操作パフォーマンス: ExtractMonthlyReservations, 平均=7741.279ms, 最大=7741.279ms, 最小=7741.279ms, 件数=1 
+[07:21:41 INF] システムリソース使用状況: メモリ=137MB, CPUタイム=00:00:53.7031250, スレッド数=13 
+[07:22:41 INF] システムリソース使用状況: メモリ=137MB, CPUタイム=00:00:53.7500000, スレッド数=13 
+[07:23:41 INF] システムリソース使用状況: メモリ=137MB, CPUタイム=00:00:53.7656250, スレッド数=13 
+[07:24:41 INF] システムリソース使用状況: メモリ=137MB, CPUタイム=00:00:53.8281250, スレッド数=12 
+[07:24:52 INF] ファイルロックチェックを開始します: 49個のファイル 
+[07:25:13 INF] ロックチェック完了: 49個中49個が利用可能 (処理時間: 20.64秒) 
+[07:25:24 WRN] 処理時間が閾値を超えました: CheckFileUpdates - 36008.0246ms (閾値: 5000ms) 
+[07:25:24 WRN] 処理時間が閾値を超えました: main_loop - 36009.0244ms (閾値: 5000ms) 
+[07:25:41 INF] システムリソース使用状況: メモリ=137MB, CPUタイム=00:00:54.8125000, スレッド数=18 
+[07:25:41 INF] 操作パフォーマンス: CheckFileUpdates, 平均=36008.0246ms, 最大=36008.0246ms, 最小=36008.0246ms, 件数=1 
+[07:25:41 INF] 操作パフォーマンス: main_loop, 平均=36009.0244ms, 最大=36009.0244ms, 最小=36009.0244ms, 件数=1 
+[07:25:41 INF] 操作パフォーマンス: CalculateFileHash, 平均=1057.1763204081628ms, 最大=3320.4277ms, 最小=14.6813ms, 件数=49 
+[07:26:41 INF] システムリソース使用状況: メモリ=137MB, CPUタイム=00:00:54.8750000, スレッド数=12 
+[07:27:41 INF] システムリソース使用状況: メモリ=137MB, CPUタイム=00:00:54.9218750, スレッド数=13 
+[07:28:41 INF] システムリソース使用状況: メモリ=137MB, CPUタイム=00:00:54.9531250, スレッド数=13 
+[07:29:41 INF] システムリソース使用状況: メモリ=137MB, CPUタイム=00:00:54.9531250, スレッド数=11 
+[07:30:29 INF] ファイルロックチェックを開始します: 51個のファイル 
+[07:30:41 INF] システムリソース使用状況: メモリ=137MB, CPUタイム=00:00:55.2500000, スレッド数=16 
+[07:30:41 INF] ロックチェック完了: 51個中49個が利用可能 (処理時間: 11.48秒) 
+[07:30:41 INF] ファイルが更新されました: \\192.168.200.20\全社共有\SS予約表\2025年\埼京A2\いたばし\★【いたばし】2025年2025年2月1日から使用_SS予約表.xlsm 
+[07:30:45 INF] ファイル更新を検出しました: 1個のファイルが更新されています 
+[07:30:45 WRN] 処理時間が閾値を超えました: CheckFileUpdates - 20595.8927ms (閾値: 5000ms) 
+[07:30:45 INF] ファイル更新を検出しました。データ処理を開始します 
+[07:30:49 INF] ファイルロックチェックを開始します: 50個のファイル 
+[07:30:49 INF] ロックチェック完了: 50個中49個が利用可能 (処理時間: 0.10秒) 
+[07:30:49 INF] データ抽出を開始します: 49個のファイルを処理 
+[07:30:50 ERR] ファイル処理中にエラーが発生しました: \\192.168.200.20\全社共有\SS予約表\2025年\埼京A2\ふじみの\【ふじみの】2025年_SS予約表_250111.xlsm 
+System.ArgumentException: Phonetic runs must be in ascending order and can't overlap.
+   at ClosedXML.Excel.XLImmutableRichText.Create[T](XLFormattedText`1 formattedText)
+   at ClosedXML.Excel.XLRichText.OnContentChanged()
+   at ClosedXML.Excel.XLWorkbook.SetCellText(XLCell xlCell, RstType element)
+   at ClosedXML.Excel.XLWorkbook.SetCellValue(CellValues dataType, String cellValue, XLCell xlCell, SharedStringItem[] sharedStrings)
+   at ClosedXML.Excel.XLWorkbook.LoadCell(SharedStringItem[] sharedStrings, Stylesheet s, NumberingFormats numberingFormats, Fills fills, Borders borders, Fonts fonts, Dictionary`2 sharedFormulasR1C1, XLWorksheet ws, Dictionary`2 styleList, OpenXmlPartReader reader, Int32 rowIndex)
+   at ClosedXML.Excel.XLWorkbook.LoadRow(Stylesheet s, NumberingFormats numberingFormats, Fills fills, Borders borders, Fonts fonts, XLWorksheet ws, SharedStringItem[] sharedStrings, Dictionary`2 sharedFormulasR1C1, Dictionary`2 styleList, OpenXmlPartReader reader)
+   at ClosedXML.Excel.XLWorkbook.LoadSpreadsheetDocument(SpreadsheetDocument dSpreadsheet)
+   at ClosedXML.Excel.XLWorkbook.LoadSheets(String fileName)
+   at ClosedXML.Excel.XLWorkbook.Load(String file)
+   at ClosedXML.Excel.XLWorkbook..ctor(String file, LoadOptions loadOptions)
+   at ClosedXML.Excel.XLWorkbook..ctor(String file)
+   at VacancyImport.Services.ExcelService.<ExtractMonthlyReservationsAsync>b__11_0() in C:\VacancyImport\vacancy_import_v2\src\VacancyImport\Services\ExcelService.cs:line 260
+[07:30:51 ERR] ファイル処理中にエラーが発生しました: \\192.168.200.20\全社共有\SS予約表\2025年\千葉\いちかわ\過去\?【いちかわ】2025年_SS予約表_241122.xlsm 
+System.IO.FileFormatException: File contains corrupted data.
+   at System.IO.Packaging.ZipPackage..ctor(Stream s, FileMode packageFileMode, FileAccess packageFileAccess)
+   at System.IO.Packaging.Package.Open(Stream stream, FileMode packageMode, FileAccess packageAccess)
+   at DocumentFormat.OpenXml.Features.StreamPackageFeature.InitializePackage(Nullable`1 mode, Nullable`1 access)
+   at DocumentFormat.OpenXml.Features.StreamPackageFeature..ctor(Stream stream, PackageOpenMode openMode, Boolean isOwned)
+   at DocumentFormat.OpenXml.Features.FilePackageFeature..ctor(String path, PackageOpenMode mode)
+   at DocumentFormat.OpenXml.Builder.OpenXmlPackageBuilderExtensions.Open[TPackage](IPackageFactory`1 builder, String file, PackageOpenMode mode)
+   at DocumentFormat.OpenXml.Builder.OpenXmlPackageBuilderExtensions.Open[TPackage](IPackageFactory`1 builder, String file, Boolean isEditing)
+   at DocumentFormat.OpenXml.Packaging.SpreadsheetDocument.Open(String path, Boolean isEditable, OpenSettings openSettings)
+   at DocumentFormat.OpenXml.Packaging.SpreadsheetDocument.Open(String path, Boolean isEditable)
+   at ClosedXML.Excel.XLWorkbook.LoadSheets(String fileName)
+   at ClosedXML.Excel.XLWorkbook.Load(String file)
+   at ClosedXML.Excel.XLWorkbook..ctor(String file, LoadOptions loadOptions)
+   at ClosedXML.Excel.XLWorkbook..ctor(String file)
+   at VacancyImport.Services.ExcelService.<ExtractMonthlyReservationsAsync>b__11_0() in C:\VacancyImport\vacancy_import_v2\src\VacancyImport\Services\ExcelService.cs:line 260
+[07:30:53 INF] データ抽出完了: 成功3件, エラー2件, 総予約データ26件 
+[07:30:53 WRN] 処理時間が閾値を超えました: ExtractMonthlyReservations - 7674.7684ms (閾値: 5000ms) 
+[07:30:53 INF] データ抽出完了: 26件の予約データ 
+[07:30:53 INF] 月別予約データの更新を開始します 
+[07:30:53 ERR] 月別予約データの処理中にエラーが発生しました: 施設14 2025-1 
+Postgrest.Exceptions.PostgrestException: {"code":"23502","details":"Failing row contains (null, null, null, null, {19,18,17,15,12,13,13,12,12,10,16,16,11,7,13,12,13,16,13,8,11,14...).","hint":null,"message":"null value in column \"tenant_id\" of relation \"facility_monthly_reservations\" violates not-null constraint"}
+   at Postgrest.Helpers.MakeRequest(ClientOptions clientOptions, HttpMethod method, String url, JsonSerializerSettings serializerSettings, Object data, Dictionary`2 headers, CancellationToken cancellationToken)
+   at Postgrest.Helpers.MakeRequest[T](ClientOptions clientOptions, HttpMethod method, String url, JsonSerializerSettings serializerSettings, Object data, Dictionary`2 headers, Func`1 getHeaders, CancellationToken cancellationToken)
+   at VacancyImport.Services.SupabaseService.ProcessMonthlyReservationBatchAsync(IEnumerable`1 batch) in C:\VacancyImport\vacancy_import_v2\src\VacancyImport\Services\SupabaseService.cs:line 197
+[07:30:53 ERR] 月別予約データの処理中にエラーが発生しました: 施設14 2025-2 
+Postgrest.Exceptions.PostgrestException: {"code":"23502","details":"Failing row contains (null, null, null, null, {18,17,15,14,14,12,11,17,18,14,12,11,11,12,16,13,12,15,18,15,17,...).","hint":null,"message":"null value in column \"tenant_id\" of relation \"facility_monthly_reservations\" violates not-null constraint"}
+   at Postgrest.Helpers.MakeRequest(ClientOptions clientOptions, HttpMethod method, String url, JsonSerializerSettings serializerSettings, Object data, Dictionary`2 headers, CancellationToken cancellationToken)
+   at Postgrest.Helpers.MakeRequest[T](ClientOptions clientOptions, HttpMethod method, String url, JsonSerializerSettings serializerSettings, Object data, Dictionary`2 headers, Func`1 getHeaders, CancellationToken cancellationToken)
+   at VacancyImport.Services.SupabaseService.ProcessMonthlyReservationBatchAsync(IEnumerable`1 batch) in C:\VacancyImport\vacancy_import_v2\src\VacancyImport\Services\SupabaseService.cs:line 197
+[07:30:53 ERR] 月別予約データの処理中にエラーが発生しました: 施設14 2025-3 
+Postgrest.Exceptions.PostgrestException: {"code":"23502","details":"Failing row contains (null, null, null, null, {15,12,11,10,12,11,14,15,14,11,12,14,12,9,9,8,5,8,12,13,14,17,15...).","hint":null,"message":"null value in column \"tenant_id\" of relation \"facility_monthly_reservations\" violates not-null constraint"}
+   at Postgrest.Helpers.MakeRequest(ClientOptions clientOptions, HttpMethod method, String url, JsonSerializerSettings serializerSettings, Object data, Dictionary`2 headers, CancellationToken cancellationToken)
+   at Postgrest.Helpers.MakeRequest[T](ClientOptions clientOptions, HttpMethod method, String url, JsonSerializerSettings serializerSettings, Object data, Dictionary`2 headers, Func`1 getHeaders, CancellationToken cancellationToken)
+   at VacancyImport.Services.SupabaseService.ProcessMonthlyReservationBatchAsync(IEnumerable`1 batch) in C:\VacancyImport\vacancy_import_v2\src\VacancyImport\Services\SupabaseService.cs:line 197
+[07:30:54 ERR] 月別予約データの処理中にエラーが発生しました: 施設14 2025-4 
+Postgrest.Exceptions.PostgrestException: {"code":"23502","details":"Failing row contains (null, null, null, null, {9,12,12,12,13,13,9,10,12,11,15,15,12,8,11,12,15,18,15,16,18,13,...).","hint":null,"message":"null value in column \"tenant_id\" of relation \"facility_monthly_reservations\" violates not-null constraint"}
+   at Postgrest.Helpers.MakeRequest(ClientOptions clientOptions, HttpMethod method, String url, JsonSerializerSettings serializerSettings, Object data, Dictionary`2 headers, CancellationToken cancellationToken)
+   at Postgrest.Helpers.MakeRequest[T](ClientOptions clientOptions, HttpMethod method, String url, JsonSerializerSettings serializerSettings, Object data, Dictionary`2 headers, Func`1 getHeaders, CancellationToken cancellationToken)
+   at VacancyImport.Services.SupabaseService.ProcessMonthlyReservationBatchAsync(IEnumerable`1 batch) in C:\VacancyImport\vacancy_import_v2\src\VacancyImport\Services\SupabaseService.cs:line 197
+[07:30:54 ERR] 月別予約データの処理中にエラーが発生しました: 施設14 2025-11 
+Postgrest.Exceptions.PostgrestException: {"code":"23502","details":"Failing row contains (null, null, null, null, {4,3,2,3,3,3,4,3,3,4,2,2,2,2,0,0,0,0,0,0,1,3,3,2,1,2,2,2,2,2}).","hint":null,"message":"null value in column \"tenant_id\" of relation \"facility_monthly_reservations\" violates not-null constraint"}
+   at Postgrest.Helpers.MakeRequest(ClientOptions clientOptions, HttpMethod method, String url, JsonSerializerSettings serializerSettings, Object data, Dictionary`2 headers, CancellationToken cancellationToken)
+   at Postgrest.Helpers.MakeRequest[T](ClientOptions clientOptions, HttpMethod method, String url, JsonSerializerSettings serializerSettings, Object data, Dictionary`2 headers, Func`1 getHeaders, CancellationToken cancellationToken)
+   at VacancyImport.Services.SupabaseService.ProcessMonthlyReservationBatchAsync(IEnumerable`1 batch) in C:\VacancyImport\vacancy_import_v2\src\VacancyImport\Services\SupabaseService.cs:line 197
+[07:30:54 ERR] 月別予約データの処理中にエラーが発生しました: 施設14 2025-12 
+Postgrest.Exceptions.PostgrestException: {"code":"23502","details":"Failing row contains (null, null, null, null, {2,2,2,2,2,2,3,2,2,2,2,3,1,1,1,0,0,0,0,1,1,1,1,1,2,3,3,3,4,4,4}).","hint":null,"message":"null value in column \"tenant_id\" of relation \"facility_monthly_reservations\" violates not-null constraint"}
+   at Postgrest.Helpers.MakeRequest(ClientOptions clientOptions, HttpMethod method, String url, JsonSerializerSettings serializerSettings, Object data, Dictionary`2 headers, CancellationToken cancellationToken)
+   at Postgrest.Helpers.MakeRequest[T](ClientOptions clientOptions, HttpMethod method, String url, JsonSerializerSettings serializerSettings, Object data, Dictionary`2 headers, Func`1 getHeaders, CancellationToken cancellationToken)
+   at VacancyImport.Services.SupabaseService.ProcessMonthlyReservationBatchAsync(IEnumerable`1 batch) in C:\VacancyImport\vacancy_import_v2\src\VacancyImport\Services\SupabaseService.cs:line 197
+[07:30:54 ERR] 月別予約データの処理中にエラーが発生しました: 施設10 2025-1 
+Postgrest.Exceptions.PostgrestException: {"code":"23502","details":"Failing row contains (null, null, null, null, {16,19,18,15,14,13,15,15,12,11,11,11,12,14,12,11,12,12,11,14,15,...).","hint":null,"message":"null value in column \"tenant_id\" of relation \"facility_monthly_reservations\" violates not-null constraint"}
+   at Postgrest.Helpers.MakeRequest(ClientOptions clientOptions, HttpMethod method, String url, JsonSerializerSettings serializerSettings, Object data, Dictionary`2 headers, CancellationToken cancellationToken)
+   at Postgrest.Helpers.MakeRequest[T](ClientOptions clientOptions, HttpMethod method, String url, JsonSerializerSettings serializerSettings, Object data, Dictionary`2 headers, Func`1 getHeaders, CancellationToken cancellationToken)
+   at VacancyImport.Services.SupabaseService.ProcessMonthlyReservationBatchAsync(IEnumerable`1 batch) in C:\VacancyImport\vacancy_import_v2\src\VacancyImport\Services\SupabaseService.cs:line 197
+[07:30:54 ERR] 月別予約データの処理中にエラーが発生しました: 施設10 2025-2 
+Postgrest.Exceptions.PostgrestException: {"code":"23502","details":"Failing row contains (null, null, null, null, {18,18,15,16,16,17,19,20,18,19,17,15,16,14,15,14,17,17,17,18,17,...).","hint":null,"message":"null value in column \"tenant_id\" of relation \"facility_monthly_reservations\" violates not-null constraint"}
+   at Postgrest.Helpers.MakeRequest(ClientOptions clientOptions, HttpMethod method, String url, JsonSerializerSettings serializerSettings, Object data, Dictionary`2 headers, CancellationToken cancellationToken)
+   at Postgrest.Helpers.MakeRequest[T](ClientOptions clientOptions, HttpMethod method, String url, JsonSerializerSettings serializerSettings, Object data, Dictionary`2 headers, Func`1 getHeaders, CancellationToken cancellationToken)
+   at VacancyImport.Services.SupabaseService.ProcessMonthlyReservationBatchAsync(IEnumerable`1 batch) in C:\VacancyImport\vacancy_import_v2\src\VacancyImport\Services\SupabaseService.cs:line 197
+[07:30:54 ERR] 月別予約データの処理中にエラーが発生しました: 施設10 2025-3 
+Postgrest.Exceptions.PostgrestException: {"code":"23502","details":"Failing row contains (null, null, null, null, {17,16,16,17,19,17,20,19,16,14,15,16,17,19,19,18,20,18,19,16,18,...).","hint":null,"message":"null value in column \"tenant_id\" of relation \"facility_monthly_reservations\" violates not-null constraint"}
+   at Postgrest.Helpers.MakeRequest(ClientOptions clientOptions, HttpMethod method, String url, JsonSerializerSettings serializerSettings, Object data, Dictionary`2 headers, CancellationToken cancellationToken)
+   at Postgrest.Helpers.MakeRequest[T](ClientOptions clientOptions, HttpMethod method, String url, JsonSerializerSettings serializerSettings, Object data, Dictionary`2 headers, Func`1 getHeaders, CancellationToken cancellationToken)
+   at VacancyImport.Services.SupabaseService.ProcessMonthlyReservationBatchAsync(IEnumerable`1 batch) in C:\VacancyImport\vacancy_import_v2\src\VacancyImport\Services\SupabaseService.cs:line 197
+[07:30:54 ERR] 月別予約データの処理中にエラーが発生しました: 施設10 2025-4 
+Postgrest.Exceptions.PostgrestException: {"code":"23502","details":"Failing row contains (null, null, null, null, {18,19,17,16,17,16,16,15,16,15,17,18,18,18,18,19,17,18,18,16,16,...).","hint":null,"message":"null value in column \"tenant_id\" of relation \"facility_monthly_reservations\" violates not-null constraint"}
+   at Postgrest.Helpers.MakeRequest(ClientOptions clientOptions, HttpMethod method, String url, JsonSerializerSettings serializerSettings, Object data, Dictionary`2 headers, CancellationToken cancellationToken)
+   at Postgrest.Helpers.MakeRequest[T](ClientOptions clientOptions, HttpMethod method, String url, JsonSerializerSettings serializerSettings, Object data, Dictionary`2 headers, Func`1 getHeaders, CancellationToken cancellationToken)
+   at VacancyImport.Services.SupabaseService.ProcessMonthlyReservationBatchAsync(IEnumerable`1 batch) in C:\VacancyImport\vacancy_import_v2\src\VacancyImport\Services\SupabaseService.cs:line 197
+[07:30:55 ERR] 月別予約データの処理中にエラーが発生しました: 施設10 2025-10 
+Postgrest.Exceptions.PostgrestException: {"code":"23502","details":"Failing row contains (null, null, null, null, {3,3,6,5,5,3,3,4,4,5,4,4,4,3,3,3,4,3,3,4,4,5,5,5,4,4,3,2,3,3,5}).","hint":null,"message":"null value in column \"tenant_id\" of relation \"facility_monthly_reservations\" violates not-null constraint"}
+   at Postgrest.Helpers.MakeRequest(ClientOptions clientOptions, HttpMethod method, String url, JsonSerializerSettings serializerSettings, Object data, Dictionary`2 headers, CancellationToken cancellationToken)
+   at Postgrest.Helpers.MakeRequest[T](ClientOptions clientOptions, HttpMethod method, String url, JsonSerializerSettings serializerSettings, Object data, Dictionary`2 headers, Func`1 getHeaders, CancellationToken cancellationToken)
+   at VacancyImport.Services.SupabaseService.ProcessMonthlyReservationBatchAsync(IEnumerable`1 batch) in C:\VacancyImport\vacancy_import_v2\src\VacancyImport\Services\SupabaseService.cs:line 197
+[07:30:55 ERR] 月別予約データの処理中にエラーが発生しました: 施設10 2025-11 
+Postgrest.Exceptions.PostgrestException: {"code":"23502","details":"Failing row contains (null, null, null, null, {4,4,4,3,2,1,1,1,1,1,1,1,2,2,2,2,1,1,1,1,2,2,2,2,2,1,1,1,1,0}).","hint":null,"message":"null value in column \"tenant_id\" of relation \"facility_monthly_reservations\" violates not-null constraint"}
+   at Postgrest.Helpers.MakeRequest(ClientOptions clientOptions, HttpMethod method, String url, JsonSerializerSettings serializerSettings, Object data, Dictionary`2 headers, CancellationToken cancellationToken)
+   at Postgrest.Helpers.MakeRequest[T](ClientOptions clientOptions, HttpMethod method, String url, JsonSerializerSettings serializerSettings, Object data, Dictionary`2 headers, Func`1 getHeaders, CancellationToken cancellationToken)
+   at VacancyImport.Services.SupabaseService.ProcessMonthlyReservationBatchAsync(IEnumerable`1 batch) in C:\VacancyImport\vacancy_import_v2\src\VacancyImport\Services\SupabaseService.cs:line 197
+[07:30:55 ERR] 月別予約データの処理中にエラーが発生しました: 施設10 2025-12 
+Postgrest.Exceptions.PostgrestException: {"code":"23502","details":"Failing row contains (null, null, null, null, {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}).","hint":null,"message":"null value in column \"tenant_id\" of relation \"facility_monthly_reservations\" violates not-null constraint"}
+   at Postgrest.Helpers.MakeRequest(ClientOptions clientOptions, HttpMethod method, String url, JsonSerializerSettings serializerSettings, Object data, Dictionary`2 headers, CancellationToken cancellationToken)
+   at Postgrest.Helpers.MakeRequest[T](ClientOptions clientOptions, HttpMethod method, String url, JsonSerializerSettings serializerSettings, Object data, Dictionary`2 headers, Func`1 getHeaders, CancellationToken cancellationToken)
+   at VacancyImport.Services.SupabaseService.ProcessMonthlyReservationBatchAsync(IEnumerable`1 batch) in C:\VacancyImport\vacancy_import_v2\src\VacancyImport\Services\SupabaseService.cs:line 197
+[07:30:55 ERR] 月別予約データの処理中にエラーが発生しました: 施設14 2025-1 
+Postgrest.Exceptions.PostgrestException: {"code":"23502","details":"Failing row contains (null, null, null, null, {20,17,17,13,12,14,16,15,14,13,19,19,15,12,14,13,15,17,14,9,9,11...).","hint":null,"message":"null value in column \"tenant_id\" of relation \"facility_monthly_reservations\" violates not-null constraint"}
+   at Postgrest.Helpers.MakeRequest(ClientOptions clientOptions, HttpMethod method, String url, JsonSerializerSettings serializerSettings, Object data, Dictionary`2 headers, CancellationToken cancellationToken)
+   at Postgrest.Helpers.MakeRequest[T](ClientOptions clientOptions, HttpMethod method, String url, JsonSerializerSettings serializerSettings, Object data, Dictionary`2 headers, Func`1 getHeaders, CancellationToken cancellationToken)
+   at VacancyImport.Services.SupabaseService.ProcessMonthlyReservationBatchAsync(IEnumerable`1 batch) in C:\VacancyImport\vacancy_import_v2\src\VacancyImport\Services\SupabaseService.cs:line 197
+[07:30:55 ERR] 月別予約データの処理中にエラーが発生しました: 施設14 2025-2 
+Postgrest.Exceptions.PostgrestException: {"code":"23502","details":"Failing row contains (null, null, null, null, {14,12,10,10,9,8,13,17,16,10,9,10,9,12,16,13,8,9,10,8,11,17,16,7...).","hint":null,"message":"null value in column \"tenant_id\" of relation \"facility_monthly_reservations\" violates not-null constraint"}
+   at Postgrest.Helpers.MakeRequest(ClientOptions clientOptions, HttpMethod method, String url, JsonSerializerSettings serializerSettings, Object data, Dictionary`2 headers, CancellationToken cancellationToken)
+   at Postgrest.Helpers.MakeRequest[T](ClientOptions clientOptions, HttpMethod method, String url, JsonSerializerSettings serializerSettings, Object data, Dictionary`2 headers, Func`1 getHeaders, CancellationToken cancellationToken)
+   at VacancyImport.Services.SupabaseService.ProcessMonthlyReservationBatchAsync(IEnumerable`1 batch) in C:\VacancyImport\vacancy_import_v2\src\VacancyImport\Services\SupabaseService.cs:line 197
+[07:30:55 INF] 月別予約データの更新が完了しました。変更件数: 0 
+[07:30:55 INF] DB更新は行われませんでした（変更なし） 
+[07:30:55 WRN] 処理時間が閾値を超えました: main_loop - 30563.8467ms (閾値: 5000ms) 
+[07:31:32 INF] ?? 停止要求を受信しました... 
+[07:31:32 INF] Application is shutting down... 
+[07:31:32 INF] ?? 予約管理システム連携サービス の停止処理を開始します... 
+[07:31:32 INF] ?? シャットダウンシグナルを送信しました 
+[07:31:32 INF] ? ビジネスロジックが正常に完了しました 
+[07:31:32 INF] ?? 停止要求を受信しました 
+[07:31:32 INF] ? メインループを終了します 
+[07:31:32 INF] ?? 緊急クリーンアップ処理を開始します 
+[07:31:32 INF] ? 緊急クリーンアップ処理が完了しました 
+[07:31:32 INF] ? 停止処理が完了しました 
+[07:31:32 INF] ?? 予約管理システム連携サービス が正常に停止しました 
+[07:31:32 INF] ?? ServiceHostのリソースクリーンアップを開始します 
+[07:31:32 INF] ? ServiceHostのリソースクリーンアップが完了しました 
+
+? アプリケーションが正常に終了しました
+[07:31:32 INF] ?? ログをフラッシュしています... 
